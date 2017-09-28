@@ -1,0 +1,15 @@
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoWPF\02-HelloWorld-WPF\02-HelloWorld-WPF\bin\Debug\02-HelloWorld-WPF.exe.config
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoWPF\02-HelloWorld-WPF\02-HelloWorld-WPF\bin\Debug\02-HelloWorld-WPF.exe
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoWPF\02-HelloWorld-WPF\02-HelloWorld-WPF\bin\Debug\02-HelloWorld-WPF.pdb
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoWPF\02-HelloWorld-WPF\02-HelloWorld-WPF\obj\Debug\02-HelloWorld-WPF.csprojResolveAssemblyReference.cache
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoWPF\02-HelloWorld-WPF\02-HelloWorld-WPF\obj\Debug\MainWindow.g.cs
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoWPF\02-HelloWorld-WPF\02-HelloWorld-WPF\obj\Debug\App.g.cs
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoWPF\02-HelloWorld-WPF\02-HelloWorld-WPF\obj\Debug\02-HelloWorld-WPF_MarkupCompile.cache
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoWPF\02-HelloWorld-WPF\02-HelloWorld-WPF\obj\Debug\02-HelloWorld-WPF_MarkupCompile.lref
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoWPF\02-HelloWorld-WPF\02-HelloWorld-WPF\obj\Debug\MainWindow.baml
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoWPF\02-HelloWorld-WPF\02-HelloWorld-WPF\obj\Debug\02-HelloWorld-WPF.g.resources
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoWPF\02-HelloWorld-WPF\02-HelloWorld-WPF\obj\Debug\_02_HelloWorld_WPF.Properties.Resources.resources
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoWPF\02-HelloWorld-WPF\02-HelloWorld-WPF\obj\Debug\02-HelloWorld-WPF.csproj.GenerateResource.Cache
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoWPF\02-HelloWorld-WPF\02-HelloWorld-WPF\obj\Debug\02-HelloWorld-WPF.csproj.CoreCompileInputs.cache
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoWPF\02-HelloWorld-WPF\02-HelloWorld-WPF\obj\Debug\02-HelloWorld-WPF.exe
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoWPF\02-HelloWorld-WPF\02-HelloWorld-WPF\obj\Debug\02-HelloWorld-WPF.pdb
