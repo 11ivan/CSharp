@@ -1,0 +1,10 @@
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoC#\HolaMundoWFormCSharp\bin\Debug\HolaMundoWFormCSharp.exe.config
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoC#\HolaMundoWFormCSharp\bin\Debug\HolaMundoWFormCSharp.exe
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoC#\HolaMundoWFormCSharp\bin\Debug\HolaMundoWFormCSharp.pdb
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoC#\HolaMundoWFormCSharp\obj\Debug\HolaMundoWFormCSharp.csprojResolveAssemblyReference.cache
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoC#\HolaMundoWFormCSharp\obj\Debug\HolaMundoWFormCSharp.Form1.resources
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoC#\HolaMundoWFormCSharp\obj\Debug\HolaMundoWFormCSharp.Properties.Resources.resources
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoC#\HolaMundoWFormCSharp\obj\Debug\HolaMundoWFormCSharp.csproj.GenerateResource.Cache
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoC#\HolaMundoWFormCSharp\obj\Debug\HolaMundoWFormCSharp.csproj.CoreCompileInputs.cache
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoC#\HolaMundoWFormCSharp\obj\Debug\HolaMundoWFormCSharp.exe
+D:\OneDrive\2DAM\Desarrollo de Interfaces\HolaMundoC#\HolaMundoWFormCSharp\obj\Debug\HolaMundoWFormCSharp.pdb
