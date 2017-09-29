@@ -1,0 +1,1 @@
+C:\Users\icastillo\Desktop\GitHub\CSharp\HolaMundoC#\03-HolaMundo-AppUniversal\03-HolaMundo-AppUniversal\03-HolaMundo-AppUniversal.csproj;x86
