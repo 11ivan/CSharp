@@ -30,7 +30,7 @@ namespace BotonesEj
             boton3.VerticalAlignment = VerticalAlignment.Center;
             boton3.HorizontalAlignment = HorizontalAlignment.Center;
             Panel.Children.Add(boton3);
-            boton3.Background=
+            boton3.Background= Background.
         }
     }
 }
