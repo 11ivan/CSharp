@@ -1,0 +1,20 @@
+﻿<Page
+    x:Class="Layouts.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Layouts"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <StackPanel Background="DeepSkyBlue">
+        <RelativePanel x:Name="rPanel" Background="DarkBlue">
+
+            <TextBlock x:Name="menu" Text="Menú" MinWidth="50" MinHeight="40" Foreground="WhiteSmoke" Margin="15 10 0 0" />
+            <TextBlock x:Name="buscar" Text="Buscar" RelativePanel.LeftOf="textoBusq" Foreground="WhiteSmoke" Margin="0 10 0 0"/>
+            <TextBox x:Name="textoBusq" RelativePanel.LeftOf="icono" MinWidth="200" Background="Aqua" Margin="7 7 0 0"/>
+            <AppBarButton x:Name="icono" Icon="Zoom" Foreground="AliceBlue" RelativePanel.AlignRightWithPanel="True" MaxHeight="40" Click="search"/>
+            <Image x:Name="image1" Source="Assets\Images\google_android.png"  MaxHeight="40" MaxWidth="40" RelativePanel.AlignHorizontalCenterWithPanel="True"/>
+
+        </RelativePanel>
+    </StackPanel>
+</Page>
