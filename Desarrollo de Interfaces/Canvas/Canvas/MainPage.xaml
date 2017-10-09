@@ -1,0 +1,23 @@
+﻿<Page
+    x:Class="Canvas.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Canvas"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.TopAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Accept" Click="boton_Click"></AppBarButton>   
+        </CommandBar>        
+    </Page.TopAppBar>
+    
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Canvas>
+            <Rectangle Fill="Green" Width="100" Height="100" Canvas.Top="100" Canvas.Left="100"/>
+            <Ellipse Fill="GreenYellow" Width="100" Height="100" Canvas.Top="100" Canvas.Left="100" />
+        </Canvas>
+       
+    </Grid>
+</Page>
