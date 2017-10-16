@@ -24,21 +24,25 @@ namespace PingPong
     {
         Bola bola;
         DispatcherTimer timer;
+        private Object o;
+        private EventArgs even;
 
         public MainPage()
         {
             this.InitializeComponent();
             timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0,0,0,0,25);
-            timer.IsEnabled = true;
-            timer.Tick += new EventHandler(Timer_tick);
+            //timer.IsEnabled = true;
+            timer.Tick += timertick;
+            timer.Start();
             // bola = new Bola(canvas);
             bola = new Bola();
             bola.tomaPosicion();
             canvas.Children.Add(bola.getEllipse());
         }
 
-        private void Timer_tick(Object sender, EventArgs e) {
+        
+        private void timertick(object sender, object e) {
             bola.move();
         }
 
