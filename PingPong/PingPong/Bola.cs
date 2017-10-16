@@ -25,6 +25,7 @@ public class Bola
 
     private static int posX;
     private static int posY;
+    private static int dirX, dirY;
     private static int size;
     private static Ellipse ellip;
     private static int speedMove;
@@ -54,7 +55,9 @@ public class Bola
         ellip.Fill = new SolidColorBrush(Colors.Blue);
         ellip.Width = size;
         ellip.Height = size;
-        speedMove = 5;
+        speedMove = 10;
+        dirX = speedMove;
+        dirY = speedMove;
     }
 
 
@@ -87,8 +90,10 @@ public class Bola
 
     //Métodos
     public void move() {
-        posX += speedMove;
-        posY += speedMove;
+        //posX += speedMove;
+        //posY += speedMove;
+        posX += dirX;
+        posY += dirY;
         Canvas.SetTop(ellip, posX);
         Canvas.SetLeft(ellip, posY);
     }
@@ -97,5 +102,27 @@ public class Bola
         Canvas.SetTop(ellip, posX);
         Canvas.SetLeft(ellip, posY);
     }
+
+    public void reboteX() {
+        if (dirX == 10)
+        {
+            dirX = -10;
+        }
+        else {
+            dirX = 10;
+        }
+    }
+
+    public void reboteY() {
+        if (dirY == 10)
+        {
+            dirY = -10;
+        }
+        else
+        {
+            dirY = 10;
+        }
+    }
+
 
 }

@@ -28,37 +28,96 @@ namespace FormTabla
         }
 
         /// <summary>
-        /// 
+        /// Si todos los datos del formulario son correctos hace una llamada al método PromptDialog()
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            if (String.IsNullOrWhiteSpace(txtNombre.Text))
-            {
-                ErrorNombre.Text = "Debe introducir el nombre";
-            }
-            else {
-                ErrorNombre.Text = "";
-            }
-            if (String.IsNullOrWhiteSpace(txtApellido.Text))
-            {
-                ErrorNombre.Text = "Debe introducir el apellido";
-            }
-            else
-            {
-                ErrorApellido.Text = "";
-            }
-            if (String.IsNullOrWhiteSpace(txtNombre.Text))
-            {
-                ErrorFechaNac.Text = "Debe introducir el nombre";
-            }
-            else
-            {
-                ErrorNombre.Text = "";
+        private void button_Click(object sender, RoutedEventArgs e){
+
+            if (this.compruebaForm()) {
+                PromptDialog();
             }
         }
 
+
+        /// <summary>
+        /// Comprueba que los datos del formulario sean correctos
+        /// </summary>
+        /// <returns>Devuelve un booleano que será verdadero si todos los datos del formulario son correctos y false sino</returns>
+        public Boolean compruebaForm() {
+            Boolean vale = true;
+            DateTime fehcaPars = new DateTime();
+
+            if (String.IsNullOrWhiteSpace(txtNombre.Text)){
+                ErrorNombre.Text = "Debe introducir el nombre";
+                vale = false;
+            }else{
+                ErrorNombre.Text = "";
+            }
+
+            if (String.IsNullOrWhiteSpace(txtApellido.Text)){
+                ErrorApellido.Text = "Debe introducir el apellido";
+                vale = false;
+            }else{
+                ErrorApellido.Text = "";
+            }
+
+            if (String.IsNullOrWhiteSpace(txtFechaNac.Text)) {
+                ErrorFechaNac.Text = "Debe introducir la fecha";
+                vale = false;
+            } else if (!DateTime.TryParse(txtFechaNac.Text, out fehcaPars)) {
+                ErrorFechaNac.Text = "La fecha no es correcta";
+                vale = false;
+            } else if (getAge()==-1) {
+                ErrorFechaNac.Text = "La fecha no puede ser mayor a la actual";
+                vale = false;
+            }
+            else {
+                ErrorFechaNac.Text = "";
+            }
+
+            return vale;
+        }
+
+        /// <summary>
+        /// Muestra una ventana con el nombre, apellido y edad
+        /// </summary>
+        private async void PromptDialog(){
+            ContentDialog miVentana = new ContentDialog();
+            miVentana.Title = "Me alegra tenerte aquí";
+            miVentana.Content = "Hola "+txtNombre.Text+" "+txtApellido.Text+", tienes "+ getAge()+" años";
+            //miVentana.PrimaryButtonText = "Allow";
+            miVentana.CloseButtonText = "Close";                           
+            ContentDialogResult result = await miVentana.ShowAsync();
+        }
+
+        /// <summary>
+        ///     Da la diferencia en años entre la fecha actual y la recogida en el textBox Fecha Nacimiento
+        /// </summary>
+        /// <preconditions>
+        ///     La fecha recogida en el textBox Fecha Nacimiento es correcta
+        /// </preconditions>
+        /// <returns>
+        ///     Un entero que será la diferncia en años, -1 en el caso de que la fecha de nacimiento sea mayor a la actual
+        /// </returns>
+        public int getAge() {
+            int age = 0;
+            DateTime fechaNac = DateTime.Parse(txtFechaNac.Text);
+            DateTime fechaAct = DateTime.Now;
+            TimeSpan ts = fechaAct - fechaNac;
+
+            if (ts.Days < 0) //|| fechaNac.Year==fechaAct.Year && fechaNac.Month == fechaAct.Month && fechaNac.Day == fechaAct.Day)
+            {
+                age = -1;
+            }else{
+                age = ts.Days / 365;
+                if (fechaNac.Month == fechaAct.Month && fechaNac.Day > fechaAct.Day)
+                {
+                    age--;
+                }
+            }
+            return age;
+        }
 
 
     }

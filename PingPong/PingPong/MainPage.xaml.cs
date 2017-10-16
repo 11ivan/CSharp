@@ -24,27 +24,72 @@ namespace PingPong
     {
         Bola bola;
         DispatcherTimer timer;
-        private Object o;
-        private EventArgs even;
+        int pointJ1 = 0;
+        int pointJ2 = 0;
+        Paleta p1;
+        Paleta p2;
 
         public MainPage()
         {
             this.InitializeComponent();
             timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0,0,0,0,25);
+            timer.Interval = new TimeSpan(0,0,0,0,1);
             //timer.IsEnabled = true;
             timer.Tick += timertick;
-            timer.Start();
+            //timer.Start();
             // bola = new Bola(canvas);
             bola = new Bola();
             bola.tomaPosicion();
             canvas.Children.Add(bola.getEllipse());
+            p1 = new Paleta();
+            p2 = new Paleta();
+            p1.tomaPosicion();
+            canvas.Children.Add(p1.getRectangle());
         }
 
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timertick(object sender, object e) {
             bola.move();
+            if (bola.getPosX()<=0) {
+                bola.reboteX();
+            }
+            if (bola.getPosX() >= 575){
+                bola.reboteX();
+            }
+
+            if (bola.getPosY() <= 0) //|| bola.getPosY() >= 975)
+            {
+                bola.reboteY();
+                pointJ2++;
+                player2.Text = Convert.ToString(pointJ2);
+            }
+            if (bola.getPosY() >= 975) {
+                bola.reboteY();
+                pointJ1++;
+                player1.Text = Convert.ToString(pointJ1);
+            }
         }
 
+        /// <summary>
+        /// Inicia, Pausa o Continua el DispatcherTimer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void PlayPause_Click(object sender, RoutedEventArgs e)
+        {
+            if (timer.IsEnabled)
+            {
+                PlayPause.Content = "Continuar";
+                timer.Stop();
+            }else {
+                PlayPause.Content = "Pause";
+                timer.Start();
+            }
+        }
     }
 }
