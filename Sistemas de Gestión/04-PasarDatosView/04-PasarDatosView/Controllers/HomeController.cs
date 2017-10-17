@@ -55,7 +55,7 @@ namespace _04_PasarDatosView.Controllers
                 case 05:
                 case 06:
                 case 07:
-                    Saludo = "Buenas noche";
+                    Saludo = "Buenas noches";
                     break;
             }
 
