@@ -1,0 +1,20 @@
+﻿@model _04_PasarDatosView.Models.Persona
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        <!--Html.ActionLink("Enlace a algo", "Index", "Home")-->
+        @ViewData["Saludo"], @Model.getNombre(), hoy es  @ViewBag.Fecha
+    </div>
+</body>
+</html>

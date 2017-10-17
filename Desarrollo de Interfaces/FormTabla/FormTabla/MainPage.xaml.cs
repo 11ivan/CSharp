@@ -29,6 +29,7 @@ namespace FormTabla
 
         /// <summary>
         /// Si todos los datos del formulario son correctos hace una llamada al método PromptDialog()
+        /// evento asiciado al boton "button_Click"
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -106,6 +107,7 @@ namespace FormTabla
             DateTime fechaAct = DateTime.Now;
             TimeSpan ts = fechaAct - fechaNac;
 
+            //Si la diferencia en dias es menor que 0 es que la fecha introducida es mayor a la actual
             if (ts.Days < 0) //|| fechaNac.Year==fechaAct.Year && fechaNac.Month == fechaAct.Month && fechaNac.Day == fechaAct.Day)
             {
                 age = -1;
