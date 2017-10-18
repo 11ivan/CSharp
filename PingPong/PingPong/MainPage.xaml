@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" KeyDown="Grid_KeyDown" KeyUp="Grid_KeyUp">
         <Border BorderBrush="Blue" BorderThickness="3" MaxHeight="600" MaxWidth="1000" Margin="10">
             <Canvas x:Name="canvas" MaxHeight="600"  MaxWidth="1000"/>
         </Border>

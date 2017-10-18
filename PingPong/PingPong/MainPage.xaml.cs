@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -39,12 +40,19 @@ namespace PingPong
             //timer.Start();
             // bola = new Bola(canvas);
             bola = new Bola();
-            bola.tomaPosicion();
+            bola.takePosition();
             canvas.Children.Add(bola.getEllipse());
             p1 = new Paleta();
             p2 = new Paleta();
-            p1.tomaPosicion();
+            p1.setPosX(20);
+            p1.setPosY(100);
+            p2.setPosX(950);
+            p2.setPosY(100);
+
+            p1.takePosition();
+            p2.takePosition();
             canvas.Children.Add(p1.getRectangle());
+            canvas.Children.Add(p2.getRectangle());
         }
 
         
@@ -55,24 +63,34 @@ namespace PingPong
         /// <param name="e"></param>
         private void timertick(object sender, object e) {
             bola.move();
-            if (bola.getPosX()<=0) {
-                bola.reboteX();
-            }
-            if (bola.getPosX() >= 575){
-                bola.reboteX();
-            }
+            p1.move();
+            p2.move();
 
-            if (bola.getPosY() <= 0) //|| bola.getPosY() >= 975)
-            {
+            if (bola.getPosY()<=0 || bola.getPosY() >= 575) {
                 bola.reboteY();
+            }
+            if (bola.getPosX() <= 0) //|| bola.getPosY() >= 975)
+            {
+                bola.reboteX();
                 pointJ2++;
                 player2.Text = Convert.ToString(pointJ2);
             }
-            if (bola.getPosY() >= 975) {
-                bola.reboteY();
+            if (bola.getPosX() >= 975) {
+                bola.reboteX();
                 pointJ1++;
                 player1.Text = Convert.ToString(pointJ1);
             }
+
+            if (bola.getPosX()<= (p1.getRectangle().Width+p1.getPosX()) && bola.getPosY()>=p1.getPosY() && bola.getPosY()<=(p1.getRectangle().Height+p1.getPosY()))
+            {
+                bola.reboteX();
+            }
+                                                                            //borra esto XD
+            if ((bola.getPosX()+bola.getSize()) >= p2.getPosX() && bola.getPosY() >= p2.getPosY() && bola.getPosY() <= (p2.getRectangle().Height + p2.getPosY()))
+            {
+                bola.reboteX();
+            }
+
         }
 
         /// <summary>
@@ -91,5 +109,63 @@ namespace PingPong
                 timer.Start();
             }
         }
+
+        private void Grid_KeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key==VirtualKey.Down)//e.Key.Equals(KeyDownEvent))
+            {
+                p2.down();
+            }
+
+            if (e.Key==VirtualKey.Up)
+            {
+                p2.up();
+            }
+
+            if (e.Key == VirtualKey.S)
+            {
+                p1.down();
+            }
+
+            if (e.Key == VirtualKey.W)
+            {
+                p1.up();
+            }
+        }
+
+        private void Grid_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Down)
+            {
+                p2.stop();
+            }
+
+            if (e.Key == VirtualKey.Up)
+            {
+                p2.stop();
+            }
+
+            if (e.Key == VirtualKey.S)
+            {
+                p1.stop();
+            }
+
+            if (e.Key == VirtualKey.W)
+            {
+                p1.stop();
+            }
+        }
+
+
+        //Metodo compruebaRebote
+
+
+
+
+        //Metodo sumaPuntos
+
+
+
+
     }
 }

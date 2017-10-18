@@ -23,12 +23,12 @@ using Windows.UI.Xaml.Shapes;
 public class Bola
 {
 
-    private static int posX;
-    private static int posY;
-    private static int dirX, dirY;
-    private static int size;
-    private static Ellipse ellip;
-    private static int speedMove;
+    private  int posX;
+    private  int posY;
+    private  int dirX, dirY;
+    private  int size;
+    private  Ellipse ellip;
+    private  int speedMove;
 
 
     //Constructor de la bola
@@ -89,20 +89,31 @@ public class Bola
 
 
     //Métodos
+
+    /// <summary>
+    /// 
+    /// </summary>
     public void move() {
         //posX += speedMove;
         //posY += speedMove;
         posX += dirX;
         posY += dirY;
-        Canvas.SetTop(ellip, posX);
-        Canvas.SetLeft(ellip, posY);
+        Canvas.SetTop(ellip, posY);
+        Canvas.SetLeft(ellip, posX);
     }
 
-    public void tomaPosicion() {
-        Canvas.SetTop(ellip, posX);
-        Canvas.SetLeft(ellip, posY);
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void takePosition() {
+        Canvas.SetTop(ellip, posY);
+        Canvas.SetLeft(ellip, posX);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public void reboteX() {
         if (dirX == 10)
         {
@@ -113,6 +124,9 @@ public class Bola
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public void reboteY() {
         if (dirY == 10)
         {

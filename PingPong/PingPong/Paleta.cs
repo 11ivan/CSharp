@@ -24,17 +24,20 @@ using Windows.UI.Xaml.Shapes;
 namespace PingPong
 {
     class Paleta{
-        private static int height;
-        private static int width;
-        private static int posX;
-        private static int posY;
-        private static Rectangle rect;
+        private  int height;
+        private  int width;
+        private  int posX;
+        private  int posY;
+        private int dirX;
+        private int dirY;
+        private  Rectangle rect;
 
         public Paleta() {
             height = 100;
             width = 20;
-            posX = 0;//100
-            posY = 0;//950
+            posX = 0;// 950 player2
+            posY = 0;// 100 player2
+            dirY = 0;
             rect = new Rectangle();
             rect.Height = height;
             rect.Width = width;
@@ -47,13 +50,69 @@ namespace PingPong
             return rect;
         }
 
-
-        public void tomaPosicion()
+        public int getPosX()
         {
-            Canvas.SetTop(rect, posX);
-            Canvas.SetLeft(rect, posY);
+            return posX;
         }
 
+        public int getPosY()
+        {
+            return posY;
+        }
+
+
+        //Modificadores
+        public void setPosX(int posX)
+        {
+            this.posX = posX;
+        }
+
+        public void setPosY(int posY)
+        {
+            this.posY = posY;
+        }
+
+
+        public void takePosition()
+        {
+            Canvas.SetTop(rect, posY);
+            Canvas.SetLeft(rect, posX);
+        }
+
+
+        public void move()
+        {
+            posY += dirY;
+            Canvas.SetTop(rect, posY);
+        }
+
+        public void down()
+        {
+            if (posY>=500)
+            {
+                dirY = 0;
+            }
+            else
+            {
+                dirY = 10;
+            }
+        }
+        public void up()
+        {
+            if (posY <= 0)
+            {
+                dirY = 0;
+            }
+            else
+            {
+                dirY = -10;
+            }
+        }
+
+        public void stop()
+        {
+            dirY = 0;
+        }
 
     }
 }
