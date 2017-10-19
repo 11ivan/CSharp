@@ -1,0 +1,8 @@
+﻿<Application
+    x:Class="UWP_13___LegendaryLayoutChallenge.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWP_13___LegendaryLayoutChallenge"
+    RequestedTheme="Light">
+
+</Application>

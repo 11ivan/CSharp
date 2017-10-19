@@ -88,24 +88,24 @@ namespace PingPong
 
         public void down()
         {
-            if (posY>=500)
+            if (posY<500)
             {
-                dirY = 0;
+                dirY = 10;
             }
             else
             {
-                dirY = 10;
+                dirY = 0;
             }
         }
         public void up()
         {
-            if (posY <= 0)
+            if (posY > 0)
             {
-                dirY = 0;
+                dirY = -10;
             }
             else
             {
-                dirY = -10;
+                dirY = 0;
             }
         }
 

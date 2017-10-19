@@ -34,7 +34,7 @@ namespace PingPong
         {
             this.InitializeComponent();
             timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0,0,0,0,1);
+            timer.Interval = new TimeSpan(0,0,0,0,-1);
             //timer.IsEnabled = true;
             timer.Tick += timertick;
             //timer.Start();
@@ -65,32 +65,7 @@ namespace PingPong
             bola.move();
             p1.move();
             p2.move();
-
-            if (bola.getPosY()<=0 || bola.getPosY() >= 575) {
-                bola.reboteY();
-            }
-            if (bola.getPosX() <= 0) //|| bola.getPosY() >= 975)
-            {
-                bola.reboteX();
-                pointJ2++;
-                player2.Text = Convert.ToString(pointJ2);
-            }
-            if (bola.getPosX() >= 975) {
-                bola.reboteX();
-                pointJ1++;
-                player1.Text = Convert.ToString(pointJ1);
-            }
-
-            if (bola.getPosX()<= (p1.getRectangle().Width+p1.getPosX()) && bola.getPosY()>=p1.getPosY() && bola.getPosY()<=(p1.getRectangle().Height+p1.getPosY()))
-            {
-                bola.reboteX();
-            }
-                                                                            //borra esto XD
-            if ((bola.getPosX()+bola.getSize()) >= p2.getPosX() && bola.getPosY() >= p2.getPosY() && bola.getPosY() <= (p2.getRectangle().Height + p2.getPosY()))
-            {
-                bola.reboteX();
-            }
-
+            this.compruebaRebote();   
         }
 
         /// <summary>
@@ -112,7 +87,7 @@ namespace PingPong
 
         private void Grid_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            if (e.Key==VirtualKey.Down)//e.Key.Equals(KeyDownEvent))
+            if (e.Key==VirtualKey.Down)
             {
                 p2.down();
             }
@@ -125,7 +100,7 @@ namespace PingPong
             if (e.Key == VirtualKey.S)
             {
                 p1.down();
-            }
+            }         
 
             if (e.Key == VirtualKey.W)
             {
@@ -136,34 +111,77 @@ namespace PingPong
         private void Grid_KeyUp(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Down)
-            {
-                p2.stop();
-            }
+             {
+                 p2.stop();
+             }
 
-            if (e.Key == VirtualKey.Up)
-            {
-                p2.stop();
-            }
+             if (e.Key == VirtualKey.Up)
+             {
+                 p2.stop();
+             }
 
-            if (e.Key == VirtualKey.S)
-            {
-                p1.stop();
-            }
+             if (e.Key == VirtualKey.S)
+             {
+                 p1.stop();
+             }
 
-            if (e.Key == VirtualKey.W)
-            {
-                p1.stop();
-            }
+             if (e.Key == VirtualKey.W)
+             {
+                 p1.stop();
+             }
         }
 
 
         //Metodo compruebaRebote
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public void compruebaRebote()
+        {
+            if (bola.getPosY() <= 0 || bola.getPosY() >= 575)
+            {
+                bola.reboteY();
+            }
+            if (bola.getPosX() <= 0) //|| bola.getPosY() >= 975)
+            {
+                bola.reboteX();
+                this.sumaPuntos(2);
+                
+            }
+            if (bola.getPosX() >= 975)
+            {
+                bola.reboteX();
+                this.sumaPuntos(1);
+                
+            }
+            if (bola.getPosX() <= (p1.getRectangle().Width + p1.getPosX()) && bola.getPosY() >= p1.getPosY() && bola.getPosY() <= (p1.getRectangle().Height + p1.getPosY()))
+            {
+                bola.reboteX();
+            }
+            if ((bola.getPosX() + bola.getSize()) >= p2.getPosX() && bola.getPosY() >= p2.getPosY() && bola.getPosY() <= (p2.getRectangle().Height + p2.getPosY()))
+            {
+                bola.reboteX();
+            }
+        }
 
 
 
         //Metodo sumaPuntos
+        public void sumaPuntos(int player)
+        {
+            switch (player)
+            {
+                case 1:
+                    pointJ1++;
+                    player1.Text = Convert.ToString(pointJ1);
+                    break;
 
+                case 2:
+                    pointJ2++;
+                    player2.Text = Convert.ToString(pointJ2);
+                    break;
+            }
+        }
 
 
 
