@@ -14,9 +14,10 @@ namespace _05_MVCListaPersonas.Models
             listaPersonas = new List<Persona>();
         }
 
-        public Persona getPersona(int pos) {
-            return listaPersonas.ElementAt(pos);         
-             /* try
+        public Persona getPersona(int pos){
+            return listaPersonas.ElementAt(pos);   
+            
+           /* try
             {
                 return listaPersonas.ElementAt(pos);
             }
@@ -25,11 +26,11 @@ namespace _05_MVCListaPersonas.Models
             }
             catch (ArgumentOutOfRangeException argOut) {
                 argOut.ToString();
-            }*/
+            }   */       
         }
 
         public void addPersona(Persona persona) {
-            listaPersonas.Add(item: persona);
+            listaPersonas.Add(persona);
         }
 
         public void dropPersona(int pos) {
