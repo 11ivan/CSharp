@@ -23,8 +23,8 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Border BorderBrush="Aqua" BorderThickness="2">
-            <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Border BorderBrush="Aqua" BorderThickness="2" Grid.Row="0" Grid.Column="0">
+            <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center">
                 <RadioButton>
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
@@ -36,23 +36,104 @@
                 <RadioButton x:Name="boton2" Content="¡No aquí!"  />
                 <RadioButton x:Name="boton3" Content="No pulses"  />
             </StackPanel>
+
         </Border>
 
-        <Button Grid.Column="1" Grid.Row="0">
-            <Button.Content>
-                <ToolTip>
-                    <ToolTip.Content>
+        <Border BorderBrush="Aqua" BorderThickness="2" Grid.Column="1" Grid.Row="0">
+            <StackPanel>
+                <Button x:Name="tooltip"  Content="Dalle ar botonsito" ToolTipService.ToolTip="Envia la info al server" HorizontalAlignment="Right"/>
+                <Button Grid.Column="1" Grid.Row="0" Content="submit">
+                    <ToolTipService.ToolTip>
                         <StackPanel>
                             <TextBlock FontWeight="Bold">Submit Request</TextBlock>
                             <TextBlock>Submits the request to the server.</TextBlock>
                         </StackPanel>
-                    </ToolTip.Content>
-                </ToolTip>
-            </Button.Content>
-        </Button>
+                    </ToolTipService.ToolTip>
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <Border BorderBrush="Aqua" BorderThickness="2" Grid.Column="2" Grid.Row="0">
+            <Pivot>
+                <PivotItem Header="Nueva York">
+                    <Image Source="assets\Images\nuevayork.jpg" Width="200" Height="110" />
+                </PivotItem>
+                <PivotItem Header="Toronto">
+                    <Image Source="assets\Images\toronto.jpg" Width="200" Height="110" />
+                </PivotItem>
+                <PivotItem Header="Islas Maldivas">
+                    <Image Source="assets\Images\maldivas.jpg" Width="200" Height="110" />
+                </PivotItem>
+            </Pivot>
+        </Border>
+
+        <Border BorderBrush="Aqua" BorderThickness="2" Grid.Column="3" Grid.Row="0">
+            <StackPanel>
+                <CheckBox Content="Opción 1" />
+                <CheckBox Content="Opción 2" />
+                <CheckBox Content="Opción 3" />
+                <CheckBox Content="Opción 4" />
+            </StackPanel>
+        </Border>
+
+        <Border BorderBrush="Aqua" BorderThickness="2" Grid.Column="0" Grid.Row="1">
+            <ListBox>
+                <ListBoxItem Content="Red" Background="Red" VerticalContentAlignment="Center"/>
+                <ListBoxItem Content="Yellow" Background="Yellow" VerticalContentAlignment="Center"/>
+                <ListBoxItem Content="Gray" Background="Gray" VerticalContentAlignment="Center"/>
+                <ListBoxItem Content="Black" Background="Black" Foreground="White" VerticalContentAlignment="Center"/>
+                <ListBoxItem Content="Green" Background="Green" VerticalContentAlignment="Center"/>
+                <ListBoxItem Content="Blue" Background="Blue" VerticalContentAlignment="Center"/>
+            </ListBox>
+        </Border>
 
 
+        <Border BorderBrush="Aqua" BorderThickness="2" Grid.Column="1" Grid.Row="1">
+            <ComboBox Header="fvgdfg" PlaceholderText="Seleccione un elemento" HorizontalAlignment="Center" Margin="0 20 0 0">
+                <ComboBoxItem Content="Select 1"  />
+                <ComboBoxItem Content="Select 2"  />
+                <ComboBoxItem Content="Select 3"  />
+                <ComboBoxItem Content="Select 4"  />
+                <ComboBoxItem Content="Select 5"  />
+            </ComboBox>
+        </Border>
 
+        <Border BorderBrush="Aqua" BorderThickness="2" Grid.Column="2" Grid.Row="1">
+            <StackPanel>
+                <TextBox AcceptsReturn="True" Language="Spanish" Height="110" />
+                <PasswordBox  Margin="0 10 0 0"/>
+            </StackPanel>
+        </Border>
 
+        <Border BorderBrush="Aqua" BorderThickness="2" Grid.Column="3" Grid.Row="1">
+            <StackPanel>
+                <Slider x:Name="slider" Margin="20"/>
+                <ProgressBar Value="{Binding ElementName=slider, Path=Value, Mode=OneWay}" Margin="20" />
+            </StackPanel>
+        </Border>
+
+        <Border BorderBrush="Aqua" BorderThickness="2" Grid.Column="0" Grid.Row="2">
+            <CalendarView />
+        </Border>
+
+        <Border BorderBrush="Aqua" BorderThickness="2" Grid.Column="1" Grid.Row="2">
+            <CalendarDatePicker />
+        </Border>
+
+        <Border BorderBrush="Aqua" BorderThickness="2" Grid.Column="2" Grid.Row="2">
+            <StackPanel >
+                <DatePicker Margin="20"  />
+                <Button Content="Reservar" Margin="10" />
+                <Button Content="Validar" Margin="10" />
+            </StackPanel>
+        </Border>
+
+        <Border BorderBrush="Aqua" BorderThickness="2" Grid.Column="3" Grid.Row="2">
+            <MediaPlayerElement x:Name="mediaPlayer" Source="\\\assets\Videos\top7.mp4" AutoPlay="False" AreTransportControlsEnabled="True" Margin="1,0,-1,0"/>
+        </Border>
+        
+        
+        
+        
     </Grid>
 </Page>
