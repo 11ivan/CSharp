@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
 
@@ -27,9 +28,14 @@ namespace UWP_Controls
         public MainPage()
         {
             this.InitializeComponent();
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0,0,0,1);
-            timer.Tick += timerTick;
+           // DispatcherTimer timer = new DispatcherTimer();
+            DispatcherTimer timer2 = new DispatcherTimer();
+           // timer.Interval = new TimeSpan(0,0,0,0,3000);
+           // timer.Tick += timerTick;
+           // timer.Start();
+            timer2.Interval = new TimeSpan(0,0,0,0,110);
+            timer2.Tick += timerTick2;
+            timer2.Start();
         }
 
         /// <summary>
@@ -37,30 +43,78 @@ namespace UWP_Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void timerTick(object sender, object e)
+       /* public void timerTick(object sender, object e)
         {
+            changeImage();
+        }*/
 
+        /// <summary>
+        ///  Gestiona eventos en un intervalo de tiempo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void timerTick2(object sender, object e)
+        {
+            if (image.Opacity>0.0) {
+                image.Opacity = image.Opacity - 0.05;
+            }
+            else
+            {
+                changeImage();
+                image.Opacity = 1.0;
+            }
         }
 
         public void changeImage()
         {
             //ImageSource source = new ImageSource;
+            BitmapImage bitmapimage=new BitmapImage();
+
+            /*switch (image.Tag)
+             {
+                 case "0":
+                     //image.Source = new Uri("ms:appx///Images/nuevayork.jpg");
+                    // bitmap.begin
+                     bitmap.UriSource= new Uri("ms-appx:///assets/Images/toronto.jpg");
+                     image.Tag = "1";
+                    break;
+
+                 case "1":
+                    bitmap.UriSource = new Uri("ms-appx:///assets/Images/maldivas.jpg");
+                    image.Tag = "2";
+                    break;
+
+                 case "2":
+                    bitmap.UriSource = new Uri("ms-appx:///assets/Images/nuevayork.jpg");
+                    image.Tag = "0";
+                    break;
+
+             }*/
             switch (image.Tag)
             {
-                case 0:
-                    image.Source = new Uri("ms:appx///Images/nuevayork.jpg");
+                case "0":
+                    bitmapimage.UriSource = new Uri("ms-appx:///assets/Images/toronto.jpg");
+                    image.Source = bitmapimage;
+                    image.Tag = "1";
                     break;
 
-                case 1:
-
+                case "1":
+                    bitmapimage.UriSource = new Uri("ms-appx:///assets/Images/maldivas.jpg");
+                    image.Source = bitmapimage;
+                    image.Tag = "2";
                     break;
 
-                case 2:
-
+                case "2":
+                    bitmapimage.UriSource = new Uri("ms-appx:///assets/Images/nuevayork.jpg");
+                    image.Source = bitmapimage;
+                    image.Tag = "0";
                     break;
-
             }
         }
+
+
+
+
 
         /*private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {

@@ -161,19 +161,29 @@
             <WebView x:Name="webView1" Source="http://www.google.com" />
         </Border>
 
+        <!--<Border BorderBrush="Aqua" BorderThickness="2" Grid.Column="2" Grid.Row="3">
+            <FlipView >
+                <FlipView.Items>                   
+                    <Image x:Name="image" Tag="0" Height="160">
+                        <Image.Source>
+                            <BitmapImage x:Name="bitmap" DecodePixelHeight="320" DecodePixelWidth="500"  />
+                        </Image.Source>
+                    </Image>
+                </FlipView.Items>
+            </FlipView>
+        </Border>-->
+
         <Border BorderBrush="Aqua" BorderThickness="2" Grid.Column="2" Grid.Row="3">
             <FlipView >
                 <FlipView.Items>
-                    <Image x:Name="image" Tag="0" Source="assets\Images\nuevayork.jpg" Width="200" Height="110" />
-                    <!--<Image Source="assets\Images\toronto.jpg" Width="200" Height="110" />
-                    <Image Source="assets\Images\maldivas.jpg" Width="200" Height="110" />-->
+                    <Image x:Name="image" Tag="0" Source="assets\Images\nuevayork.jpg" Width="230" Height="160" Opacity="1" />
                 </FlipView.Items>
             </FlipView>
         </Border>
-        
-        
-        
-        
-        
+
+
+
+
+
     </Grid>
 </Page>
