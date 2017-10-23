@@ -34,7 +34,7 @@ namespace PingPong
         {
             this.InitializeComponent();
             timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0,0,0,0,-1);
+            timer.Interval = new TimeSpan(0,0,0,0,1);
             //timer.IsEnabled = true;
             timer.Tick += timertick;
             //timer.Start();

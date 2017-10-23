@@ -27,6 +27,39 @@ namespace UWP_Controls
         public MainPage()
         {
             this.InitializeComponent();
+            DispatcherTimer timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0,0,0,1);
+            timer.Tick += timerTick;
+        }
+
+        /// <summary>
+        ///  Gestiona eventos en un intervalo de tiempo
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void timerTick(object sender, object e)
+        {
+
+        }
+
+        public void changeImage()
+        {
+            //ImageSource source = new ImageSource;
+            switch (image.Tag)
+            {
+                case 0:
+                    image.Source = new Uri("ms:appx///Images/nuevayork.jpg");
+                    break;
+
+                case 1:
+
+                    break;
+
+                case 2:
+
+                    break;
+
+            }
         }
 
         /*private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
