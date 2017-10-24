@@ -55,14 +55,7 @@ namespace UWP_Controls
         /// <param name="e"></param>
         public void timerTick2(object sender, object e)
         {
-            if (image.Opacity>0.0) {
-                image.Opacity = image.Opacity - 0.05;
-            }
-            else
-            {
-                changeImage();
-                image.Opacity = 1.0;
-            }
+            fadeOut();
         }
 
         public void changeImage()
@@ -112,7 +105,21 @@ namespace UWP_Controls
             }
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        public void fadeOut()
+        {
+            if (image.Opacity > 0.0)
+            {
+                image.Opacity = image.Opacity - 0.05;
+            }
+            else
+            {
+                changeImage();
+                image.Opacity = 1.0;
+            }
+        }
 
 
 

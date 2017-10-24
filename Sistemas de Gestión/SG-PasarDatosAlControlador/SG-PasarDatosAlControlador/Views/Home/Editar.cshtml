@@ -1,0 +1,25 @@
+﻿@model SG_PasarDatosAlControlador.Models.Persona
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Editar</title>
+</head>
+<body>
+    <div> 
+        <form method="post" action="ModifyPerson">
+           Nombre: <input type="text" name="nombre" value=@Model.Nombre /><br/>
+            Nombre2: @Html.TextBox("nombre2", Model.Nombre)<br/>
+           Apellidos: @Html.TextBoxFor(Model => Model.Apellido, new { value = Model.Apellido })
+
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+</body>
+</html>
