@@ -74,7 +74,7 @@ namespace UWP_Controls
              {
                  case "0":
                      //image.Source = new Uri("ms:appx///Images/nuevayork.jpg");
-                    // bitmap.begin
+                    
                      bitmap.UriSource= new Uri("ms-appx:///assets/Images/toronto.jpg");
                      image.Tag = "1";
                     break;
