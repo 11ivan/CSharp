@@ -23,7 +23,10 @@ namespace _07_SG_Ej1Tema8.Models.ViewModel
             {
                 return this.listaDepartamentos;
             }
-
+            set
+            {
+                listaDepartamentos = value;
+            }
         }
        
 

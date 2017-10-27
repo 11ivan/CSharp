@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using _07_SG_Ej1Tema8.Models.Entities;
 using _07_SG_Ej1Tema8.Models.ViewModel;
+using _07_SG_Ej1Tema8.Models.Lists;
+using System.Web.UI.WebControls;
 
 namespace _07_SG_Ej1Tema8.Controllers
 {
@@ -29,14 +31,14 @@ namespace _07_SG_Ej1Tema8.Controllers
 
 
         [HttpPost]
-        public ActionResult modifyPerson(ModelForView model)
+        public ActionResult ModifyPerson(ModelForView model)
         {
             ModelForView2 modelForView2 = new ModelForView2();
             modelForView2.Nombre = model.Nombre;
             modelForView2.Apellido = model.Apellido;
-            modelForView2.getsetdepartamento.Nombre = model.ListDepartamentos.getDepartamento(model.IdDepartamento).Nombre;
+            modelForView2.Departamen.Nombre = model.ListDepartamentos.getDepartamento(model.IdDepartamento).Nombre;
 
-            return View(modelForView2);
+            return View(model);
         }
 
 

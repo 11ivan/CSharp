@@ -24,13 +24,13 @@ namespace _07_SG_Ej1Tema8.Models.Lists
         public Departamento getDepartamento(int idDep)
         {
             Departamento departamento = new Departamento();
-            Boolean sal = false;
-            for (int i=0;i<listaDepartamentos.Count && !sal;i++)
+            Boolean sal = true;
+            for (int i=0;i<listaDepartamentos.Count && sal;i++)
             {
                 if (listaDepartamentos.ElementAt(i).Id==idDep)
                 {
                     departamento = listaDepartamentos.ElementAt(i);
-                    sal = true;
+                    sal = false;
                 }
             }
 

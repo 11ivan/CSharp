@@ -17,11 +17,15 @@ namespace _07_SG_Ej1Tema8.Models.ViewModel
         }
 
 
-        public Departamento getsetdepartamento
+        public Departamento Departamen
         {
             get
             {
                 return departamento;
+            }
+            set
+            {
+                departamento = value;
             }
         }
 
