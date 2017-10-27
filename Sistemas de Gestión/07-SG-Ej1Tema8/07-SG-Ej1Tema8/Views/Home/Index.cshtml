@@ -1,0 +1,25 @@
+﻿@model _07_SG_Ej1Tema8.Models.ViewModel.ModelForView
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        <form method="post" action="modifyPerson">
+
+            <input type="text" name="nombrePersona" value="@Model.Nombre" />
+            <input type="text" name="apellidoPersona" value="@Model.Apellido" />
+            @Html.DropDownListFor(Model => Model.IdDepartamento, new SelectList(Model.ListDepartamentos.getDepartamentos(), "id", "Nombre"))
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+</body>
+</html>
