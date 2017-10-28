@@ -38,7 +38,7 @@ namespace _07_SG_Ej1Tema8.Controllers
             modelForView2.Apellido = model.Apellido;
             modelForView2.Departamen.Nombre = model.ListDepartamentos.getDepartamento(model.IdDepartamento).Nombre;
 
-            return View(model);
+            return View(modelForView2);
         }
 
 
