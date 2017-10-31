@@ -14,9 +14,9 @@
 <body>
     <div> 
         <form method="post" action="ModifyPerson">
-            @Html.TextBox("Nombre: ", Model.Nombre)
+            @Html.TextBox("nombre", Model.Nombre)
             <!--<input type="text" name="nombrePersona" value= />-->
-            <input type="text" name="apellidoPersona" value=@Model.Apellido />
+            <input type="text" name="apellido" value=@Model.Apellido />
             @Html.DropDownListFor(Model => Model.IdDepartamento, new SelectList(Model.ListDepartamentos.getDepartamentos(), "id", "nombre"))
             <input type="submit" value="Submit" />
         </form>

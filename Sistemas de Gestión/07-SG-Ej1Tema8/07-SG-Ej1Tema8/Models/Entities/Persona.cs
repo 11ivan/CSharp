@@ -11,8 +11,8 @@ namespace _07_SG_Ej1Tema8.Models
         private int idDepartamento;
 
         public Persona() {
-            nombre = "";
-            apellido = "";
+            nombre = "Ivan";
+            apellido = "Castillo";
             idDepartamento = 0;
         }
 

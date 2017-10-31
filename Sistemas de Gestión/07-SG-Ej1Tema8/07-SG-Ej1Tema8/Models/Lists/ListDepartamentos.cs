@@ -12,15 +12,33 @@ namespace _07_SG_Ej1Tema8.Models.Lists
 
         public ListDepartamentos()
         {
+            Departamento dep1 = new Departamento("Informática", 1);
+            Departamento dep2 = new Departamento("Ciencias", 2);
+            Departamento dep3 = new Departamento("Investigación", 3);
+            Departamento dep4 = new Departamento("Física", 4);  
             listaDepartamentos = new List<Departamento>();
+            listaDepartamentos.Add(dep1);
+            listaDepartamentos.Add(dep2);
+            listaDepartamentos.Add(dep3);
+            listaDepartamentos.Add(dep4);
         }
 
 
+        /// <summary>
+        /// Add departamnet to List
+        /// </summary>
+        /// <param name="departamento"></param>
         public void addDepartamento(Departamento departamento)
         {
             listaDepartamentos.Add(departamento);
         }
 
+
+        /// <summary>
+        /// Search departament by id and return this 
+        /// </summary>
+        /// <param name="idDep"></param>
+        /// <returns></returns>
         public Departamento getDepartamento(int idDep)
         {
             Departamento departamento = new Departamento();
@@ -37,16 +55,16 @@ namespace _07_SG_Ej1Tema8.Models.Lists
             return departamento;
         }
 
+
+
+        /// <summary>
+        /// Return the complete departament list
+        /// </summary>
+        /// <returns></returns>
         public List<Departamento> getDepartamentos()
         {
             return listaDepartamentos;
         }
-
-       /* public int size()
-        {
-            int size;
-           return size = listaDepartamentos.Count;
-        }*/
 
     }
 }

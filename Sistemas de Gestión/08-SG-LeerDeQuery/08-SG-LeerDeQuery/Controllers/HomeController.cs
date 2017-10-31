@@ -10,9 +10,9 @@ namespace _08_SG_LeerDeQuery.Controllers
     {
         // GET: Home
         public ActionResult Index(Boolean esMiPrimeraVez=true)
-        {
-            
+        {      
             string saludo = "Es la primera vez que entras";
+
             if (!esMiPrimeraVez)
             {
                 saludo = "No es la primera vez que entras";
@@ -22,16 +22,7 @@ namespace _08_SG_LeerDeQuery.Controllers
             return View();
         }
 
-        /*public ActionResult compruebaEntrada(Boolean esMiPrimeraVez)
-        {
-            string saludo = "Es la primera vez que entras";
-            if (!esMiPrimeraVez)
-            {
-                saludo = "No es la primera vez que entras";
-            }
-            ViewData["Saludo"] = saludo;
-            return View();
-        }*/
+     
 
     }
 }
