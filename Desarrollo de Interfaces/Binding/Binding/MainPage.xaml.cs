@@ -23,6 +23,9 @@ namespace Binding
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        Boolean shiftPressed = false;
+        private bool pasa;
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -42,14 +45,42 @@ namespace Binding
         /// <param name="e"></param>
         private void textBox_KeyDown(object sender, KeyRoutedEventArgs e)
         {
-            if (e.Key>=VirtualKey.NumberPad0 && e.Key <= VirtualKey.NumberPad9 || e.Key >= VirtualKey.Number0 && e.Key <= VirtualKey.Number9 && !e.Key.Equals(VirtualKeyModifiers.Shift))
+            VirtualKeyModifiers keyModifier = VirtualKeyModifiers.Shift;
+
+            if (e.Key.Equals(keyModifier))
+            {
+                pasa = false;
+            }
+           
+
+            /*if (e.Key.Equals(VirtualKeyModifiers.Shift) || e.Key >= VirtualKey.NumberPad0 && e.Key <= VirtualKey.NumberPad9 || e.Key >= VirtualKey.Number0 && e.Key <= VirtualKey.Number9)
             {
                 e.Handled = false;
+
+            }
+            else
+            {
+                e.Handled = true;
+            }*/
+            if (pasa && e.Key >= VirtualKey.NumberPad0 && e.Key <= VirtualKey.NumberPad9 || pasa && e.Key >= VirtualKey.Number0 && e.Key <= VirtualKey.Number9)
+            {
+                e.Handled = false;
+
             }
             else
             {
                 e.Handled = true;
             }
+
+        }
+
+        public Boolean compruebaShiftPressed(KeyRoutedEventArgs e)
+        {
+            if (e.Key.Equals(VirtualKeyModifiers.Shift))
+            {
+                shiftPressed = true;
+            }
+            return shiftPressed;
         }
 
        
