@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace _07_SG_Ej1Tema8.Models.ViewModel
+namespace DataAnnotation.Models.ViewModel
 {
     public class ModelForView2:Persona
     {

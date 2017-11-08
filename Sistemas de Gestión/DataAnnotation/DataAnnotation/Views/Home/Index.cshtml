@@ -13,13 +13,18 @@
 </head>
 <body>
     <div> 
-        <form method="post" action="modifyPerson">
-           @Html.TextBox("nombre", Model.nombre)
-            @Html.TextBox("apellido", Model.apellido)
-            @Html.DropDownListFor(Model => Model.idDepartamento, new SelectList(Model.listaDepartamentos.getDepartamentos(), "id", "nombre"))
-            <input type="submit" value="Submit" />
+        <form method="post" action="Index">
+            
+           ID: @Html.PasswordFor(Model=>Model.id) <input id="Password1" type="password" runat="server" /> @*<input type="password" value=@Model.id id="id" />*@ </br>
+           Nombre: @Html.TextBox("nombre", Model.nombre) @Html.ValidationMessageFor(Model=>Model.nombre)</br>
+           Apellido: @Html.TextBox("apellido", Model.apellido) @Html.ValidationMessageFor(Model => Model.apellido)</br>
+           Teléfono: @Html.TextBoxFor(Model => Model.telefono, new { value = Model.telefono }) @Html.ValidationMessageFor(Model => Model.telefono)</br>
+           Dirección: @Html.TextBoxFor(Model => Model.direccion, new { value = Model.direccion }) @Html.ValidationMessageFor(Model => Model.direccion)</br>
+           Fecha nacimiento: @Html.TextBoxFor(Model=>Model.fechaNac, new {value=Model.fechaNac }  ) @Html.ValidationMessageFor(Model => Model.fechaNac)</br>
+           @Html.DropDownListFor(Model => Model.idDepartamento, new SelectList(Model.listaDepartamentos.getDepartamentos(), "id", "nombre"))
+           <input type="submit" value="Submit" />
         </form>
-
+       
 
     </div>
 </body>
