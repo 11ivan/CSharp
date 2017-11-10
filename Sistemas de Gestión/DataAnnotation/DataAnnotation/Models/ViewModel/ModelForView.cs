@@ -36,7 +36,7 @@ namespace DataAnnotation.Models.ViewModel
         [MaxLength(200)]
         public String direccion { get; set; }
 
-        [RegularExpression("9[0-9]{8}")]//"^ [9]{1} [0-9]{8} $"
+        [RegularExpression("9[0-9]{8}", ErrorMessage="Teléfono no válido")]//"^ [9]{1} [0-9]{8} $"
         public String telefono { get; set; }
 
         public ModelForView()

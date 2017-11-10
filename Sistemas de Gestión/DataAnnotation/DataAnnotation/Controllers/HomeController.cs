@@ -9,6 +9,7 @@ using System.Web.UI.HtmlControls;
 
 namespace DataAnnotation.Controllers
 {
+    //CAMBIAR TODOS LOS NAMESPACE 
     public class HomeController : Controller
     {
         // GET: Home
@@ -25,7 +26,7 @@ namespace DataAnnotation.Controllers
                 //modelForView2.nombre = model.nombre;
                 return View("ModifyPerson");
             }*/
-            HtmlInputPassword htmlInputPassword = new HtmlInputPassword();
+           // HtmlInputPassword htmlInputPassword = new HtmlInputPassword();
             ModelForView modelForView = new ModelForView();
             //Page.Controls.Add(htmlInputPassword);
             

@@ -98,9 +98,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entities\Departamento.cs" />
-    <Compile Include="Models\Entities\Persona.cs" />
+    <Compile Include="Models\Departamento.cs" />
     <Compile Include="Models\Lists\ListDepartamentos.cs" />
+    <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\ViewModel\ModelForView.cs" />
     <Compile Include="Models\ViewModel\ModelForView2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -119,6 +119,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{907937e2-009d-41f1-8a84-e0d01c8b586b}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
