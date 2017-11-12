@@ -1,0 +1,104 @@
+﻿<Page
+    x:Class="VisualStateManagerB.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VisualStateManagerB"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer x:Name="scroll" >
+    <RelativePanel x:Name="relative" Background="Beige"  >
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+
+                <VisualState x:Name="ComoEstaba">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="550" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+
+                <VisualState x:Name="CuandoEstrecha" >
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowHeight="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="stack.(Orientation)" Value="Horizontal" />
+                        <!--Cambios en el stackPanel-->
+                        <Setter Target="stack.(RelativePanel.AlignBottomWithPanel)" Value="False" />
+                        <Setter Target="stack.(RelativePanel.AlignRightWithPanel)" Value="True" />
+                        <Setter Target="stack.(RelativePanel.AlignLeftWithPanel)" Value="True" />
+                        <Setter Target="stack.(Padding)" Value="20 0 0 0" />
+                        <!--<Setter Target="relative.()" />-->
+                        <Setter Target="stackImg1.(RelativePanel.RightOf)" Value="" />
+                        <Setter Target="stackImg2.(RelativePanel.RightOf)" Value="" />
+                        <Setter Target="stackImg2.(RelativePanel.RightOf)" Value="" />
+                        <Setter Target="stackImg1.(Orientation)" Value="Vertical" />
+                        <Setter Target="stackImg1.(RelativePanel.Below)" Value="stack" />
+                        <Setter Target="stackImg2.(Orientation)" Value="Vertical" />
+                        <Setter Target="stackImg3.(Orientation)" Value="Vertical" />
+                        <!--<Setter Target="relative.(VerticalScrollMode)" Value="Enabled" />-->
+                    </VisualState.Setters>
+
+                </VisualState>
+
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <StackPanel  x:Name="stack" Orientation="Vertical" Background="Aqua" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignTopWithPanel="True" >
+            <Button HorizontalAlignment="Center" Margin="0 10 0 0" Width="80" Background="Transparent" >
+                <Button.Content>
+                    <StackPanel>
+                        <SymbolIcon Symbol="Add" />
+                        <TextBlock Text="Añadir" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button HorizontalAlignment="Center" Margin="0 10 0 0" Width="80" Background="Transparent" >
+                <Button.Content>
+                    <StackPanel>
+                        <SymbolIcon Symbol="Go" />
+                        <TextBlock Text="Ir" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button HorizontalAlignment="Center" Margin="0 10 0 0" Width="80" Background="Transparent" >
+                <Button.Content>
+                    <StackPanel>
+                        <SymbolIcon Symbol="Target" />
+                        <TextBlock Text="Objetivo" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button HorizontalAlignment="Center" Margin="0 10 0 0" Width="80" Background="Transparent" >
+                <Button.Content>
+                    <StackPanel>
+                        <SymbolIcon Symbol="AddFriend" />
+                        <TextBlock Text="Añadir" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+
+        <StackPanel x:Name="stackImg1" Orientation="Horizontal" RelativePanel.RightOf="stack">
+            <Image x:Name="paisaje1" Source="ms-appx:///assets/Images/paisaje1.jpg" Width="393" Height="240"  />
+            <Image x:Name="paisaje2" Source="ms-appx:///assets/Images/paisaje2.jpg" Width="393" Height="240"  />
+            <Image x:Name="paisaje3" Source="ms-appx:///assets/Images/paisaje3.jpg" Width="393" Height="240" />
+        </StackPanel>
+
+        <StackPanel x:Name="stackImg2" Orientation="Horizontal" RelativePanel.RightOf="stack" RelativePanel.Below="stackImg1">
+            <Image x:Name="paisaje33" Source="ms-appx:///assets/Images/paisaje3.jpg" Width="393" Height="240"  />
+            <Image x:Name="paisaje11" Source="ms-appx:///assets/Images/paisaje1.jpg" Width="393" Height="240" />
+            <Image x:Name="paisaje22" Source="ms-appx:///assets/Images/paisaje2.jpg" Width="393" Height="240"  />
+        </StackPanel>
+        <StackPanel x:Name="stackImg3" Orientation="Horizontal" RelativePanel.RightOf="stack" RelativePanel.Below="stackImg2">
+            <Image x:Name="paisaje333" Source="ms-appx:///assets/Images/paisaje3.jpg" Width="393" Height="240" />
+            <Image x:Name="paisaje222" Source="ms-appx:///assets/Images/paisaje2.jpg" Width="393" Height="240"  />
+            <Image x:Name="paisaje111" Source="ms-appx:///assets/Images/paisaje1.jpg" Width="393" Height="240"  />
+        </StackPanel>
+
+
+    </RelativePanel>
+    </ScrollViewer>
+</Page>
