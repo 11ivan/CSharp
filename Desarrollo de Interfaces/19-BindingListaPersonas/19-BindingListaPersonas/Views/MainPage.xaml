@@ -70,18 +70,20 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            
+
+            <AppBarButton x:Name="btnSave" Click="btnSave_Click" Icon="Save" Grid.Column="2" HorizontalAlignment="Right" />
+
             <TextBlock x:Name="textNombre" Text="Nombre: " Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
-            <TextBox x:Name="nombrePersona" Width="150" Grid.Column="1" Grid.Row="0" Text="{Binding PersonaSelected.nombre}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
+            <TextBox x:Name="nombrePersona" Width="150" Grid.Column="1" Grid.Row="0" Text="{Binding PersonaSelected.nombre, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
 
             <TextBlock x:Name="textApellido" Text="Apellido: " Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" />
-            <TextBox x:Name="apellidoPersona" Width="150" Grid.Column="1" Grid.Row="1" Text="{Binding PersonaSelected.apellido}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
+            <TextBox x:Name="apellidoPersona" Width="150" Grid.Column="1" Grid.Row="1" Text="{Binding PersonaSelected.apellido, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
 
             <TextBlock x:Name="textTelefono" Text="Teléfono: " Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" />
-            <TextBox x:Name="telefonoPersona" Width="150" Grid.Column="1" Grid.Row="2" Text="{Binding PersonaSelected.telefono}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
+            <TextBox x:Name="telefonoPersona" Width="150" Grid.Column="1" Grid.Row="2" Text="{Binding PersonaSelected.telefono, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
 
             <TextBlock x:Name="textDireccion" Text="Dirección: " Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" />
-            <TextBox x:Name="direccionPersona" MinWidth="500" MinHeight="200" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2"  Text="{Binding PersonaSelected.direccion}"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 20 20 20" />
+            <TextBox x:Name="direccionPersona"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2"  Text="{Binding PersonaSelected.direccion, Mode=TwoWay, UpdateSourceTrigger=Explicit}"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 20 20 20" />
 
         </Grid>
 

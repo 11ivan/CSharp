@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <ScrollViewer x:Name="scroll" >
+    
     <RelativePanel x:Name="relative" Background="Beige"  >
 
         <VisualStateManager.VisualStateGroups>
@@ -31,11 +31,12 @@
                         <Setter Target="stack.(RelativePanel.AlignLeftWithPanel)" Value="True" />
                         <Setter Target="stack.(Padding)" Value="20 0 0 0" />
                         <!--<Setter Target="relative.()" />-->
-                        <Setter Target="stackImg1.(RelativePanel.RightOf)" Value="" />
+                        <!--<Setter Target="stackImg1.(RelativePanel.RightOf)" Value="" />
                         <Setter Target="stackImg2.(RelativePanel.RightOf)" Value="" />
-                        <Setter Target="stackImg2.(RelativePanel.RightOf)" Value="" />
+                        <Setter Target="stackImg2.(RelativePanel.RightOf)" Value="" />-->
                         <Setter Target="stackImg1.(Orientation)" Value="Vertical" />
-                        <Setter Target="stackImg1.(RelativePanel.Below)" Value="stack" />
+                        <Setter Target="scroll.(RelativePanel.Below)" Value="stack" />
+                        <Setter Target="scroll.(RelativePanel.RightOf)" Value="" />
                         <Setter Target="stackImg2.(Orientation)" Value="Vertical" />
                         <Setter Target="stackImg3.(Orientation)" Value="Vertical" />
                         <!--<Setter Target="relative.(VerticalScrollMode)" Value="Enabled" />-->
@@ -81,24 +82,35 @@
             </Button>
         </StackPanel>
 
-        <StackPanel x:Name="stackImg1" Orientation="Horizontal" RelativePanel.RightOf="stack">
-            <Image x:Name="paisaje1" Source="ms-appx:///assets/Images/paisaje1.jpg" Width="393" Height="240"  />
-            <Image x:Name="paisaje2" Source="ms-appx:///assets/Images/paisaje2.jpg" Width="393" Height="240"  />
-            <Image x:Name="paisaje3" Source="ms-appx:///assets/Images/paisaje3.jpg" Width="393" Height="240" />
-        </StackPanel>
+        <ScrollViewer x:Name="scroll" RelativePanel.RightOf="stack">
+        <Grid x:Name="grid" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <StackPanel x:Name="stackImg1" Orientation="Horizontal" Grid.Column="1" Grid.Row="0" >
+                <Image x:Name="paisaje1" Source="ms-appx:///assets/Images/paisaje1.jpg" Width="393" Height="240"  />
+                <Image x:Name="paisaje2" Source="ms-appx:///assets/Images/paisaje2.jpg" Width="393" Height="240"  />
+                <Image x:Name="paisaje3" Source="ms-appx:///assets/Images/paisaje3.jpg" Width="393" Height="240" />
+            </StackPanel>
 
-        <StackPanel x:Name="stackImg2" Orientation="Horizontal" RelativePanel.RightOf="stack" RelativePanel.Below="stackImg1">
-            <Image x:Name="paisaje33" Source="ms-appx:///assets/Images/paisaje3.jpg" Width="393" Height="240"  />
-            <Image x:Name="paisaje11" Source="ms-appx:///assets/Images/paisaje1.jpg" Width="393" Height="240" />
-            <Image x:Name="paisaje22" Source="ms-appx:///assets/Images/paisaje2.jpg" Width="393" Height="240"  />
-        </StackPanel>
-        <StackPanel x:Name="stackImg3" Orientation="Horizontal" RelativePanel.RightOf="stack" RelativePanel.Below="stackImg2">
-            <Image x:Name="paisaje333" Source="ms-appx:///assets/Images/paisaje3.jpg" Width="393" Height="240" />
-            <Image x:Name="paisaje222" Source="ms-appx:///assets/Images/paisaje2.jpg" Width="393" Height="240"  />
-            <Image x:Name="paisaje111" Source="ms-appx:///assets/Images/paisaje1.jpg" Width="393" Height="240"  />
-        </StackPanel>
-
+            <StackPanel x:Name="stackImg2" Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                <Image x:Name="paisaje33" Source="ms-appx:///assets/Images/paisaje3.jpg" Width="393" Height="240"  />
+                <Image x:Name="paisaje11" Source="ms-appx:///assets/Images/paisaje1.jpg" Width="393" Height="240" />
+                <Image x:Name="paisaje22" Source="ms-appx:///assets/Images/paisaje2.jpg" Width="393" Height="240"  />
+            </StackPanel>
+            <StackPanel x:Name="stackImg3" Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
+                <Image x:Name="paisaje333" Source="ms-appx:///assets/Images/paisaje3.jpg" Width="393" Height="240" />
+                <Image x:Name="paisaje222" Source="ms-appx:///assets/Images/paisaje2.jpg" Width="393" Height="240"  />
+                <Image x:Name="paisaje111" Source="ms-appx:///assets/Images/paisaje1.jpg" Width="393" Height="240"  />
+            </StackPanel>
+        </Grid>
+        </ScrollViewer>
 
     </RelativePanel>
-    </ScrollViewer>
 </Page>

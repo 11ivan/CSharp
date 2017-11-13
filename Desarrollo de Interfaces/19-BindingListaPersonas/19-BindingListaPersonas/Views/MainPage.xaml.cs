@@ -26,5 +26,12 @@ namespace _19_BindingListaPersonas
         {
             this.InitializeComponent();
         }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            this.nombrePersona.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            this.apellidoPersona.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+
+        }
     }
 }
