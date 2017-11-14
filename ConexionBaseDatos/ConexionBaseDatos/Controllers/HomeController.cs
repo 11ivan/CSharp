@@ -12,31 +12,30 @@ namespace ConexionBaseDatos.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            
-            return View();
+            Conexion conexion = new Conexion();
+            return View(conexion.getPersonas());
         }
 
 
-        [HttpPost]
-        
-        public ActionResult Index2()
+        //[HttpPost]
+        /*public ActionResult Index2()
         {
             //String cadena = "";
             Conexion conexion = new Conexion();
             conexion.openConnection();
 
-            switch (conexion.connection.State.ToString())
+            switch (conexion.getState())
             {
                 case "Closed":
-                    ViewData["estado"] = "Conexion cerrada";
+                        ViewData["estado"] = "Conexion cerrada";
                     break;
 
                 case "Open":
-                    ViewData["estado"] = "Conexion establecida";
+                        ViewData["estado"] = "Conexion establecida";                 
                     break;
             }
             return View("Index");
-        }
+        }*/
 
 
 

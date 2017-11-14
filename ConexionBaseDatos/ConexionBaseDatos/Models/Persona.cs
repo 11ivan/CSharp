@@ -7,7 +7,7 @@ namespace ConexionBaseDatos.Models
 {
     public class Persona
     {
-        private string _id;
+        private int _id;
         private string _nombre;
         private string _apellidos;
         private DateTime _fechaNac;
@@ -15,14 +15,14 @@ namespace ConexionBaseDatos.Models
 
         public Persona()
         {
-            _id = "0";
+            _id = 0;
             _nombre = "";
             _apellidos = "";
             _fechaNac = new DateTime();
         }
 
 
-        public string id
+        public int id
         {
             get
             {
