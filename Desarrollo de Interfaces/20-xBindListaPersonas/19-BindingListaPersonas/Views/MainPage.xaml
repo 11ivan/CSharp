@@ -8,9 +8,9 @@
     xmlns:vm="using:_19_BindingListaPersonas.Models.ViewModel"
     mc:Ignorable="d">
 
-    <Page.DataContext>
+    <!--<Page.DataContext>
         <vm:VMMainPage></vm:VMMainPage>
-    </Page.DataContext>
+    </Page.DataContext>-->
 
 
     <Grid x:Name="GridPrinc" Background="Beige">
@@ -19,9 +19,8 @@
             <ColumnDefinition Width="4*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition><!--Esta es la fila vacía que usaré en el visualStateManager-->
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
 
         <VisualStateManager.VisualStateGroups>
@@ -38,7 +37,7 @@
                     </VisualState.StateTriggers>
                     <VisualState.Setters>
                         <Setter Target="listaPersonas.(Grid.ColumnSpan)" Value="2" />
-                        <Setter Target="GridDatos.(Grid.Row)" Value="2" />
+                        <Setter Target="GridDatos.(Grid.Row)" Value="1" />
                         <Setter Target="GridDatos.(Grid.Column)" Value="0" />
                         <Setter Target="GridDatos.(Grid.ColumnSpan)" Value="2" />
                     </VisualState.Setters>
@@ -46,24 +45,19 @@
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
 
-        <Border Grid.ColumnSpan="2" Grid.Row="0" BorderBrush="Black" BorderThickness="1">
-            <StackPanel Background="Gray"  Orientation="Horizontal" >
-                <AppBarButton x:Name="btnSave" Click="btnSave_Click" Icon="Save" Label="Guardar" Margin="10 10 0 0" />
-                <AppBarButton x:Name="btnAdd" Icon="Add" Label="Añadir" Margin="10 10 0 0" />
-            </StackPanel>
-        </Border>
-        <ListView x:Name="listaPersonas"  ItemsSource="{Binding ListaPersonas}" SelectedItem="{Binding PersonaSelected, Mode=TwoWay}" Grid.Column="0" Grid.Row="1" Background="White">
-            <ListView.ItemTemplate>
+
+        <ListView x:Name="listaPersonas" ItemsSource="{x:Bind ViewModel.ListaPersonas}" SelectedIndex="{x:Bind ViewModel.IndexPersona, Mode=TwoWay}" Grid.Column="0"  Background="White">
+            <ListView.ItemTemplate x:DataType="" >
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock x:Name="nombre" Text="{Binding nombre}" Margin="0 0 8 0" />
-                        <TextBlock x:Name="apellido" Text="{Binding apellido}" />
+                        <TextBlock x:Name="apellido" Text="{Binding apellidos}"  />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <Grid x:Name="GridDatos" Grid.Column="1" Grid.Row="1" >
+        <Grid x:Name="GridDatos" Grid.Column="1" Grid.Row="0"  >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
                 <ColumnDefinition Width="3*"></ColumnDefinition>
@@ -77,18 +71,22 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
+            <StackPanel  Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                <AppBarButton x:Name="btnSave" Click="btnSave_Click" Icon="Save"  />
+                <AppBarButton x:Name="delete" Icon="Delete" Click="{x:Bind ViewModel.Delete_Click}" />
+            </StackPanel>
 
             <TextBlock x:Name="textNombre" Text="Nombre: " Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
-            <TextBox x:Name="nombrePersona" Width="150" Grid.Column="1" Grid.Row="0" Text="{Binding PersonaSelected.nombre, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
+            <TextBox x:Name="nombrePersona" Width="150" Grid.Column="1" Grid.Row="0" Text="" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
 
             <TextBlock x:Name="textApellido" Text="Apellido: " Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" />
-            <TextBox x:Name="apellidoPersona" Width="150" Grid.Column="1" Grid.Row="1" Text="{Binding PersonaSelected.apellido, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
+            <TextBox x:Name="apellidoPersona" Width="150" Grid.Column="1" Grid.Row="1" Text="" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
 
             <TextBlock x:Name="textTelefono" Text="Teléfono: " Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" />
-            <TextBox x:Name="telefonoPersona" Width="150" Grid.Column="1" Grid.Row="2" Text="{Binding PersonaSelected.telefono, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
+            <TextBox x:Name="telefonoPersona" Width="150" Grid.Column="1" Grid.Row="2" Text="" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
 
             <TextBlock x:Name="textDireccion" Text="Dirección: " Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" />
-            <TextBox x:Name="direccionPersona"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2"  Text="{Binding PersonaSelected.direccion, Mode=TwoWay, UpdateSourceTrigger=Explicit}"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 20 20 20" />
+            <TextBox x:Name="direccionPersona"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2"  Text=""  HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 20 20 20" />
 
         </Grid>
 
