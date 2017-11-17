@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel;
+using _19_BindingListaPersonas.Models.ViewModel;
 
 
 namespace _19_BindingListaPersonas.Models
 {
-    public class Persona: INotifyPropertyChanged
+    public class Persona: clsVMBase
     {
 
         private int _id;
@@ -17,7 +18,7 @@ namespace _19_BindingListaPersonas.Models
         private String _direccion;
         private String _telefono;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        //public event PropertyChangedEventHandler PropertyChanged;
 
         public Persona()
         {
@@ -128,13 +129,13 @@ namespace _19_BindingListaPersonas.Models
         }
 
 
-        private void NotifyPropertyChanged(String propertyName)
+       /* private void NotifyPropertyChanged(String propertyName)
         {
             if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
-        }
+        }*/
 
 
 

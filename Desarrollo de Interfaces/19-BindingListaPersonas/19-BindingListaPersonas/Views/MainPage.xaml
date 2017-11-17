@@ -49,9 +49,10 @@
         <Border Grid.ColumnSpan="2" Grid.Row="0" BorderBrush="Black" BorderThickness="1">
             <StackPanel Background="Gray"  Orientation="Horizontal" >
                 <AppBarButton x:Name="btnSave" Click="btnSave_Click" Icon="Save" Label="Guardar" Margin="10 10 0 0" />
-                <AppBarButton x:Name="btnAdd" Icon="Add" Label="Añadir" Margin="10 10 0 0" />
+                <AppBarButton x:Name="btnAdd" Command="{Binding commandDelete}" Icon="Delete" Label="Eliminar" Margin="10 10 0 0" />
             </StackPanel>
         </Border>
+        
         <ListView x:Name="listaPersonas"  ItemsSource="{Binding ListaPersonas}" SelectedItem="{Binding PersonaSelected, Mode=TwoWay}" Grid.Column="0" Grid.Row="1" Background="White">
             <ListView.ItemTemplate>
                 <DataTemplate>

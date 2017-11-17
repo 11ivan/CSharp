@@ -10,11 +10,17 @@ using System.ComponentModel;
 
 namespace _19_BindingListaPersonas.Models.ViewModel
 {
-    class VMMainPage : INotifyPropertyChanged
+    class VMMainPage : clsVMBase
     {
-        private Persona personaSelected;
+
+        #region region Propiedades
+
+        private Persona _personaSelected;
         private ListaPersonas listaPersonas;
-        public event PropertyChangedEventHandler PropertyChanged;
+        //public event PropertyChangedEventHandler PropertyChanged;
+        private DelegateCommand _commandDelete;
+
+        #endregion
 
         public VMMainPage()
         {        
@@ -34,24 +40,62 @@ namespace _19_BindingListaPersonas.Models.ViewModel
         {
             get
             {
-                return personaSelected;
+                return _personaSelected;
             }
             set
             {
-                personaSelected = value;
+                _personaSelected = value;
+                _commandDelete.RaiseCanExecuteChanged();/////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                 NotifyPropertyChanged("PersonaSelected");
             }
 
         }
 
 
-        private void NotifyPropertyChanged( String propertyName)
+        public DelegateCommand commandDelete
         {
-            if (PropertyChanged != null)
+
+            get
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+                _commandDelete = new DelegateCommand(deletePersona, validaDelete);
+                return _commandDelete;
+            }
+            set
+            {
+
             }
         }
+
+
+        //Metodo para validar si se puede borrar(por si no hay persona seleccionada)
+        public Boolean validaDelete()
+        {
+            Boolean vale = false;
+
+            if (_personaSelected!=null)
+            {
+                vale = true;
+            }
+
+            return vale;
+        }
+
+
+        //Metodos para eliminar persona de la lista
+        public void deletePersona()
+        {
+            listaPersonas.listaPersonas.Remove(_personaSelected);
+        }
+
+
+
+        /* private void NotifyPropertyChanged( String propertyName)
+         {
+             if (PropertyChanged != null)
+             {
+                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+             }
+         }*/
 
 
 

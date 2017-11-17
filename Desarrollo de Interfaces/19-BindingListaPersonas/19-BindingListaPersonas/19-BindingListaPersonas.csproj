@@ -97,6 +97,8 @@
     </Compile>
     <Compile Include="Models\Entities\Persona.cs" />
     <Compile Include="Models\Lists\ListaPersonas.cs" />
+    <Compile Include="Models\ViewModel\clsVMBase.cs" />
+    <Compile Include="Models\ViewModel\DelegateCommand.cs" />
     <Compile Include="Models\ViewModel\VMMainPage.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
