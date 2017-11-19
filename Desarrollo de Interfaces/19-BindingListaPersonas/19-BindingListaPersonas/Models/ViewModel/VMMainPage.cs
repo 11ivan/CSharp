@@ -52,22 +52,23 @@ namespace _19_BindingListaPersonas.Models.ViewModel
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
         public DelegateCommand commandDelete
         {
-
             get
             {
                 _commandDelete = new DelegateCommand(deletePersona, validaDelete);
                 return _commandDelete;
             }
-            set
-            {
-
-            }
         }
 
 
-        //Metodo para validar si se puede borrar(por si no hay persona seleccionada)
+        /// <summary>
+        /// Metodo para validar si se puede borrar(por si no hay persona seleccionada)
+        /// </summary>
+        /// <returns></returns>
         public Boolean validaDelete()
         {
             Boolean vale = false;
@@ -80,8 +81,9 @@ namespace _19_BindingListaPersonas.Models.ViewModel
             return vale;
         }
 
-
-        //Metodos para eliminar persona de la lista
+        /// <summary>
+        /// Metodos para eliminar persona de la lista
+        /// </summary>
         public void deletePersona()
         {
             listaPersonas.listaPersonas.Remove(_personaSelected);

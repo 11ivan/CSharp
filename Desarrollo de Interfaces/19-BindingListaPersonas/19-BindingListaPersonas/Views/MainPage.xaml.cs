@@ -29,9 +29,52 @@ namespace _19_BindingListaPersonas
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            this.nombrePersona.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            this.apellidoPersona.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            if (String.IsNullOrWhiteSpace(this.nombrePersona.Text))
+            {
+                ErrorDialog(1);
+            }
+            else
+            {
 
+                this.nombrePersona.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            }
+
+            if (String.IsNullOrWhiteSpace(this.apellidoPersona.Text))
+            {
+                ErrorDialog(2);
+            }
+            else
+            {
+                this.apellidoPersona.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            }
+            
+            this.telefonoPersona.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            this.direccionPersona.GetBindingExpression(TextBox.TextProperty).UpdateSource();
         }
+
+
+        private async void ErrorDialog(int error)
+        {
+            ContentDialog dialog = new ContentDialog();
+
+            switch (error)
+            {
+                case 1:
+                    dialog.Title = "Error";
+                    dialog.Content = "Debe introducir el nombre";
+                    dialog.CloseButtonText = "Close";
+                    break;
+
+                case 2:
+                    dialog.Title = "Error";
+                    dialog.Content = "Debe introducir el apellido";
+                    dialog.CloseButtonText = "Close";
+                break;
+            }
+            
+            await dialog.ShowAsync();
+        }
+
+
     }
 }

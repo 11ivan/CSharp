@@ -99,6 +99,7 @@ namespace _19_BindingListaPersonas.Models
             set
             {
                 this._fechaNac = value;
+                //NotifyPropertyChanged();
             }
         }
 
