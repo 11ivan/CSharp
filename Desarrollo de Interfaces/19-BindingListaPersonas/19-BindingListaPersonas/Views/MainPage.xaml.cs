@@ -1,4 +1,5 @@
-﻿using System;
+﻿using _19_BindingListaPersonas.Models.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -27,11 +28,12 @@ namespace _19_BindingListaPersonas
             this.InitializeComponent();
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
             if (String.IsNullOrWhiteSpace(this.nombrePersona.Text))
             {
-               // ErrorDialog(1);
+               //ErrorDialog(1);
+              
             }
             else
             {
@@ -53,7 +55,7 @@ namespace _19_BindingListaPersonas
         }
 
 
-       /* private async void ErrorDialog(int error)
+        private async void ErrorDialog(int error)
         {
             ContentDialog dialog = new ContentDialog();
 
@@ -73,8 +75,14 @@ namespace _19_BindingListaPersonas
             }
             
             await dialog.ShowAsync();
-        }*/
+        }
 
-
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            //VMMainPage vmMainPage = new VMMainPage();
+            //vmMainPage.filter();
+            //listViewPersonas.ItemsSource = "{Binding ListaPersonasBuscadas}";
+            //listViewPersonas.SetBinding(Models.ViewModel, Models.ViewModel);
+        }
     }
 }

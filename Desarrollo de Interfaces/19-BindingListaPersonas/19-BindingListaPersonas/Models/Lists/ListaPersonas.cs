@@ -27,9 +27,9 @@ namespace _19_BindingListaPersonas.Models.Lists
         public ListaPersonas()
         {
             listaPersonas = new ObservableCollection<Persona>();
-            Persona p1 = new Persona(0, "Pepe", "Pérez", "C/ sn", "955555555");
-            Persona p2 = new Persona(0, "Ganas", "De ná", "C/ sn", "955555123");
-            Persona p3 = new Persona(0, "Manolito", "Yeah", "C/ sn", "955555321");
+            Persona p1 = new Persona("Pepe", "Pérez", "C/ sn", "955555555");
+            Persona p2 = new Persona("Ganas", "De ná", "C/ sn", "955555123");
+            Persona p3 = new Persona("Manolito", "Yeah", "C/ sn", "955555321");
             listaPersonas.Add(p1);
             listaPersonas.Add(p2);
             listaPersonas.Add(p3);           

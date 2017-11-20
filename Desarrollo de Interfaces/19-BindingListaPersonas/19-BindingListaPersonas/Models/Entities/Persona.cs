@@ -10,7 +10,8 @@ namespace _19_BindingListaPersonas.Models
     public class Persona: clsVMBase
     {
 
-        private int _id;
+        //private int _id;
+        private static int _id=0;
         //public int idDepartamento { get; set; }
         private String _nombre;
         private String _apellido;
@@ -22,18 +23,18 @@ namespace _19_BindingListaPersonas.Models
 
         public Persona()
         {
-            _id = 0;
+            _id++;
             //idDepartamento = 0;
-            _nombre = "";
-            _apellido = "";
-            _fechaNac = new DateTime();
-            _direccion = "";
-            _telefono = "";
+            //_nombre = "";
+            //_apellido = "";
+            //_fechaNac = new DateTime();
+            //_direccion = "";
+            //_telefono = "";
         }
 
-        public Persona(int id, String nombre, String apellido, String direccion, String telefono)
+        public Persona(String nombre, String apellido, String direccion, String telefono):this()
         {
-            this._id = id;
+            
             //this.idDepartamento = idDepartamento;
             this._nombre = nombre;
             this._apellido = apellido;
@@ -42,9 +43,20 @@ namespace _19_BindingListaPersonas.Models
             this._telefono = telefono;
         }
 
+        /*public Persona(int id, String nombre, String apellido, String direccion, String telefono)
+        {
+            this._id = id;
+            //this.idDepartamento = idDepartamento;
+            this._nombre = nombre;
+            this._apellido = apellido;
+            this._fechaNac = fechaNac;
+            this._direccion = direccion;
+            this._telefono = telefono;
+        }*/
+
         public Persona(Persona persona)
         {
-            this._id = persona.id;
+            //this._id = persona.id;
             //this.idDepartamento = idDepartamento;
             this._nombre = persona.nombre;
             this._apellido = persona.apellido;
@@ -59,9 +71,9 @@ namespace _19_BindingListaPersonas.Models
             get{
                 return _id;
             }
-            set{
+            /*set{
                 this._id=value;
-            }
+            }*/
         }
 
         public String nombre
@@ -73,6 +85,7 @@ namespace _19_BindingListaPersonas.Models
             set
             {
                 this._nombre = value;
+                
                 NotifyPropertyChanged("nombre");
             }
         }
