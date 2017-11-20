@@ -31,7 +31,7 @@ namespace _19_BindingListaPersonas
         {
             if (String.IsNullOrWhiteSpace(this.nombrePersona.Text))
             {
-                ErrorDialog(1);
+               // ErrorDialog(1);
             }
             else
             {
@@ -41,7 +41,7 @@ namespace _19_BindingListaPersonas
 
             if (String.IsNullOrWhiteSpace(this.apellidoPersona.Text))
             {
-                ErrorDialog(2);
+                //ErrorDialog(2);
             }
             else
             {
@@ -53,7 +53,7 @@ namespace _19_BindingListaPersonas
         }
 
 
-        private async void ErrorDialog(int error)
+       /* private async void ErrorDialog(int error)
         {
             ContentDialog dialog = new ContentDialog();
 
@@ -73,7 +73,7 @@ namespace _19_BindingListaPersonas
             }
             
             await dialog.ShowAsync();
-        }
+        }*/
 
 
     }

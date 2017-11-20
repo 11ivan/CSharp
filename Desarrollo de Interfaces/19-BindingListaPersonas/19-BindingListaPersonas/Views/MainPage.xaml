@@ -48,8 +48,9 @@
 
         <Border Grid.ColumnSpan="2" Grid.Row="0" BorderBrush="Black" BorderThickness="1">
             <StackPanel Background="Gray"  Orientation="Horizontal" >
-                <AppBarButton x:Name="btnSave" Click="btnSave_Click" Icon="Save" Label="Guardar" Margin="10 10 0 0" />
-                <AppBarButton x:Name="btnAdd" Command="{Binding commandDelete}" Icon="Delete" Label="Eliminar" Margin="10 10 0 0" />
+                <AppBarButton x:Name="btnSave" Click="btnSave_Click" Command="{Binding commandSave}" Icon="Save" Label="Guardar" Margin="10 10 0 0" />
+                <AppBarButton x:Name="btnDelete" Command="{Binding commandDelete}" Icon="Delete" Label="Eliminar" Margin="10 10 0 0" />
+                <AppBarButton x:Name="btnAdd" Command="{Binding commandAdd}" Icon="AddFriend" Label="Añadir" Margin="10 10 0 0" />
             </StackPanel>
         </Border>
         

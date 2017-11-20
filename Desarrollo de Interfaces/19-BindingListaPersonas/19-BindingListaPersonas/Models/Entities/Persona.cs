@@ -24,11 +24,11 @@ namespace _19_BindingListaPersonas.Models
         {
             _id = 0;
             //idDepartamento = 0;
-            _nombre = "Iván";
-            _apellido = "Castillo";
-            _fechaNac = new DateTime(1990, 10, 2);
-            _direccion = "C/ S/N";
-            _telefono = "955111111";
+            _nombre = "";
+            _apellido = "";
+            _fechaNac = new DateTime();
+            _direccion = "";
+            _telefono = "";
         }
 
         public Persona(int id, String nombre, String apellido, String direccion, String telefono)

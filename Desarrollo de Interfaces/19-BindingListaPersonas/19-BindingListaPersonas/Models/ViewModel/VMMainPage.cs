@@ -19,6 +19,8 @@ namespace _19_BindingListaPersonas.Models.ViewModel
         private ListaPersonas listaPersonas;
         //public event PropertyChangedEventHandler PropertyChanged;
         private DelegateCommand _commandDelete;
+        private DelegateCommand _commandSave;
+        private DelegateCommand _commandAdd;
 
         #endregion
 
@@ -46,6 +48,7 @@ namespace _19_BindingListaPersonas.Models.ViewModel
             {
                 _personaSelected = value;
                 _commandDelete.RaiseCanExecuteChanged();/////////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                _commandSave.RaiseCanExecuteChanged();
                 NotifyPropertyChanged("PersonaSelected");
             }
 
@@ -89,7 +92,67 @@ namespace _19_BindingListaPersonas.Models.ViewModel
             listaPersonas.listaPersonas.Remove(_personaSelected);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public DelegateCommand commandSave
+        {
+            get{
+               _commandSave = new DelegateCommand(executeCommandSave, canSave);
+                return _commandSave;
+            }
+        }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public Boolean canSave()
+        {
+            Boolean puede = false;
+
+            if (!String.IsNullOrWhiteSpace(_personaSelected.nombre) && !String.IsNullOrWhiteSpace(_personaSelected.apellido))
+            {
+                puede = true;
+            }
+
+            return puede;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void executeCommandSave()
+        {
+            if (_personaSelected.id == 0)
+            {
+                _personaSelected.id = listaPersonas.listaPersonas.ElementAt(listaPersonas.listaPersonas.Count-1).id+1;
+                listaPersonas.listaPersonas.Add(_personaSelected);
+                NotifyPropertyChanged("ListaPersonas");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DelegateCommand commandAdd
+        {
+            get
+            {
+                _commandAdd = new DelegateCommand(addPersona);
+                return _commandAdd;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void addPersona()
+        {
+            _personaSelected = new Persona();
+            //listaPersonas.listaPersonas.Add(_personaSelected);
+            NotifyPropertyChanged("PersonaSelected");
+        }
 
         /* private void NotifyPropertyChanged( String propertyName)
          {
