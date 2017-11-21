@@ -21,6 +21,13 @@ namespace CRUDPersonas_BL.Listados
             return listaPersonas;
         }
 
+       /* public Persona getPersona(int id)
+        {
+            Persona persona = new Persona();
+            ListadoPersonasDAL listadoPersonasDAL = new ListadoPersonasDAL();
+            persona = listadoPersonasDAL.getPersona(id);
+            return persona;
+        }*/
 
 
     }

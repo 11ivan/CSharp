@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -21,7 +22,7 @@ namespace CRUDPersonas_Entidades
             _fechaNac = new DateTime();
         }
 
-
+        
         public int id
         {
             get
@@ -34,6 +35,9 @@ namespace CRUDPersonas_Entidades
             }
         }
 
+
+        [Required(ErrorMessage = "Campo obligatorio")]
+        [Display(Name = "Nombre")]
         public string nombre
         {
             get
