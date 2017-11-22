@@ -256,6 +256,8 @@ namespace _19_BindingListaPersonas.Models.ViewModel
         public void search()
         {
             String nombreBuscado = "";
+            fillListPersonas();
+            emptyFiltroPersonas();
             for (int i=0;i<listaPersonas.listaPersonas.Count;i++)
             {
                 nombreBuscado = listaPersonas.listaPersonas.ElementAt(i).nombre;
