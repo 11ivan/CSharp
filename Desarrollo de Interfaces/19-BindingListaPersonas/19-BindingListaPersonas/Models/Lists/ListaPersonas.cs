@@ -11,7 +11,7 @@ namespace _19_BindingListaPersonas.Models.Lists
 {
     class ListaPersonas    
     {
-        public ObservableCollection<Persona> listaPersonas { get; set; }
+        private ObservableCollection<Persona> _listaPersonas;
 
        /* public ListaPersonas()
         {
@@ -26,20 +26,23 @@ namespace _19_BindingListaPersonas.Models.Lists
 
         public ListaPersonas()
         {
-            listaPersonas = new ObservableCollection<Persona>();
-            Persona p1 = new Persona("Pepe", "Pérez", "C/ sn", "955555555");
-            Persona p2 = new Persona("Ganas", "De ná", "C/ sn", "955555123");
-            Persona p3 = new Persona("Manolito", "Yeah", "C/ sn", "955555321");
-            listaPersonas.Add(p1);
-            listaPersonas.Add(p2);
-            listaPersonas.Add(p3);           
+            _listaPersonas = new ObservableCollection<Persona>();                
         }
 
         public ObservableCollection<Persona> getListaPersonas()
         {
-            return listaPersonas;
+            return _listaPersonas;
         }
 
+        public void cargaPersonas()
+        {
+            Persona p1 = new Persona("Pepe", "Pérez", "C/ sn", "955555555");
+            Persona p2 = new Persona("Ganas", "De ná", "C/ sn", "955555123");
+            Persona p3 = new Persona("Manolito", "Yeah", "C/ sn", "955555321");
+            _listaPersonas.Add(p1);
+            _listaPersonas.Add(p2);
+            _listaPersonas.Add(p3);
+        }
 
     }
 }

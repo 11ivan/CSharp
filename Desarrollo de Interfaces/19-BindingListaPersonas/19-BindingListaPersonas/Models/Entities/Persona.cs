@@ -7,11 +7,12 @@ using _19_BindingListaPersonas.Models.ViewModel;
 
 namespace _19_BindingListaPersonas.Models
 {
-    public class Persona: clsVMBase
+    public class Persona: clsVMBase, IComparable<Persona>
     {
 
         //private int _id;
-        private static int _id=0;
+        //private static int _id=0;
+        private Guid _id;
         //public int idDepartamento { get; set; }
         private String _nombre;
         private String _apellido;
@@ -23,18 +24,19 @@ namespace _19_BindingListaPersonas.Models
 
         public Persona()
         {
-            _id++;
+            //_id++;
             //idDepartamento = 0;
-            //_nombre = "";
-            //_apellido = "";
-            //_fechaNac = new DateTime();
-            //_direccion = "";
-            //_telefono = "";
+            _id = Guid.NewGuid();
+            _nombre = "";
+            _apellido = "";
+            _fechaNac = new DateTime();
+            _direccion = "";
+            _telefono = "";
         }
 
-        public Persona(String nombre, String apellido, String direccion, String telefono):this()
+        public Persona(String nombre, String apellido, String direccion, String telefono)//:this()
         {
-            
+            _id = Guid.NewGuid();
             //this.idDepartamento = idDepartamento;
             this._nombre = nombre;
             this._apellido = apellido;
@@ -66,7 +68,7 @@ namespace _19_BindingListaPersonas.Models
         }
 
 
-        public int id
+        public Guid id
         {
             get{
                 return _id;
@@ -143,14 +145,30 @@ namespace _19_BindingListaPersonas.Models
         }
 
 
-       /* private void NotifyPropertyChanged(String propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }*/
+        /* private void NotifyPropertyChanged(String propertyName)
+         {
+             if (PropertyChanged != null)
+             {
+                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+             }
+         }*/
 
+        public int CompareTo(Persona persona)
+        {
+            char caracter1 = _nombre[0];
+            char caracter2 = persona.nombre[0];
+            int comparacion = 0;
+            // A null value means that this object is greater.
+            if (caracter1 > caracter2)
+            {
+                comparacion= 1;
+            }
+            else
+            {
+                comparacion = -1;
+            }
+            return comparacion;
+        }
 
 
     }
