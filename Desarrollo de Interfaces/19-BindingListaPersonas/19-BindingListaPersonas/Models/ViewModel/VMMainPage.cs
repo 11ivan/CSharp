@@ -16,7 +16,7 @@ namespace _19_BindingListaPersonas.Models.ViewModel
 
         #region Propiedades
 
-        private Persona personaCreada;
+        //private Persona personaCreada;
         private Persona _personaSelected;
         private ListaPersonas listaPersonas;
         //public event PropertyChangedEventHandler PropertyChanged;

@@ -126,7 +126,7 @@
         </Border>
 
         <Border BorderBrush="Aqua" BorderThickness="2" Grid.Column="1" Grid.Row="2">
-            <CalendarDatePicker HorizontalAlignment="Center" />
+            <CalendarDatePicker HorizontalAlignment="Center"  />
         </Border>
 
         <Border BorderBrush="Aqua" BorderThickness="2" Grid.Column="2" Grid.Row="2">
@@ -179,6 +179,10 @@
                     <Image x:Name="image" Tag="0" Source="assets\Images\nuevayork.jpg" Width="230" Height="160" Opacity="1" />
                 </FlipView.Items>
             </FlipView>
+        </Border>
+
+        <Border BorderBrush="Aqua" BorderThickness="2" Grid.Column="3" Grid.Row="4">
+            
         </Border>
 
 

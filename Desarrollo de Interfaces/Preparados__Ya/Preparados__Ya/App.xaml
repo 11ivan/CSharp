@@ -1,0 +1,8 @@
+﻿<Application
+    x:Class="Preparados__Ya.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Preparados__Ya"
+    RequestedTheme="Light">
+
+</Application>
