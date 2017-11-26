@@ -15,7 +15,7 @@
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
-    <table class="table">
+    <table class="table" border="1">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.nombre)
@@ -49,5 +49,12 @@
     }
     
     </table>
+     <p>
+        @ViewData["affectedRows"]
+     </p>
+
+    
+
+    
 </body>
 </html>

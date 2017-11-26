@@ -20,13 +20,13 @@
 
         <RelativePanel Grid.Column="0">
             <Image x:Name="imagenDiferencias" Source="{x:Bind ViewModel.ImagenDiferencias.RutaImagen}"  Width="400" Height="400" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" />
-            <Ellipse x:Name="peluca" Stroke="Red" Width="60" Height="65" Margin="155 260 0 0" Opacity="{x:Bind ViewModel.ListaElipses.}" PointerPressed="{x:Bind ViewModel.Click_Marca}" />
-            <Ellipse x:Name="pataPalo" Stroke="Red" Width="60" Height="70" Margin="220 410 0 0"  PointerPressed="{x:Bind ViewModel.Click_Marca}" />
+            <Ellipse x:Name="peluca" Stroke="Red" Width="60" Height="65" Margin="155 260 0 0" Opacity="{x:Bind ViewModel.ListaElipses}" PointerPressed="{x:Bind ViewModel.Click_Marca}" />
+            <Ellipse x:Name="pataPalo" Stroke="Red" Width="60" Height="70" Margin="220 410 0 0" PointerPressed="{x:Bind ViewModel.Click_Marca}" />
             <Ellipse x:Name="gafas" Stroke="Red" Width="50" Height="40" Margin="270 310 0 0" PointerPressed="{x:Bind ViewModel.Click_Marca}" />
-            <Ellipse x:Name="chapa" Stroke="Red" Width="30" Height="20" Margin="330 335 0 0"  PointerPressed="{x:Bind ViewModel.Click_Marca}" />
+            <Ellipse x:Name="chapa" Stroke="Red" Width="30" Height="20" Margin="330 335 0 0" PointerPressed="{x:Bind ViewModel.Click_Marca}" />
             <Ellipse x:Name="casco" Stroke="Red" Width="35" Height="40" Margin="335 282 0 0" PointerPressed="{x:Bind ViewModel.Click_Marca}" />
-            <Ellipse x:Name="iglesias" Stroke="Red" Width="35" Height="40" Margin="385 290 0 0" Opacity="{Binding EllipsePulsada.Opacity, Mode=TwoWay}" PointerPressed="{x:Bind ViewModel.Click_Marca}" />
-            <Ellipse x:Name="churruca" Stroke="Red" Width="45" Height="55" Margin="425 295 0 0" Opacity="{Binding EllipsePulsada.Opacity, Mode=TwoWay}" PointerPressed="{x:Bind ViewModel.Click_Marca}" />
+            <Ellipse x:Name="iglesias" Stroke="Red" Width="35" Height="40" Margin="385 290 0 0" PointerPressed="{x:Bind ViewModel.Click_Marca}" />
+            <Ellipse x:Name="churruca" Stroke="Red" Width="45" Height="55" Margin="425 295 0 0" PointerPressed="{x:Bind ViewModel.Click_Marca}" />
         </RelativePanel>
 
         <RelativePanel Grid.Column="1">

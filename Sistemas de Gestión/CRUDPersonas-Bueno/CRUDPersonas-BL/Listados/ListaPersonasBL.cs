@@ -6,12 +6,21 @@ using System.Threading.Tasks;
 using CRUDPersonas_Entidades;
 using CRUDPersonas_DAL.Listado;
 
+/*
+Ésta clase será la encargada de ofrecer a nuestra capa UI el listado de Personas dado por nuestra clase de la capa DAL (ListadoPersonasDAL) 
+     
+*/
+
 namespace CRUDPersonas_BL.Listados
 {
     public class ListaPersonasBL
     {
 
 
+        /// <summary>
+        /// Ofrece un listado de personas
+        /// </summary>
+        /// <returns>Devuelve un listado de personas</returns>
         public List<Persona> getListaPersonas()
         {
             List<Persona> listaPersonas = new List<Persona>();
@@ -20,6 +29,8 @@ namespace CRUDPersonas_BL.Listados
             //Aquí realizariamos el filtrado indicado en la lógica de negocio
             return listaPersonas;
         }
+
+        //¡¡¡EL LISTADO SOLO SE ENCARGA DE LISTAR!!!//
 
        /* public Persona getPersona(int id)
         {

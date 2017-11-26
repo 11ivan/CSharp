@@ -64,12 +64,9 @@ namespace Ejercicio2Examen.Models.ViewModels
             set
             {
                 _cursoSeleccionado = value;
-                NotifyPropertyChanged("CursoSeleccionado");
-                
                 if (_cursoSeleccionado!=null)
                 {                  
                     cargaAlumnos();
-                    //NotifyPropertyChanged("ListaAlumnosBinding");
                 }    
             }
         }

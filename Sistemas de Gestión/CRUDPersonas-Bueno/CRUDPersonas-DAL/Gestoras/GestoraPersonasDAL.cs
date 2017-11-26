@@ -7,16 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
+Ésta clase se encargará de realizar en CRUD en nuestra base de datos
+
+ 
+*/
+
+
 namespace CRUDPersonas_DAL.Gestoras
 {
     public class GestoraPersonasDAL
     {
 
         /// <summary>
-        /// 
+        /// Recibe el id de una persona y hace una consulta a la tabla Personas con ese id
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>Devuelve la persona con ese id</returns>
         public Persona getPersona(int id)
         {
             //Boolean sal = false;
@@ -63,10 +70,10 @@ namespace CRUDPersonas_DAL.Gestoras
         }
 
         /// <summary>
-        /// 
+        /// Actualiza una persona de la base de datos
         /// </summary>
         /// <param name="persona"></param>
-        /// <returns></returns>
+        /// <returns>Devuelve un entero con el número de filas afectadas</returns>
         public int updatePersona(Persona persona)
         {
             int affectedRows = 0;
@@ -114,7 +121,11 @@ namespace CRUDPersonas_DAL.Gestoras
             return affectedRows;
         }
 
-
+        /// <summary>
+        /// Elimina una persona de la base de datos
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Devuelve un entero con el número de filas afectadas</returns>
         public int deletePersona(int id)
         {
             int affectedRows = 0;
@@ -133,7 +144,7 @@ namespace CRUDPersonas_DAL.Gestoras
                 command.Parameters.Add(paramID);
 
                 command.Connection = conexion.connection;
-                command.ExecuteNonQuery();
+                affectedRows= command.ExecuteNonQuery();
             }
             catch(SqlException ex)
             {
@@ -142,6 +153,11 @@ namespace CRUDPersonas_DAL.Gestoras
             return affectedRows;
         }
 
+        /// <summary>
+        /// Inserta una persona en la base de datos
+        /// </summary>
+        /// <param name="persona"></param>
+        /// <returns>Devuelve un entero que es el número de filas afectadas</returns>
         public int insertPersona(Persona persona)
         {
             int affectedRows = 0;
@@ -172,15 +188,15 @@ namespace CRUDPersonas_DAL.Gestoras
                 command.Parameters.Add(paramFechaNac);
 
                 command.Connection = conexion.connection;
-                command.ExecuteNonQuery();
+                affectedRows= command.ExecuteNonQuery();
             }
             catch (SqlException ex)
             {
                 throw ex;
             }
-
             return affectedRows;
         }
+
 
 
     }
