@@ -1,5 +1,4 @@
-﻿using _19_BindingListaPersonas.Models.ViewModel;
-using Ejercicio1Examen.Models.Entities;
+﻿using Ejercicio1Examen.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
