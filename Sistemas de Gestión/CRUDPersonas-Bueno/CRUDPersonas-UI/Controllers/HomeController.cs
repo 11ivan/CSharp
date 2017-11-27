@@ -190,12 +190,32 @@ namespace CRUDPersonas_UI.Controllers
             return View(persona);
         }
 
+<<<<<<< HEAD
         /*[HttpPost]
         //[ActionName("Details")]
         public ActionResult Details()
         {
             return RedirectToAction("Index");
         }*/
+=======
+
+        public ActionResult Details(int id)
+        {
+            GestoraPersonasBL gestoraPersonasBL = new GestoraPersonasBL();
+            Persona persona = new Persona();
+            try
+            {
+                persona = gestoraPersonasBL.getPersona(id);
+                return View(persona);
+            }
+            catch (Exception e)
+            {
+                return View("PgError");
+                throw e;
+            }
+            
+        }
+>>>>>>> 1daaec5507fc3647048d9db5557f6c078011ff27
 
 
     }
