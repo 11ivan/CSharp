@@ -104,5 +104,24 @@ namespace CRUDPersonas_UI.Controllers
            // return View();
         }
 
+
+        public ActionResult Details(int id)
+        {
+            GestoraPersonasBL gestoraPersonasBL = new GestoraPersonasBL();
+            Persona persona = new Persona();
+            try
+            {
+                persona = gestoraPersonasBL.getPersona(id);
+                return View(persona);
+            }
+            catch (Exception e)
+            {
+                return View("PgError");
+                throw e;
+            }
+            
+        }
+
+
     }
 }

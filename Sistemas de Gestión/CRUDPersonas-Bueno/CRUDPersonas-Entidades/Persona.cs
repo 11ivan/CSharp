@@ -62,6 +62,9 @@ namespace CRUDPersonas_Entidades
             }
         }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+        [Display(Name ="Fecha Nacimiento")]
         public DateTime fechaNac
         {
             get
@@ -72,7 +75,6 @@ namespace CRUDPersonas_Entidades
             {
                 this._fechaNac = value;
             }
-
         }
 
 

@@ -48,7 +48,8 @@ namespace CRUDPersonas_BL.Gestoras
             int affectedRows = 0;
             GestoraPersonasDAL gestoraPersonasDAL = new GestoraPersonasDAL();
             affectedRows = gestoraPersonasDAL.insertPersona(persona);
-            return affectedRows;        }
+            return affectedRows;
+        }
 
     }
 }

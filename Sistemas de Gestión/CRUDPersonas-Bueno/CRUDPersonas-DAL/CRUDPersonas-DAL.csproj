@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Connection\Conexion.cs" />
     <Compile Include="Gestoras\GestoraPersonasDAL.cs" />
     <Compile Include="Listado\ListadoPersonasDAL.cs" />
