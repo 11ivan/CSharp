@@ -190,14 +190,6 @@ namespace CRUDPersonas_UI.Controllers
             return View(persona);
         }
 
-<<<<<<< HEAD
-        /*[HttpPost]
-        //[ActionName("Details")]
-        public ActionResult Details()
-        {
-            return RedirectToAction("Index");
-        }*/
-=======
 
         public ActionResult Details(int id)
         {
@@ -215,7 +207,6 @@ namespace CRUDPersonas_UI.Controllers
             }
             
         }
->>>>>>> 1daaec5507fc3647048d9db5557f6c078011ff27
 
 
     }
