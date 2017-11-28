@@ -1,0 +1,22 @@
+﻿@model Ejercicio1Examen.Models.VMListadoCursos
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        <form action="Index" method="post">
+            @Html.DropDownListFor(model => model.ID, new SelectList(Model.ListadoCursos, "ID", "Nombre"))
+            <input type="submit" value="Details" />
+        </form>
+    </div>
+</body>
+</html>

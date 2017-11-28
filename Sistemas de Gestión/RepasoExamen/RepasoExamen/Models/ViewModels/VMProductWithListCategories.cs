@@ -1,4 +1,5 @@
-﻿using Capa_BL.Listados;
+﻿using Capa_BL.Gestoras;
+using Capa_BL.Listados;
 using Entidades;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using System.Web;
         ID: Entero, consultable, modificable
         Nombre: Cadena, consultable, modificable
         Precio: Double, consultable, modificable
+        idCategoria Categoria: Entero, Consultable, Modificable
 
     Propiedades Agregadas:
         Lista de Categorias: List<Categoria>, Consultable, Modificable
@@ -103,7 +105,9 @@ namespace RepasoExamen.Models.ViewModels
             }
         }
 
-
+        /// <summary>
+        /// Carga las categorias de la base de datos en _listadoCategorias
+        /// </summary>
         public void cargaListaCategorias()
         {
             ListadoCategoriasBL listadoCategoriasBL = new ListadoCategoriasBL();
@@ -117,9 +121,42 @@ namespace RepasoExamen.Models.ViewModels
             }
         }
 
+        /// <summary>
+        /// Primero carga en _listaCategorias la categoria que ya contiene el producto y después el resto que haya 
+        /// en la base de datos
+        /// </summary>
+        public void cargaCategoriasPrimeroLaTuya()
+        {
+            ListadoCategoriasBL listadoCategoriasBL = new ListadoCategoriasBL();
+            GestoraCategoriasBL gestoraCategoriasBL = new GestoraCategoriasBL();
+            List<Categoria> listaCategoriasBaseDatos = listadoCategoriasBL.getListadoCategorias();
+
+            _listaCategorias.Add(gestoraCategoriasBL.getCategoria(_idCategoria));
+
+            for (int i=0;i<listaCategoriasBaseDatos.Count;i++)
+            {
+                if ( ! _listaCategorias.Contains(listaCategoriasBaseDatos.ElementAt(i)) )
+                {
+                    _listaCategorias.Add(listaCategoriasBaseDatos.ElementAt(i));
+                }
+            }
+        }
 
 
+        /*public Boolean exist(int idcategoria)
+        {
+            Boolean existe = false;
 
+            for (int i=0;i<_listaCategorias.Count && !existe;i++)
+            {
+                if ()
+                {
+
+                }
+            }
+
+            return existe;
+        }*/
 
 
     }

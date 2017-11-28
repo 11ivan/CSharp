@@ -191,7 +191,7 @@ namespace CRUDPersonas_UI.Controllers
         }
 
 
-        public ActionResult Details(int id)
+        /*public ActionResult Details(int id)
         {
             GestoraPersonasBL gestoraPersonasBL = new GestoraPersonasBL();
             Persona persona = new Persona();
@@ -206,7 +206,7 @@ namespace CRUDPersonas_UI.Controllers
                 throw e;
             }
             
-        }
+        }*/
 
 
     }

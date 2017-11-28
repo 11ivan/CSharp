@@ -60,6 +60,24 @@ namespace RepasoExamen.Controllers
         }
 
 
+        public ActionResult Edit(int id)
+        {
+            VMProductWithListCategories vmProductWithListCategories = new VMProductWithListCategories();
+            GestoraProductosBL gestoraProductosBL = new GestoraProductosBL();
+            try
+            {
+                Producto producto= new Producto();
+                producto = gestoraProductosBL.getProducto(id);
+                vmProductWithListCategories.ID = producto.ID;
+                vmProductWithListCategories.Nombre = producto.Nombre;
+                vmProductWithListCategories.Precio = producto.Precio;
+                vmProductWithListCategories.IdCategoria = producto.IdCategoria;
+                vmProductWithListCategories.cargaCategoriasPrimeroLaTuya();
+            }catch(Exception e){
+                throw e;
+            }
+            return View(vmProductWithListCategories);
+        }
 
 
     }

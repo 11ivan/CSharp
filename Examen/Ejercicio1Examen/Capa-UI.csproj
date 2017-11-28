@@ -8,12 +8,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A78D4D4C-E939-4218-A367-C9C03040CA52}</ProjectGuid>
+    <ProjectGuid>{F7D6A6BC-5027-4F9B-B7D0-540E1BCFD37E}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RepasoExamen</RootNamespace>
-    <AssemblyName>RepasoExamen</AssemblyName>
+    <RootNamespace>Ejercicio1Examen</RootNamespace>
+    <AssemblyName>Ejercicio1Examen</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -98,18 +98,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Gestoras\GestoraVMProductWithListCategories.cs" />
-    <Compile Include="Models\Listados\ListadoVMProductWithNameCategory.cs" />
-    <Compile Include="Models\ViewModels\VMProductWithListCategories.cs" />
-    <Compile Include="Models\ViewModels\VMProductWithNameCategory.cs" />
+    <Compile Include="Models\ViewModels\ListadoVMAlumnoConNombreCurso.cs" />
+    <Compile Include="Models\ViewModels\VMAlumnoConNombreCurso.cs" />
+    <Compile Include="Models\ViewModels\VMListadoCursos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Create.cshtml" />
-    <Content Include="Views\Home\Edit.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -122,11 +120,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Capa-BL\Capa-BL.csproj">
-      <Project>{31733787-33ec-4d39-a161-590f79e62ab3}</Project>
+      <Project>{e37e11d9-3a1a-4c59-9bb1-e646761c4d99}</Project>
       <Name>Capa-BL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Entidades\Entidades.csproj">
-      <Project>{3d04458a-e8a0-4a99-8548-c1615bdbd5d7}</Project>
+      <Project>{92b691da-9eb6-40d3-8acc-c0700813f824}</Project>
       <Name>Entidades</Name>
     </ProjectReference>
   </ItemGroup>
@@ -143,9 +141,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>50871</DevelopmentServerPort>
+          <DevelopmentServerPort>50139</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50871/</IISUrl>
+          <IISUrl>http://localhost:50139/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
