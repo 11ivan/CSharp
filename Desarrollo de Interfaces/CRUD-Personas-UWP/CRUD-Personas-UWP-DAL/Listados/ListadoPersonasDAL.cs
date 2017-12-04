@@ -44,7 +44,7 @@ namespace CRUD_Personas_UWP_DAL.Listados
                     while (dataReader.Read())
                     {
                         persona = new Persona();
-                        persona.id = (Guid)dataReader["ID"];
+                        persona.id = (int)dataReader["ID"];
                         persona.nombre = (string)dataReader["Nombre"];
                         persona.apellido = (string)dataReader["Apellidos"];
                         persona.fechaNac = (DateTime)dataReader["FechaNacimiento"];

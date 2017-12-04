@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.ComponentModel;
-//using _19_BindingListaPersonas.Models.ViewModel;
 
 
 namespace CRUD_Personas_UWP_Entidades
@@ -10,9 +9,9 @@ namespace CRUD_Personas_UWP_Entidades
     public class Persona: clsVMBase, IComparable<Persona>
     {
 
-        //private int _id;
+        private int _id;
         //private static int _id=0;
-        private Guid _id;
+        //private Guid _id;
         //public int idDepartamento { get; set; }
         private String _nombre;
         private String _apellido;
@@ -26,7 +25,8 @@ namespace CRUD_Personas_UWP_Entidades
         {
             //_id++;
             //idDepartamento = 0;
-            _id = Guid.NewGuid();
+            //_id = Guid.NewGuid();
+            _id = 0;
             _nombre = "";
             _apellido = "";
             _fechaNac = new DateTime();
@@ -34,9 +34,10 @@ namespace CRUD_Personas_UWP_Entidades
             _telefono = "";
         }
 
-        public Persona(String nombre, String apellido, String direccion, String telefono)//:this()
+        public Persona(int id, String nombre, String apellido, String direccion, String telefono)//:this()
         {
-            _id = Guid.NewGuid();
+            //_id = Guid.NewGuid();
+            _id = id;
             //this.idDepartamento = idDepartamento;
             this._nombre = nombre;
             this._apellido = apellido;
@@ -68,7 +69,7 @@ namespace CRUD_Personas_UWP_Entidades
         }
 
 
-        public Guid id
+        public int id
         {
             get{
                 return _id;

@@ -54,7 +54,7 @@ namespace CRUD_Personas_UWP_DAL.Gestoras
                     dataReader.Read();
                     persona.id = (int)dataReader["ID"];
                     persona.nombre = (string)dataReader["Nombre"];
-                    persona.apellidos = (string)dataReader["Apellidos"];
+                    persona.apellido = (string)dataReader["Apellidos"];
                     persona.fechaNac = (DateTime)dataReader["FechaNacimiento"];
                     //listaPersonas.Add(persona);
                     //}
@@ -98,7 +98,7 @@ namespace CRUD_Personas_UWP_DAL.Gestoras
 
                 paramApellido.ParameterName = "@apellido";
                 paramApellido.SqlDbType = System.Data.SqlDbType.NVarChar;
-                paramApellido.Value = persona.apellidos;
+                paramApellido.Value = persona.apellido;
 
                 paramFechaNac.ParameterName = "@fechaNac";
                 paramFechaNac.SqlDbType = System.Data.SqlDbType.DateTime;
@@ -177,7 +177,7 @@ namespace CRUD_Personas_UWP_DAL.Gestoras
 
                 paramApellido.ParameterName = "@apellidos";
                 paramApellido.SqlDbType = System.Data.SqlDbType.NVarChar;
-                paramApellido.SqlValue = persona.apellidos;
+                paramApellido.SqlValue = persona.apellido;
 
                 paramFechaNac.ParameterName = "@fechaNac";
                 paramFechaNac.SqlDbType = System.Data.SqlDbType.DateTime;

@@ -3,54 +3,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using _19_BindingListaPersonas.Models;
-using _19_BindingListaPersonas.Models.Lists;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Windows.UI.Xaml.Controls;
+using CRUD_Personas_UWP_Entidades;
+using CRUD_Personas_UWP_BL.Listados;
+using CRUD_Personas_UWP_BL.Gestoras;
 
-namespace _19_BindingListaPersonas.Models.ViewModel
+namespace CRUD_Personas_UWP_UI.ViewModels
 {
-    class VMMainPage : clsVMBase
+    public class VMMainPage : clsVMBase
     {
 
         #region Propiedades
 
-        //private Persona personaCreada;
         private Persona _personaSelected;
-        private ListaPersonas listaPersonas;
+        private List<Persona> _listaPersonas;
         //public event PropertyChangedEventHandler PropertyChanged;
         private DelegateCommand _commandDelete;
         private DelegateCommand _commandSave;
         private DelegateCommand _commandAdd;
         private DelegateCommand _commandSearch;
         private String _campoBusqueda;
-       // private List<Persona> _filtroPersonas;
-        private ListaPersonas _listaPersonasBinding;
+        private ObservableCollection<Persona> _listaPersonasBinding;
+        private ListaPersonasBL listadoPersonasBL = new ListaPersonasBL();
+        private GestoraPersonasBL gestoraPersonasBL = new GestoraPersonasBL();
 
 #endregion Propiedades
 
         public VMMainPage()
         {
             _campoBusqueda = "";
-            listaPersonas = new ListaPersonas();
-            listaPersonas.cargaPersonas();
-            //_filtroPersonas = new List<Persona>();
-            _listaPersonasBinding = new ListaPersonas();
-            //_listaPersonasBinding.cargaPersonas();
+            _listaPersonas = new List<Persona>();
+            _listaPersonasBinding = new ObservableCollection<Persona>();
             fillListPersonasBinding();
         }
 
 
 #region Getters and Setters  _personaSelected, listaPersonas, _campoBusqueda, _filtroPersonas
-        /*public ObservableCollection<Persona> ListaPersonas
-        {
-            get
-            {
-                return listaPersonas.getListaPersonas();
-            }
-        }*/
-
 
         public Persona PersonaSelected
         {
@@ -95,25 +85,17 @@ namespace _19_BindingListaPersonas.Models.ViewModel
         {
             get
             {
-                return this._listaPersonasBinding.getListaPersonas();
-            }
-        }
-
-        /*public List<Persona> filtroPersonas
-        {
-            get
-            {
-                return _filtroPersonas;
+                return this._listaPersonasBinding;
             }
             set
             {
-                _filtroPersonas = value;
+                _listaPersonasBinding = value;                
             }
-        }*/
+        }
+
 
 #endregion Getters and Setters  _personaSelected, listaPersonas, _campoBusqueda
 
-//--------------------------------------------------------------------------------------------------------------------------------------
 
 #region Getters, Setters and Methods for DelegateCommands
         /// <summary>
@@ -150,10 +132,10 @@ namespace _19_BindingListaPersonas.Models.ViewModel
         /// </summary>
         public void deletePersona()
         {
-            listaPersonas.getListaPersonas().Remove(_personaSelected);
-            _listaPersonasBinding.getListaPersonas().Remove(_personaSelected);
-
-            //Ordena();
+            gestoraPersonasBL.deletePersona(_personaSelected.id);
+            _listaPersonas.Remove(_personaSelected);
+            _listaPersonasBinding.Remove(_personaSelected);
+            NotifyPropertyChanged("listaPersonasBinding");
         }
 
 //--------------------------------------------------------------------------------------------------------------------------------------
@@ -196,7 +178,7 @@ namespace _19_BindingListaPersonas.Models.ViewModel
         {
             ContentDialog dialog = new ContentDialog();
             dialog.Title = "Error";
-            dialog.Content = "Debe introducir el apellido";
+            dialog.Content = "Debe introducir el .....";
             dialog.CloseButtonText = "Close";
             await dialog.ShowAsync();
         }
@@ -209,12 +191,10 @@ namespace _19_BindingListaPersonas.Models.ViewModel
         {
             if (!this.exists(_personaSelected.id))
             {
-                //_personaSelected.id = listaPersonas.listaPersonas.ElementAt(listaPersonas.listaPersonas.Count-1).id+1;
-                listaPersonas.getListaPersonas().Add(_personaSelected);
-                _listaPersonasBinding.getListaPersonas().Add(_personaSelected);
-                //NotifyPropertyChanged("listaPersonasBinding");
-
-                //Ordena();
+                gestoraPersonasBL.insertPersona(_personaSelected);//insercion en la base de datos
+                _listaPersonas.Add(_personaSelected);//añade a la lista original
+                _listaPersonasBinding.Add(_personaSelected);//añade a la lista bindeada
+                NotifyPropertyChanged("listaPersonasBinding");
             }
         }
 
@@ -296,33 +276,23 @@ namespace _19_BindingListaPersonas.Models.ViewModel
         public void search()
         {
             String nombrePersona = "";
-            if (_listaPersonasBinding.getListaPersonas().Count!=listaPersonas.getListaPersonas().Count)
+            List<Persona> listaApoyo = new List<Persona>();
+            for (int i=0;i<_listaPersonas.Count;i++)
             {
-                fillListPersonasBinding();
-            }
-            //emptyListaPersonasBinding();
-            for (int i=0;i<_listaPersonasBinding.getListaPersonas().Count;i++)
-            {
-                nombrePersona = _listaPersonasBinding.getListaPersonas().ElementAt(i).nombre;
+                nombrePersona = _listaPersonas.ElementAt(i).nombre;
                 
-                if (!nombrePersona.ToLower().Contains(_campoBusqueda.ToLower()))
+                if (nombrePersona.ToLower().Contains(_campoBusqueda.ToLower()))
                 {
-                    //filtroPersonas.Add(listaPersonas.getListaPersonas().ElementAt(i));
-                    //listaPersonas.getListaPersonas().RemoveAt(i);
-                    //NotifyPropertyChanged("ListaPersonas");
-
-                    _listaPersonasBinding.getListaPersonas().RemoveAt(i);
-
-                    //_listaPersonasBinding.getListaPersonas().Add(listaPersonas.getListaPersonas().ElementAt(i));
-                    //NotifyPropertyChanged("listaPersonasBinding");
+                    listaApoyo.Add(_listaPersonas.ElementAt(i));
                 }
             }
-           // _listaPersonasBinding.getListaPersonas().RemoveAt(_listaPersonasBinding.getListaPersonas().Count-1);  //¡¡CAÑÓN MATAMOSCAS!!  Y TAMPOCO!!!!!!!!
+            _listaPersonasBinding = new ObservableCollection<Persona>(listaApoyo);
+            NotifyPropertyChanged("listaPersonasBinding");
         }
 
-#endregion Getters, Setters and Methods for DelegateCommands
+        #endregion Getters, Setters and Methods for DelegateCommands
 
-#region Methods For Class
+        #region Methods For Class
 
 
         /// <summary>
@@ -330,12 +300,12 @@ namespace _19_BindingListaPersonas.Models.ViewModel
         /// </summary>
         /// <param name="idPersona"></param>
         /// <returns>Un booleano que será verdadero si se encuentra el id de la persona y false sino</returns>
-        public Boolean exists(Guid idPersona)
+        public Boolean exists(int idPersona)
         {
             Boolean existe = false;
-            for (int i=0;i<_listaPersonasBinding.getListaPersonas().Count && !existe;i++)
+            for (int i=0;i<_listaPersonasBinding.Count && !existe;i++)
             {
-                if (_listaPersonasBinding.getListaPersonas().ElementAt(i).id.Equals(idPersona))
+                if (_listaPersonasBinding.ElementAt(i).id==idPersona)
                 {
                     existe = true;
                 }
@@ -349,48 +319,14 @@ namespace _19_BindingListaPersonas.Models.ViewModel
         /// </summary>
         public void fillListPersonasBinding()
         {
-            foreach (Persona personaTemp in listaPersonas.getListaPersonas())
-            {
-                //listaPersonas.listaPersonas.Add(personaTemp);
-                if (!exists(personaTemp.id))
-                {
-                    _listaPersonasBinding.getListaPersonas().Add(personaTemp);
-                }
-            }
-           // Ordena();
+            _listaPersonas = listadoPersonasBL.getListaPersonas();
+            _listaPersonas.Sort();
+            _listaPersonasBinding = new ObservableCollection<Persona>(_listaPersonas);
+            NotifyPropertyChanged("listaPersonasBinding");
         }
 
-        public void Ordena()
-        {
-            List<Persona> listaTemp = new List<Persona>();
-            foreach (Persona personaTemp in _listaPersonasBinding.getListaPersonas())
-            {
-                listaTemp.Add(personaTemp);
-            }
-            listaTemp.Sort();
-            emptyListaPersonasBinding();
-            foreach (Persona personaTemp2 in listaTemp)
-            {
-                _listaPersonasBinding.getListaPersonas().Add(personaTemp2);
-            }
-            _listaPersonasBinding.getListaPersonas().RemoveAt(0);       //Y OTRO CAÑONAZO
-        }
+       
 
-        /// <summary>
-        /// Vacia el filtro de personas
-        /// </summary>
-        public void emptyListaPersonasBinding()
-        {
-            /*foreach (Persona personaTemp in _listaPersonasBinding.getListaPersonas())
-            {
-                _listaPersonasBinding.getListaPersonas().Remove(personaTemp);
-            }*/
-           
-            for (int i=0;i<_listaPersonasBinding.getListaPersonas().Count;i++)
-            {
-                _listaPersonasBinding.getListaPersonas().RemoveAt(i);
-            }
-        }
 
 #endregion
 

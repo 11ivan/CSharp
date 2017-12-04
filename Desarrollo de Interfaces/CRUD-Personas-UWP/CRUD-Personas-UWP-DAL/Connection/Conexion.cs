@@ -61,45 +61,6 @@ namespace CRUD_Personas_UWP_DAL.Connection
             return state;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public List<Persona> getPersonas()
-        {
-            List <Persona> listaPersonas= new List<Persona>();
-            SqlCommand command = new SqlCommand();
-            SqlDataReader dataReader;
-            Persona persona;
-            try
-            {
-                connection.ConnectionString = getDataConnection();
-                connection.Open();
-                command.CommandText = "Select ID, Nombre, Apellidos, FechaNacimiento FROM Personas";
-                command.Connection = connection;
-                dataReader = command.ExecuteReader();
-
-                if (dataReader.HasRows)
-                {
-                    while (dataReader.Read())
-                    {
-                        persona = new Persona();
-                        persona.id =(int) dataReader["ID"];
-                        persona.nombre = (string)dataReader["Nombre"];
-                        persona.apellidos = (string)dataReader["Apellidos"];
-                        persona.fechaNac = (DateTime)dataReader["FechaNacimiento"];
-                        listaPersonas.Add(persona);
-                    }               
-                }
-                dataReader.Close();
-                connection.Close();
-            }
-            catch (SqlException e)
-            {
-                throw e;
-            }
-            return listaPersonas;
-        }
 
     }
 }

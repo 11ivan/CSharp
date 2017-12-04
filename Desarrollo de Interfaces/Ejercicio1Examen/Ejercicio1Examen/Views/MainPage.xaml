@@ -31,7 +31,7 @@
 
         <RelativePanel Grid.Column="1">
             <Image x:Name="imagenOriginal" Source="{x:Bind ViewModel.ImagenOriginal.RutaImagen}"  Width="400" Height="400" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" />
-            <Ellipse x:Name="sinpeluca" Stroke="Red" Width="60" Height="65" Margin="155 260 0 0" Opacity="{Binding ElementName=peluca, Path=Opacity}" PointerPressed="{x:Bind ViewModel.Click_Marca}" />
+            <Ellipse x:Name="sinpeluca" Stroke="Red" Width="60" Height="65" Margin="155 260 0 0" Opacity="{x:Bind churruca.Opacity, Mode=TwoWay}" PointerPressed="{x:Bind ViewModel.Click_Marca}" />
             <Ellipse x:Name="sinpataPalo" Stroke="Red" Width="60" Height="70" Margin="220 410 0 0" Opacity="{Binding ElementName=pataPalo, Path=Opacity}" PointerPressed="{x:Bind ViewModel.Click_Marca}" />
             <Ellipse x:Name="singafas" Stroke="Red" Width="50" Height="40" Margin="270 310 0 0" Opacity="{Binding ElementName=gafas, Path=Opacity}" PointerPressed="{x:Bind ViewModel.Click_Marca}" />
             <Ellipse x:Name="sinchapa" Stroke="Red" Width="30" Height="20" Margin="330 335 0 0" Opacity="{Binding ElementName=chapa, Path=Opacity}" PointerPressed="{x:Bind ViewModel.Click_Marca}" />

@@ -27,7 +27,7 @@ namespace Ejercicio1Examen.Models.ViewModels
         private Imagen _imagenOriginal;
         private Imagen _imagenDiferencias;
         private List<Boolean> _listaAciertos;
-        private List<int> _listaElipses;
+        private List<int> _listaOpacidad;
 
         #endregion Propiedades
 
@@ -36,7 +36,7 @@ namespace Ejercicio1Examen.Models.ViewModels
             _imagenOriginal = new Imagen("ms-appx:///Assets/Images/Diferencias.jpg");
             _imagenDiferencias = new Imagen("ms-appx:///Assets/Images/Diferencias2.jpg");
             _listaAciertos = new List<bool>(7);
-            _listaElipses = new List<int>(7);
+            _listaOpacidad = new List<int>(7);
             //Le damos trasparencia a todas las ellipses
             OpacityEllipses();
         }
@@ -82,11 +82,11 @@ namespace Ejercicio1Examen.Models.ViewModels
         {
             get
             {
-                return _listaElipses;
+                return _listaOpacidad;
             }
             set
             {
-                _listaElipses = value;
+                _listaOpacidad = value;
             }
         }
 
