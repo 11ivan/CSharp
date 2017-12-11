@@ -26,6 +26,7 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         private DelegateCommand _commandSearch;
         private String _campoBusqueda;
         private ObservableCollection<Persona> _listaPersonasBinding;
+
         private ListaPersonasBL listadoPersonasBL = new ListaPersonasBL();
         private GestoraPersonasBL gestoraPersonasBL = new GestoraPersonasBL();
 
@@ -120,7 +121,7 @@ namespace CRUD_Personas_UWP_UI.ViewModels
             Boolean vale = false;
 
             if (_personaSelected!=null && !String.IsNullOrWhiteSpace(_personaSelected.nombre) && !String.IsNullOrWhiteSpace(_personaSelected.apellido))
-            {
+            {   
                 vale = true;
             }
 
@@ -132,13 +133,41 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         /// </summary>
         public void deletePersona()
         {
-            gestoraPersonasBL.deletePersona(_personaSelected.id);
+            //Preguntar si elimina   
+            canDeleteAsync();
+           
+            /*gestoraPersonasBL.deletePersona(_personaSelected.id);
             _listaPersonas.Remove(_personaSelected);
             _listaPersonasBinding.Remove(_personaSelected);
-            NotifyPropertyChanged("listaPersonasBinding");
+            NotifyPropertyChanged("listaPersonasBinding");*/
         }
 
-//--------------------------------------------------------------------------------------------------------------------------------------
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public async void canDeleteAsync()
+        {
+            ContentDialog dialog = new ContentDialog();
+            ContentDialogResult contentDialogResult = new ContentDialogResult();
+            dialog.Title = "Advertencia";
+            dialog.Content = "Seguro que desea eliminar al usuario?";
+            dialog.CloseButtonText = "Close";
+            dialog.PrimaryButtonText = "Ok";
+
+            contentDialogResult= await dialog.ShowAsync();
+
+            if (contentDialogResult==ContentDialogResult.Primary)
+            {
+                gestoraPersonasBL.deletePersona(_personaSelected.id);
+                _listaPersonas.Remove(_personaSelected);
+                _listaPersonasBinding.Remove(_personaSelected);
+                NotifyPropertyChanged("listaPersonasBinding");
+            }
+        }
+
+
+        //--------------------------------------------------------------------------------------------------------------------------------------
 
         /// <summary>
         /// 
@@ -163,10 +192,10 @@ namespace CRUD_Personas_UWP_UI.ViewModels
             {
                 puede = true;
             }
-            else
+           /* else
             {
                 canSaveAsync();
-            }
+            }*/
             return puede;
         }
 
