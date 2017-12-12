@@ -22,8 +22,14 @@
             </br></br>
             @if (Model.ListadoAlumnosCurso.Count > 0)
             {
-                <table>
-                    <tr>
+                if (ViewBag.Mensaje != null)
+                {
+                    <p style="color:green; font-size:20px">
+                        @ViewBag.Mensaje;
+                    </p>
+                }
+                <table border="1" style="border-collapse:collapse">
+                    <tr style="text-align:center;">
                         <td>Nombre</td><td>Apellidos</td><td>Beca Asignada</td>
                     </tr>
                     @for (int i = 0; i < Model.ListadoAlumnosCurso.Count; i++)

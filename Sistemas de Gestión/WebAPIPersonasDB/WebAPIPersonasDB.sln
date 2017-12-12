@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPIPersonasDB", "WebAPIPersonasDB\WebAPIPersonasDB.csproj", "{07C114E7-2A23-4D06-90D8-472D577C2FB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capa-UI", "WebAPIPersonasDB\Capa-UI.csproj", "{07C114E7-2A23-4D06-90D8-472D577C2FB8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entidades", "Entidades\Entidades.csproj", "{DFAD085F-2044-4FBF-B1B8-533200AC2893}"
 EndProject

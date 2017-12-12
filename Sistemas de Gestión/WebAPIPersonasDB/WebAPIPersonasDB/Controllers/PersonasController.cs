@@ -11,9 +11,9 @@ using System.Web.Http;
 
 namespace WebAPIPersonasDB.Controllers
 {
-    public class ValuesController : ApiController
+    public class PersonasController : ApiController
     {
-        // GET api/values
+        // GET api/Personas
         public IEnumerable<Persona> Get()
         {
             ListadoPersonasBL listadoPersonasBL = new ListadoPersonasBL();
@@ -21,7 +21,7 @@ namespace WebAPIPersonasDB.Controllers
             return observableCollection;
         }
 
-        // GET api/values/5
+        // GET api/Personas/5
         public Persona Get(int id)
         {
             Persona persona = new Persona();
@@ -32,22 +32,24 @@ namespace WebAPIPersonasDB.Controllers
             return persona;
         }
 
-        // POST api/values
+        // POST api/Personas
         public void Post([FromBody]Persona value)
         {
             GestoraPersonasBL gestoraPersonasBL = new GestoraPersonasBL();
             gestoraPersonasBL.insertPersona(value);
         }
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        // PUT api/Personas/5
+        public void Put(int id, [FromBody]Persona value)
         {
-
+            GestoraPersonasBL gestoraPersonasBL = new GestoraPersonasBL();
+            gestoraPersonasBL.updatePersona(id, value);
         }
 
-        // DELETE api/values/5
+        // DELETE api/Personas/5
         public void Delete(int id)
         {
+            
             GestoraPersonasBL gestoraPersonasBL = new GestoraPersonasBL();
             gestoraPersonasBL.deletePersona(id);
         }

@@ -12,13 +12,18 @@ namespace CorrecionExamen1Eval_UI.Controllers
     public class HomeController : Controller
     {
         // GET: Home
-        public ActionResult Index()
+        public ActionResult Index(int idCurso=-1)
         {
             VMListadoCursosConListadoAlumnosPorCurso listadoCursosConListadoAlumnosPorCurso = new VMListadoCursosConListadoAlumnosPorCurso();
 
             try
             {
                 listadoCursosConListadoAlumnosPorCurso.cargaListadoCursos();
+                if (idCurso!=-1)
+                {
+                    ViewBag.Mensaje = "La beca se asignó correctamente";//Hay que hacer algo con este ViewBag porque puede ser que haya salido sin asignar la beca
+                    listadoCursosConListadoAlumnosPorCurso.cargaListadoAlumnosCurso(idCurso);
+                }
             }
             catch(Exception e)
             {
@@ -29,12 +34,13 @@ namespace CorrecionExamen1Eval_UI.Controllers
         }
 
         /// <summary>
-        /// Esta accion se encarga de 
+        /// Accion Post de la vista Index, dado un id de Curso se encarga de cargar un listado de alumnos asociados al id de Curso dado
         /// </summary>
-        /// <param name="IdCursoSeleccionado">Un entero que es el id del curso selecionado en la vista Index</param>
-        /// <returns></returns>
+        /// <param name="ListadoCursos">Un entero que es el id del curso selecionado en la vista Index</param>
+        /// <returns>Si hay errores retorna a la Vista ErrorPage sino retorna a la vista Index enviandole un ViewModel VMlistadoAlumnosPorCurso</returns>
         [HttpPost]
-        public ActionResult Index(int ListadoCursos)
+        [ActionName("Index")]
+        public ActionResult IndexPost(int ListadoCursos)
         {
             VMListadoCursosConListadoAlumnosPorCurso listadoCursosConListadoAlumnosPorCurso = new VMListadoCursosConListadoAlumnosPorCurso();
 
@@ -51,10 +57,11 @@ namespace CorrecionExamen1Eval_UI.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Dado un id de Alumno realiza una consulta a la base de datos y envia el Alumno asociado al id 
+        /// hacia la Vista AsignaBeca
         /// </summary>
-        /// <param name="ID"></param>
-        /// <returns></returns>
+        /// <param name="ID">Un entero que es el id de un alumno</param>
+        /// <returns>Si hay errores retorna a la Vista ErrorPage sino retorna a la vista AsignaBeca enviandole un ViewModel VMAlumnoConNombreCurso</returns>
         public ActionResult AsignaBeca(int ID)
         {
             VMAlumnoConNombreCurso vmAlumnoConNombreCurso = new VMAlumnoConNombreCurso();
@@ -82,10 +89,18 @@ namespace CorrecionExamen1Eval_UI.Controllers
         }
 
         /// <summary>
-        /// 
+        ///     Accion Post de la Vista AsignaBeca, dado un ViewModel VMAlumnoConNombreCurso comprueba que el modelo sea 
+        ///     valido y asigna la beca al Alumno correspondiente de la tabla Alumnos con el mismo id que el ViewModel que nos llega.
         /// </summary>
-        /// <param name="vmAlumnoConNombreCurso"></param>
-        /// <returns></returns>
+        /// <param name="vmAlumnoConNombreCurso">
+        ///     Un ViewModel VMAlumnoConNombreCurso que servirá para validar
+        ///     el modelo y tambien obtener su id y beca para la asignacion de la misma.
+        /// </param>
+        /// <returns>
+        ///     Si se captura alguna Excepcion retorna a la Vista ErrorPage, sino si el modelo no es valido
+        ///     retorna a la vista AsignaBeca enviandole el ViewModel VMAlumnoConNombreCurso que nos llega para
+        ///     mostrar los errores correspondientes, sino redirecciona a la Accion Index.
+        /// </returns>
         [HttpPost]
         public ActionResult AsignaBeca(VMAlumnoConNombreCurso vmAlumnoConNombreCurso)
         {
@@ -101,17 +116,16 @@ namespace CorrecionExamen1Eval_UI.Controllers
                 {
                     return View("ErrorPage");
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("/Index", new { idCurso = vmAlumnoConNombreCurso.IdCurso });//si no le pongo slash no redirecciona correctamente ya que se salta Home [localhost:4540/Index] cuando deberia ser [localhost:4540/Home/Index]             
             }
             else
             {
                 //Sino devolvemos a la vista AsignaBeca para mostrar los errores
                 return View(vmAlumnoConNombreCurso);
-            }
-
-            
-            
+            }                
         }
+
+
 
     }
 }

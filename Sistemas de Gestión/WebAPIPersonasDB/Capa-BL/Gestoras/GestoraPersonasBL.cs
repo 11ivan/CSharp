@@ -74,6 +74,28 @@ namespace Capa_BL.Gestoras
             return affectedRows;
         }
 
+        /// <summary>
+        /// Dado un id de Persona y un Objeto Persona, actualiza la Persona asociada al id dado en la tabla Personas 
+        /// con los datos del objeto Persona que llega por parametros
+        /// </summary>
+        /// <param name="idPersona">Un entero que es el id de la Persona</param>
+        /// <param name="persona">Un objeto Persona cuyas propiedades se usarán para actualizar la Persona de la tabla Personas</param>
+        /// <returns>Un entero con la cantidad de filas afectadas</returns>
+        public int updatePersona(int idPersona, Persona persona)
+        {
+            int affectedRows = 0;
+            GestoraPersonasDAL gestoraPersonasDAL = new GestoraPersonasDAL();
+            try
+            {
+                affectedRows = gestoraPersonasDAL.updatePersona(idPersona, persona);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return affectedRows;
+        }
+
 
     }
 }

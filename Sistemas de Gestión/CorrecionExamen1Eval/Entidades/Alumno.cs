@@ -52,6 +52,7 @@ namespace Entidades
             }
         }
 
+        [Required]
         public string Nombre
         {
             get

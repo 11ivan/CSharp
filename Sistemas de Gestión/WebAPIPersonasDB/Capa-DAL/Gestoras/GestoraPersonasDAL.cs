@@ -100,7 +100,7 @@ namespace Capa_DAL.Gestoras
                 parameterApellidos.Value = persona.apellidos;
 
                 parameterFechaNac.ParameterName = "@fechaNac";
-                parameterFechaNac.SqlDbType = System.Data.SqlDbType.DateTime;
+                parameterFechaNac.SqlDbType = System.Data.SqlDbType.SmallDateTime;
                 parameterFechaNac.Value = persona.fechaNac;
 
                 parameterDireccion.ParameterName = "@direccion";
@@ -164,6 +164,75 @@ namespace Capa_DAL.Gestoras
 
             return affectedRows;
         }
+
+
+        /// <summary>
+        /// Dado un id de Persona y un Objeto Persona, actualiza la Persona asociada al id dado en la tabla Personas 
+        /// con los datos del objeto Persona que llega por parametros
+        /// </summary>
+        /// <param name="idPersona">Un entero que es el id de la Persona</param>
+        /// <param name="persona">Un objeto Persona cuyas propiedades se usarán para actualizar la Persona de la tabla Personas</param>
+        /// <returns>Un entero con la cantidad de filas afectadas</returns>
+        public int updatePersona(int idPersona, Persona persona)
+        {
+            int affectedRows = 0;
+            Conexion conexion = new Conexion();
+            SqlCommand sqlCommand = new SqlCommand();
+            SqlParameter parameterNombre = new SqlParameter();
+            SqlParameter parameterApellidos = new SqlParameter();
+            SqlParameter parameterFechaNac = new SqlParameter();
+            SqlParameter parameterDireccion = new SqlParameter();
+            SqlParameter parameterTelefono = new SqlParameter();
+            SqlParameter parameterIdPersona = new SqlParameter();
+
+            try
+            {
+                conexion.openConnection();
+                sqlCommand.Connection = conexion.connection;
+                sqlCommand.CommandText = "update Personas set Nombre=@nombre, Apellidos=@apellidos, FechaNacimiento=@fechaNac, Direccion=@direccion, Telefono=@telefono where ID=@idPersona";
+
+                parameterNombre.ParameterName = "@nombre";
+                parameterNombre.SqlDbType = System.Data.SqlDbType.VarChar;
+                parameterNombre.Value = persona.nombre;
+
+                parameterApellidos.ParameterName = "@apellidos";
+                parameterApellidos.SqlDbType = System.Data.SqlDbType.VarChar;
+                parameterApellidos.Value = persona.apellidos;
+
+                parameterFechaNac.ParameterName = "@fechaNac";
+                parameterFechaNac.SqlDbType = System.Data.SqlDbType.SmallDateTime;
+                parameterFechaNac.Value = persona.fechaNac;
+
+                parameterDireccion.ParameterName = "@direccion";
+                parameterDireccion.SqlDbType = System.Data.SqlDbType.VarChar;
+                parameterDireccion.Value = persona.direccion;
+
+                parameterTelefono.ParameterName = "@telefono";
+                parameterTelefono.SqlDbType = System.Data.SqlDbType.VarChar;
+                parameterTelefono.Value = persona.telefono;
+
+                parameterIdPersona.ParameterName = "@idPersona";
+                parameterIdPersona.SqlDbType = System.Data.SqlDbType.Int;
+                parameterIdPersona.Value = idPersona;
+
+                sqlCommand.Parameters.Add(parameterNombre);
+                sqlCommand.Parameters.Add(parameterApellidos);
+                sqlCommand.Parameters.Add(parameterFechaNac);
+                sqlCommand.Parameters.Add(parameterDireccion);
+                sqlCommand.Parameters.Add(parameterTelefono);
+                sqlCommand.Parameters.Add(parameterIdPersona);
+
+                affectedRows = sqlCommand.ExecuteNonQuery();
+
+                conexion.connection.Close();
+            }
+            catch (SqlException e)
+            {
+                throw e;
+            }
+            return affectedRows;
+        }
+
 
 
     }
