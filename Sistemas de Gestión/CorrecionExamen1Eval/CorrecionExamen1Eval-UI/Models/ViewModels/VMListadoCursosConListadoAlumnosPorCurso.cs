@@ -14,8 +14,9 @@ namespace CorrecionExamen1Eval_UI.Models.ViewModels
 
         private List<Curso> _listadoCursos;
         private List<Alumno> _listadoAlumnosCurso;
-        private int _idCursoSeleccionado;//Esta propiedad la pongo porque uso dropDownListFor, si usara la etiqueta select con sus respectivas etiquetas option no necesitaria esta propiedad
-
+        //private int _idCursoSeleccionado;//Esta propiedad la pongo porque uso dropDownListFor, si usara la etiqueta select con sus respectivas etiquetas option no necesitaria esta propiedad
+                                           //AL FINAL NO LA NECESITO YA QUE EL PRIMER PARAMETRO DE DROPDOWNLISTFOR ES SOLO EL NAME DE LO QUE SERIA
+                                           //LA ETIQUETA SELECT
         #endregion Propiedades
 
         #region Constructores
@@ -24,7 +25,7 @@ namespace CorrecionExamen1Eval_UI.Models.ViewModels
         {
             _listadoCursos = new List<Curso>();
             _listadoAlumnosCurso = new List<Alumno>();
-            _idCursoSeleccionado = -1;
+           // _idCursoSeleccionado = -1;
         }
 
         #endregion Constructores
@@ -55,7 +56,7 @@ namespace CorrecionExamen1Eval_UI.Models.ViewModels
             }
         }
 
-        public int IdCursoSeleccionado
+        /*public int IdCursoSeleccionado
         {
             get
             {
@@ -65,7 +66,7 @@ namespace CorrecionExamen1Eval_UI.Models.ViewModels
             {
                 _idCursoSeleccionado = value;
             }
-        }
+        }*/
 
         #endregion Getters and Setters
 

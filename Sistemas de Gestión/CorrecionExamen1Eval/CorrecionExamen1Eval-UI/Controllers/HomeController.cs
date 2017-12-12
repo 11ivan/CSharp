@@ -29,19 +29,19 @@ namespace CorrecionExamen1Eval_UI.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Esta accion se encarga de 
         /// </summary>
-        /// <param name="IdCursoSeleccionado"></param>
+        /// <param name="IdCursoSeleccionado">Un entero que es el id del curso selecionado en la vista Index</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Index(int IdCursoSeleccionado)
+        public ActionResult Index(int ListadoCursos)
         {
             VMListadoCursosConListadoAlumnosPorCurso listadoCursosConListadoAlumnosPorCurso = new VMListadoCursosConListadoAlumnosPorCurso();
 
             try
             {
                 listadoCursosConListadoAlumnosPorCurso.cargaListadoCursos();
-                listadoCursosConListadoAlumnosPorCurso.cargaListadoAlumnosCurso(IdCursoSeleccionado);
+                listadoCursosConListadoAlumnosPorCurso.cargaListadoAlumnosCurso(ListadoCursos);
             }
             catch (Exception e)
             {

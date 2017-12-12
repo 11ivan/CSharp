@@ -14,9 +14,9 @@
 <body>
     <div> 
         <form action="Index" method="post">
+            
 
-
-            @Html.DropDownListFor(model => model.IdCursoSeleccionado, new SelectList(Model.ListadoCursos, "ID", "Nombre"))
+            @Html.DropDownListFor(model => model.ListadoCursos, new SelectList(Model.ListadoCursos, "ID", "Nombre"))
             </br>
             <input type="submit" value="Ver alumnos de éste Curso" />
             </br></br>
