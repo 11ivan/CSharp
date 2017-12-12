@@ -1,0 +1,44 @@
+﻿@model CorrecionExamen1Eval_UI.Models.ViewModels.VMListadoCursosConListadoAlumnosPorCurso
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        <form action="Index" method="post">
+
+
+            @Html.DropDownListFor(model => model.IdCursoSeleccionado, new SelectList(Model.ListadoCursos, "ID", "Nombre"))
+            </br>
+            <input type="submit" value="Ver alumnos de éste Curso" />
+            </br></br>
+            @if (Model.ListadoAlumnosCurso.Count > 0)
+            {
+                <table>
+                    <tr>
+                        <td>Nombre</td><td>Apellidos</td><td>Beca Asignada</td>
+                    </tr>
+                    @for (int i = 0; i < Model.ListadoAlumnosCurso.Count; i++)
+                    {
+                        <tr>
+                            <td>@Model.ListadoAlumnosCurso.ElementAt(i).Nombre</td>
+                            <td>@Model.ListadoAlumnosCurso.ElementAt(i).Apellidos</td>
+                            <td>@Model.ListadoAlumnosCurso.ElementAt(i).Beca</td>
+                            <td>@Html.ActionLink("Asignar beca", "AsignaBeca", "Home", new { id = Model.ListadoAlumnosCurso.ElementAt(i).ID}, null )</td>
+                        </tr>
+                    }
+                </table>
+            }
+
+        </form>
+    </div>
+</body>
+</html>

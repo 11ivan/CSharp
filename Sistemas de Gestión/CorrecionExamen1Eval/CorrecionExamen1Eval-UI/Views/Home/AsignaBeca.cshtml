@@ -1,0 +1,41 @@
+﻿@model CorrecionExamen1Eval_UI.Models.ViewModels.VMAlumnoConNombreCurso
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AsignaBeca</title>
+</head>
+<body>
+    <div> 
+        <form action="AsignaBeca" method="post">
+            @Html.HiddenFor(model => model.ID)
+            @Html.HiddenFor(model => model.Nombre)
+            @Html.HiddenFor(model => model.Apellidos)
+            @Html.HiddenFor(model => model.IdCurso)
+            @Html.HiddenFor(model => model.NombreCurso)
+                <table>
+                    <tr>
+                        <td>@Html.LabelFor(Model=> Model.Nombre)</td>
+                        <td>@Html.LabelFor(Model => Model.Apellidos)</td>
+                        <td>@Html.LabelFor(Model => Model.NombreCurso)</td>
+                        <td>Asignación de beca</td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayFor(Model=>Model.Nombre)</td>
+                        <td>@Html.DisplayFor(Model => Model.Apellidos)</td>
+                        <td>@Html.DisplayFor(Model => Model.NombreCurso)</td>
+                        <td>@Html.TextBoxFor(Model => Model.Beca) @Html.ValidationMessageFor(Model => Model.Beca)</td>
+                    </tr>
+                </table>
+                </br>
+                <input type="submit" value="Asignar beca" />
+</form>
+    </div>
+</body>
+</html>
