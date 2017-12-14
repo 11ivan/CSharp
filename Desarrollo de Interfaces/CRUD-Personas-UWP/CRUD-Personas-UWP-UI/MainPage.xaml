@@ -59,6 +59,7 @@
                 <AppBarButton x:Name="btnAdd" Command="{Binding commandAdd}" Icon="AddFriend" Label="Crear Persona" Margin="10 10 0 0" RelativePanel.RightOf="btnDelete" ToolTipService.ToolTip="Crea una nueva persona, recuerde guardar." />
                 <TextBox x:Name="txtSearch" Text="{Binding campoBusqueda, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="250" PlaceholderText="Search" RelativePanel.LeftOf="btnSearch" Margin="0 20 0 0"  />
                 <AppBarButton x:Name="btnSearch" Command="{Binding commandSearch}" Icon="Find" RelativePanel.AlignRightWithPanel="True" Margin="0 10 20 0" />
+                <AppBarButton x:Name="btnActualizar" Command="{Binding commandActualizar}" Icon="Refresh" RelativePanel.RightOf="btnAdd" Margin="0 10 20 0" Label="Actualizar" ToolTipService.ToolTip="Actualiza la lista de personas" />
             </RelativePanel>
         </Border>
 

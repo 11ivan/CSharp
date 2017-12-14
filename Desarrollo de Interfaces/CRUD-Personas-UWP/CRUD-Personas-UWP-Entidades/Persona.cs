@@ -114,6 +114,7 @@ namespace CRUD_Personas_UWP_Entidades
             }
             set
             {
+                
                 this._fechaNac = value;
                 NotifyPropertyChanged("fechaNac");
             }
