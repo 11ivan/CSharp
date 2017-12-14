@@ -115,9 +115,15 @@ namespace CRUD_Personas_UWP_Entidades
             set
             {
                 this._fechaNac = value;
-                //NotifyPropertyChanged();
+                NotifyPropertyChanged("fechaNac");
             }
         }
+
+        /*public DateTimeOffset getfechaNacOffSet()
+        {
+            DateTimeOffset dateTimeOffset = new DateTimeOffset(_fechaNac);
+            return dateTimeOffset;
+        }*/
 
         public String direccion
         {

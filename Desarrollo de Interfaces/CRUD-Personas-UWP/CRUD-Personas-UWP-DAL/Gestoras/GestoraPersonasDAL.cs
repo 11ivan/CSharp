@@ -32,32 +32,30 @@ namespace CRUD_Personas_UWP_DAL.Gestoras
             //List<Persona> listaPersonas = new List<Persona>();
             SqlCommand command = new SqlCommand();
             SqlDataReader dataReader;
-            SqlParameter parameter;
+            SqlParameter parameter = new SqlParameter();
 
             try
             {
                 conexion.openConnection();
-                //command.CommandText = "Select ID, Nombre, Apellidos, FechaNacimiento FROM Personas where ID="+id;
-                command.CommandText = "Select ID, Nombre, Apellidos, FechaNacimiento FROM Personas where ID= @id";
-                parameter = new SqlParameter();
+                command.Connection = conexion.connection;
+                command.CommandText = "Select ID, Nombre, Apellidos, FechaNacimiento, Direccion, Telefono FROM Personas where ID= @id";
+   
                 parameter.ParameterName = "@id";
                 parameter.SqlDbType = System.Data.SqlDbType.Int;
                 parameter.Value = id;
-                command.Parameters.Add(parameter);
-                command.Connection = conexion.connection;
+
+                command.Parameters.Add(parameter);              
                 dataReader = command.ExecuteReader();
 
                 if (dataReader.HasRows)
-                {
-                    //while (dataReader.Read())
-                    //{        
+                {        
                     dataReader.Read();
                     persona.id = (int)dataReader["ID"];
                     persona.nombre = (string)dataReader["Nombre"];
                     persona.apellido = (string)dataReader["Apellidos"];
                     persona.fechaNac = (DateTime)dataReader["FechaNacimiento"];
-                    //listaPersonas.Add(persona);
-                    //}
+                    persona.direccion = (string)dataReader["Direccion"];
+                    persona.telefono = (string)dataReader["Telefono"];
                 }
                 dataReader.Close();
                 conexion.connection.Close();
@@ -79,15 +77,19 @@ namespace CRUD_Personas_UWP_DAL.Gestoras
             int affectedRows = 0;
             Conexion conexion = new Conexion();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "Update Personas set nombre=@nombre, apellidos=@apellido, FechaNacimiento=@fechaNac WHERE ID=@id";
+            command.CommandText = "Update Personas set nombre=@nombre, apellidos=@apellido, FechaNacimiento=@fechaNac, Direccion=@direccion, Telefono=@telefono WHERE ID=@id";
             SqlParameter paramID = new SqlParameter();
             SqlParameter paramNombre = new SqlParameter(); 
             SqlParameter paramApellido=new SqlParameter();            
             SqlParameter paramFechaNac=new SqlParameter();
+            SqlParameter paramDireccion = new SqlParameter();
+            SqlParameter paramTelefono = new SqlParameter();
 
             try
             {
                 conexion.openConnection();
+                command.Connection = conexion.connection;
+
                 paramID.ParameterName = "@id";
                 paramID.SqlDbType = System.Data.SqlDbType.Int;
                 paramID.Value = persona.id;
@@ -104,14 +106,24 @@ namespace CRUD_Personas_UWP_DAL.Gestoras
                 paramFechaNac.SqlDbType = System.Data.SqlDbType.DateTime;
                 paramFechaNac.Value = persona.fechaNac;
 
+                paramDireccion.ParameterName = "@direccion";
+                paramDireccion.SqlDbType = System.Data.SqlDbType.NVarChar;
+                paramDireccion.Value = persona.direccion;
+
+                paramTelefono.ParameterName = "@telefono";
+                paramTelefono.SqlDbType = System.Data.SqlDbType.NVarChar;
+                paramTelefono.Value = persona.telefono;
+
                 command.Parameters.Add(paramID);
                 command.Parameters.Add(paramNombre);
                 command.Parameters.Add(paramApellido);
                 command.Parameters.Add(paramFechaNac);
-
-                command.Connection = conexion.connection;
+                command.Parameters.Add(paramDireccion);
+                command.Parameters.Add(paramTelefono);              
 
                 affectedRows = command.ExecuteNonQuery();
+
+                conexion.connection.Close();
             }
             catch (SqlException ex)
             {
@@ -137,14 +149,16 @@ namespace CRUD_Personas_UWP_DAL.Gestoras
             try
             {
                 conexion.openConnection();
+                command.Connection = conexion.connection;
 
                 paramID.ParameterName = "@id";
                 paramID.SqlDbType = System.Data.SqlDbType.Int;
                 paramID.SqlValue = id;
                 command.Parameters.Add(paramID);
-
-                command.Connection = conexion.connection;
+                
                 affectedRows= command.ExecuteNonQuery();
+
+                conexion.connection.Close();
             }
             catch(SqlException ex)
             {
@@ -163,13 +177,17 @@ namespace CRUD_Personas_UWP_DAL.Gestoras
             int affectedRows = 0;
             Conexion conexion = new Conexion();
             SqlCommand command = new SqlCommand();
-            command.CommandText = "INSERT INTO Personas values(@nombre, @apellidos, @fechaNac)";
+            command.CommandText = "INSERT INTO Personas values(@nombre, @apellidos, @fechaNac, @direccion, @telefono)";
             SqlParameter paramNombre = new SqlParameter();
             SqlParameter paramApellido = new SqlParameter();
             SqlParameter paramFechaNac = new SqlParameter();
+            SqlParameter paramDireccion = new SqlParameter();
+            SqlParameter paramTelefono = new SqlParameter();
+
             try
             {
                 conexion.openConnection();
+                command.Connection = conexion.connection;
 
                 paramNombre.ParameterName = "@nombre";
                 paramNombre.SqlDbType = System.Data.SqlDbType.NVarChar;
@@ -183,12 +201,23 @@ namespace CRUD_Personas_UWP_DAL.Gestoras
                 paramFechaNac.SqlDbType = System.Data.SqlDbType.DateTime;
                 paramFechaNac.SqlValue = persona.fechaNac;
 
+                paramDireccion.ParameterName = "@direccion";
+                paramDireccion.SqlDbType = System.Data.SqlDbType.NVarChar;
+                paramDireccion.Value = persona.direccion;
+
+                paramTelefono.ParameterName = "@telefono";
+                paramTelefono.SqlDbType = System.Data.SqlDbType.NVarChar;
+                paramTelefono.Value = persona.telefono;
+
                 command.Parameters.Add(paramNombre);
                 command.Parameters.Add(paramApellido);
                 command.Parameters.Add(paramFechaNac);
-
-                command.Connection = conexion.connection;
+                command.Parameters.Add(paramDireccion);
+                command.Parameters.Add(paramTelefono);
+                
                 affectedRows= command.ExecuteNonQuery();
+
+                conexion.connection.Close();
             }
             catch (SqlException ex)
             {

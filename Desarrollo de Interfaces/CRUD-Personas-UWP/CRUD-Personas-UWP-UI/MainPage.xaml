@@ -6,12 +6,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:CRUD_Personas_UWP_UI.ViewModels"
+    xmlns:Converters="using:CRUD_Personas_UWP_Entidades"
     mc:Ignorable="d">
 
     <Page.DataContext>
         <vm:VMMainPage></vm:VMMainPage>
     </Page.DataContext>
 
+    <Page.Resources>
+        <Converters:DateTimeToDateTimeOffsetConverter
+             x:Key="DateTimeToDateTimeOffsetConverter"/>
+    </Page.Resources>
 
     <Grid x:Name="GridPrinc" Background="Beige">
         <Grid.ColumnDefinitions>
@@ -79,7 +84,7 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <!--<RowDefinition Height="*"></RowDefinition>-->
             </Grid.RowDefinitions>
 
 
@@ -91,6 +96,9 @@
 
             <TextBlock x:Name="textTelefono" Text="Teléfono: " Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" />
             <TextBox x:Name="telefonoPersona" Width="150" Grid.Column="1" Grid.Row="2" Text="{Binding PersonaSelected.telefono, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
+
+            <TextBlock x:Name="textFechaNac" Text="Fecha de nacimiento: " Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" />
+            <DatePicker x:Name="fechaNacPersona" Grid.Column="1" Grid.Row="3" Date="{Binding PersonaSelected.fechaNac, Converter={StaticResource DateTimeToDateTimeOffsetConverter},Mode=TwoWay, UpdateSourceTrigger=Explicit}" Margin="20 0 0 0" />
 
             <TextBlock x:Name="textDireccion" Text="Dirección: " Grid.Column="0" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" />
             <TextBox x:Name="direccionPersona"  MinWidth="500" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2"  Text="{Binding PersonaSelected.direccion, Mode=TwoWay, UpdateSourceTrigger=Explicit}"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin=" 20 20 20 20" />

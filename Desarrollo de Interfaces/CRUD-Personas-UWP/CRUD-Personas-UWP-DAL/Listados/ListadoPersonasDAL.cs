@@ -35,7 +35,7 @@ namespace CRUD_Personas_UWP_DAL.Listados
                 //conexion.connection.ConnectionString = conexion.getDataConnection();
                 conexion.openConnection();
                // conexion.connection.Open();
-                command.CommandText = "Select ID, Nombre, Apellidos, FechaNacimiento FROM Personas";
+                command.CommandText = "Select ID, Nombre, Apellidos, FechaNacimiento, Direccion, Telefono FROM Personas";
                 command.Connection = conexion.connection;
                 dataReader = command.ExecuteReader();
 
@@ -48,6 +48,8 @@ namespace CRUD_Personas_UWP_DAL.Listados
                         persona.nombre = (string)dataReader["Nombre"];
                         persona.apellido = (string)dataReader["Apellidos"];
                         persona.fechaNac = (DateTime)dataReader["FechaNacimiento"];
+                        persona.direccion = (string)dataReader["Direccion"];
+                        persona.telefono = (string)dataReader["Telefono"];
                         listaPersonas.Add(persona);
                     }
                 }

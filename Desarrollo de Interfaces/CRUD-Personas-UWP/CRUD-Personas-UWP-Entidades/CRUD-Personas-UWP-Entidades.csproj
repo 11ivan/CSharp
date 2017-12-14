@@ -108,6 +108,8 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="clsVMBase.cs" />
+    <Compile Include="DateTimeConverter.cs" />
+    <Compile Include="DateTimeToDateTimeOffsetConverter .cs" />
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="Persona.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

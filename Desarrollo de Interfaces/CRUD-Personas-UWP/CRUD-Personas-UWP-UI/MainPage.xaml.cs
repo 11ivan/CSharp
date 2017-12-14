@@ -46,13 +46,13 @@ namespace CRUD_Personas_UWP_UI
             {*/
             this.apellidoPersona.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             // }
-
+            this.fechaNacPersona.GetBindingExpression(DatePicker.DateProperty).UpdateSource();
             this.telefonoPersona.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             this.direccionPersona.GetBindingExpression(TextBox.TextProperty).UpdateSource();
         }
 
 
-        private async void ErrorDialog(int error)
+        /*private async void ErrorDialog(int error)
         {
             ContentDialog dialog = new ContentDialog();
 
@@ -72,15 +72,15 @@ namespace CRUD_Personas_UWP_UI
             }
 
             await dialog.ShowAsync();
-        }
+        }*/
 
-        private void btnSearch_Click(object sender, RoutedEventArgs e)
+       /* private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            //VMMainPage vmMainPage = new VMMainPage();
-            //vmMainPage.filter();
-            //listViewPersonas.ItemsSource = "{Binding ListaPersonasBuscadas}";
-            //listViewPersonas.SetBinding(Models.ViewModel, Models.ViewModel);
-        }
+            VMMainPage vmMainPage = new VMMainPage();
+            vmMainPage.filter();
+            listViewPersonas.ItemsSource = "{Binding ListaPersonasBuscadas}";
+            listViewPersonas.SetBinding(Models.ViewModel, Models.ViewModel);
+        }*/
 
     }
 }

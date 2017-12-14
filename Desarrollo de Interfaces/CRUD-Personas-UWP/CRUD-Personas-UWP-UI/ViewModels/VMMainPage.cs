@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Controls;
 using CRUD_Personas_UWP_Entidades;
 using CRUD_Personas_UWP_BL.Listados;
 using CRUD_Personas_UWP_BL.Gestoras;
+using Windows.UI.Xaml;
 
 namespace CRUD_Personas_UWP_UI.ViewModels
 {
@@ -26,11 +27,14 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         private DelegateCommand _commandSearch;
         private String _campoBusqueda;
         private ObservableCollection<Persona> _listaPersonasBinding;
+        private DispatcherTimer timer;
 
         private ListaPersonasBL listadoPersonasBL = new ListaPersonasBL();
         private GestoraPersonasBL gestoraPersonasBL = new GestoraPersonasBL();
 
-#endregion Propiedades
+        //DateTimeOffset dateTimeOffset;
+
+        #endregion Propiedades
 
         public VMMainPage()
         {
@@ -38,10 +42,16 @@ namespace CRUD_Personas_UWP_UI.ViewModels
             _listaPersonas = new List<Persona>();
             _listaPersonasBinding = new ObservableCollection<Persona>();
             fillListPersonasBinding();
+            timer = new DispatcherTimer();
+            startTimer();
+
+            //dateTimeOffset = new DateTimeOffset(_personaSelected.fechaNac);
         }
 
+       
 
-#region Getters and Setters  _personaSelected, listaPersonas, _campoBusqueda, _filtroPersonas
+
+        #region Getters and Setters  _personaSelected, listaPersonas, _campoBusqueda, _filtroPersonas
 
         public Persona PersonaSelected
         {
@@ -134,7 +144,7 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         public void deletePersona()
         {
             //Preguntar si elimina   
-            canDeleteAsync();
+            DeleteAsync();
            
             /*gestoraPersonasBL.deletePersona(_personaSelected.id);
             _listaPersonas.Remove(_personaSelected);
@@ -143,10 +153,13 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         }
 
         /// <summary>
-        /// 
+        /// Muestra un mensaje preguntando si desea eliminar la persona seleccionada
+        /// si la respuesta sea Ok la persona será eliminada de la base de datos, 
+        /// de _listaPersonas y de _listaPersonasBinding, sino la repuesta será
+        /// Close y no se cerrará el cuadro de dialogo
         /// </summary>
         /// <returns></returns>
-        public async void canDeleteAsync()
+        public async void DeleteAsync()
         {
             ContentDialog dialog = new ContentDialog();
             ContentDialogResult contentDialogResult = new ContentDialogResult();
@@ -274,6 +287,7 @@ namespace CRUD_Personas_UWP_UI.ViewModels
              }
          }*/
 
+        
         public DelegateCommand commandSearch
         {
             get
@@ -299,13 +313,14 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         }
 
         /// <summary>
-        /// Busca en la lista las personas cuyo nombre no contenga la cadena introducida en _campoBusqueda
-        /// para pasarlas a _filterPersonas y eliminarlas de listaPersonas
+        /// Busca en _listaPersonas las personas cuyo nombre contenga la cadena introducida en _campoBusqueda
+        /// para añadirlas a una lista de apoyo la cual servirá para asignarla a _listaPersonasBinding
         /// </summary>
         public void search()
         {
             String nombrePersona = "";
             List<Persona> listaApoyo = new List<Persona>();
+
             for (int i=0;i<_listaPersonas.Count;i++)
             {
                 nombrePersona = _listaPersonas.ElementAt(i).nombre;
@@ -321,8 +336,8 @@ namespace CRUD_Personas_UWP_UI.ViewModels
 
         #endregion Getters, Setters and Methods for DelegateCommands
 
-        #region Methods For Class
 
+        #region Methods For Class
 
         /// <summary>
         /// Comprueba si una persona ya existe en la lista Bindeada
@@ -344,7 +359,8 @@ namespace CRUD_Personas_UWP_UI.ViewModels
 
 
         /// <summary>
-        /// Rellena la lista de personas Bindeada con todos los elementos de la lista de personas original que no estén ya
+        /// Carga _listaPersonas con las Personas de la tabla Personas, ordena la lista 
+        /// y la asigna a _listaPersonasBinding
         /// </summary>
         public void fillListPersonasBinding()
         {
@@ -354,10 +370,50 @@ namespace CRUD_Personas_UWP_UI.ViewModels
             NotifyPropertyChanged("listaPersonasBinding");
         }
 
-       
+        /// <summary>
+        /// Inicia el timer para ejecutar un evento cada 15 segundos
+        /// </summary>
+       public void startTimer()
+        {
+            timer.Interval = new TimeSpan(0, 0, 15);
+            timer.Tick += Timer_Tick;
+            timer.Start();
+        }
 
+        /// <summary>
+        /// Metodo de dispatcherTimer que se encarga de actualizar la lista de Personas por si se ha hecho alguna 
+        /// tipo de modificacion ajena en la tabla Personas
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Timer_Tick(object sender, object e)
+        {
+            Persona persona = null;
+            //Si ya habia una persona seleccionada la asignamos a una temporal
+            if (_personaSelected != null)
+            {
+                persona = _personaSelected;
+            }
 
-#endregion
+            //Recargamos la lista de Personas
+            fillListPersonasBinding();
+
+            //Si habia algo escrito en el campo de busqueda volvemos a buscar
+            if (canSearch())
+            {
+                search();
+            }
+
+            //Si ya habia una persona seleccionada la persona temporal no será null y la volvemos a asignar a _personaSelected
+            if (persona != null)
+            {
+                PersonaSelected = persona;
+                //_personaSelected = persona;
+                //NotifyPropertyChanged("PersonaSelected");
+            }
+        }
+
+        #endregion
 
 
     }
