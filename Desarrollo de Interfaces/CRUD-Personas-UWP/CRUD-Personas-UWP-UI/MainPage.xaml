@@ -14,8 +14,7 @@
     </Page.DataContext>
 
     <Page.Resources>
-        <Converters:DateTimeToDateTimeOffsetConverter
-             x:Key="DateTimeToDateTimeOffsetConverter"/>
+        <Converters:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter"/>
     </Page.Resources>
 
     <Grid x:Name="GridPrinc" Background="Beige">

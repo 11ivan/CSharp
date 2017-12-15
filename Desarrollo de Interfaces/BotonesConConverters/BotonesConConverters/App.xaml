@@ -1,0 +1,25 @@
+﻿<Application
+    x:Class="BotonesConConverters.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BotonesConConverters"
+    RequestedTheme="Light">
+
+    <Application.Resources>
+        
+        <ResourceDictionary>
+            
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="DiccionarioRecursos.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <LinearGradientBrush x:Key="buttonDesdeApp">
+                <GradientStop Offset="0" Color="Silver"/>
+                <GradientStop Offset="1" Color="Orange"/>
+            </LinearGradientBrush>
+
+        </ResourceDictionary>
+        
+    </Application.Resources>
+
+</Application>

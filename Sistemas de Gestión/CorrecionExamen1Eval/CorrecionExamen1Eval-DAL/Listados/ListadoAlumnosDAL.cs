@@ -24,12 +24,6 @@ namespace Capa_DAL.Listados
             SqlCommand sqlCommand = new SqlCommand();
             SqlDataReader dataReader;
 
-            /*[idAlumno] [int] IDENTITY(1,1) NOT NULL,
-	            [nombreAlumno] [varchar](20) NOT NULL,
-	            [apellidosAlumno] [varchar](50) NOT NULL,
-	            [idCurso] [int] NULL,
-	            [beca] [money] NULL,
-            */
             try
             {
                 conexion.openConnection();

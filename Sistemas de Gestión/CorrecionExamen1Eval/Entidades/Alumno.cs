@@ -79,6 +79,7 @@ namespace Entidades
 
         [Required(ErrorMessage ="La beca no puede estar en blanco")]
         [DataType(DataType.Currency, ErrorMessage ="Solo se permiten números")]
+        [CustomValidation (compruebaBeca)]
         public decimal Beca
         {
             get
@@ -104,6 +105,20 @@ namespace Entidades
         }
 
         #endregion Getters and Setters
+
+
+
+        public Boolean compruebaBeca()
+        {
+            Boolean correcto = false;
+            if (_beca>0)
+            {
+                correcto = true;
+            }
+            return correcto;
+        }
+
+
 
     }
 }
