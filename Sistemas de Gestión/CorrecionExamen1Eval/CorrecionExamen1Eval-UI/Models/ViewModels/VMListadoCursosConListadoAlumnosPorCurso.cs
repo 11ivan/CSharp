@@ -85,11 +85,10 @@ namespace CorrecionExamen1Eval_UI.Models.ViewModels
             catch (Exception e)
             {
                 throw e;
-            }
-
-            #endregion Metodos de clase
-
+            }        
         }
+
+        #endregion Metodos de clase
 
         /// <summary>
         /// Carga el listado de alumnos por curso con los alumnos de un curso concreto de la tabla Alumnos de la base de dato
