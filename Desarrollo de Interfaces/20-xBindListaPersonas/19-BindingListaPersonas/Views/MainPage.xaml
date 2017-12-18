@@ -6,11 +6,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:_19_BindingListaPersonas.Models.ViewModel"
+    xmlns:converter="using:_19_BindingListaPersonas.Converters"
     mc:Ignorable="d">
 
     <!--<Page.DataContext>
         <vm:VMMainPage></vm:VMMainPage>
     </Page.DataContext>-->
+    <Page.Resources>
+        <converter:ConverterPersona x:Key="ConverterPersona"/>
+    </Page.Resources>
 
 
     <Grid x:Name="GridPrinc" Background="Beige">
@@ -46,12 +50,12 @@
         </VisualStateManager.VisualStateGroups>
 
 
-        <ListView x:Name="listaPersonas" ItemsSource="{x:Bind ViewModel.ListaPersonas}" SelectedIndex="{x:Bind ViewModel.IndexPersona, Mode=TwoWay}" Grid.Column="0"  Background="White">
-            <ListView.ItemTemplate x:DataType="" >
+        <ListView x:Name="listaPersonas" ItemsSource="{x:Bind ViewModel.ListaPersonas}" SelectedItem="{x:Bind ViewModel.PersonaSelected, Converter={StaticResource ConverterPersona}, Mode=TwoWay}" Grid.Column="0"  Background="White">
+            <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock x:Name="nombre" Text="{Binding nombre}" Margin="0 0 8 0" />
-                        <TextBlock x:Name="apellido" Text="{Binding apellidos}"  />
+                        <TextBlock x:Name="apellido" Text="{Binding apellido}"  />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -77,16 +81,16 @@
             </StackPanel>
 
             <TextBlock x:Name="textNombre" Text="Nombre: " Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
-            <TextBox x:Name="nombrePersona" Width="150" Grid.Column="1" Grid.Row="0" Text="" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
+            <TextBox x:Name="nombrePersona" Width="150" Grid.Column="1" Grid.Row="0" Text="{x:Bind ViewModel.PersonaSelected.nombre, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
 
             <TextBlock x:Name="textApellido" Text="Apellido: " Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" />
-            <TextBox x:Name="apellidoPersona" Width="150" Grid.Column="1" Grid.Row="1" Text="" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
+            <TextBox x:Name="apellidoPersona" Width="150" Grid.Column="1" Grid.Row="1" Text="{x:Bind ViewModel.PersonaSelected.apellido, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
 
             <TextBlock x:Name="textTelefono" Text="Teléfono: " Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" />
-            <TextBox x:Name="telefonoPersona" Width="150" Grid.Column="1" Grid.Row="2" Text="" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
+            <TextBox x:Name="telefonoPersona" Width="150" Grid.Column="1" Grid.Row="2" Text="{x:Bind ViewModel.PersonaSelected.telefono, Mode=TwoWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
 
             <TextBlock x:Name="textDireccion" Text="Dirección: " Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" />
-            <TextBox x:Name="direccionPersona"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2"  Text=""  HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 20 20 20" />
+            <TextBox x:Name="direccionPersona"  Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2"  Text="{x:Bind ViewModel.PersonaSelected.direccion}"  HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 20 20 20" />
 
         </Grid>
 

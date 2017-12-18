@@ -48,8 +48,13 @@ namespace _19_BindingListaPersonas.Models.ViewModel
             }
             set
             {
-                personaSelected = value;
-                NotifyPropertyChanged("PersonaSelected");
+                if (personaSelected != value)
+                {
+                    personaSelected = value;
+                    NotifyPropertyChanged("PersonaSelected");
+                }
+                //personaSelected = value;
+               
             }
         }
 

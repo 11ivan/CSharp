@@ -15,7 +15,7 @@ namespace Capa_DAL.Listados
         /// <summary>
         /// Ofrece un listado con los Cursos que hay en la tabla Cursos de la base de datos
         /// </summary>
-        /// <returns>List<Curso></returns>
+        /// <returns>Devuelve un listado con los Cursos que hay en la tabla Cursos de la base de datos</returns>
         public List<Curso> getListadoCursos()
         {
             List<Curso> listadoCursos = new List<Curso>();

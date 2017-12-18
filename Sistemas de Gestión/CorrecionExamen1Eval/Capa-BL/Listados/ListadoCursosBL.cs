@@ -25,8 +25,7 @@ namespace Capa_BL.Listados
                 listadoCursos = listadoCursosDAL.getListadoCursos();
             }
             catch(Exception e)
-            {
-                //Capturar en el controller para lanzar mensaje
+            {               
                 throw e;
             }
 

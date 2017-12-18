@@ -13,9 +13,9 @@ namespace Capa_DAL.Listados
     {
 
         /// <summary>
-        /// Método que ofrece un listado con los Alumnos de la tabla Alumnos dela base de datos
+        /// Método que ofrece un listado con los Alumnos de la tabla Alumnos de la base de datos
         /// </summary>
-        /// <returns>List<Alumno></returns>
+        /// <returns>Devuelve un listado con los alumnos de la base de datos</returns>
         public List<Alumno> getListadoAlumnos()
         {
             List<Alumno> listadoAlumnos = new List<Alumno>();

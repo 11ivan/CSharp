@@ -21,7 +21,7 @@ namespace CorrecionExamen1Eval_UI.Controllers
                 listadoCursosConListadoAlumnosPorCurso.cargaListadoCursos();
                 if (idCurso!=-1)
                 {
-                    ViewBag.Mensaje = "La beca se asignó correctamente";//Hay que hacer algo con este ViewBag porque puede ser que haya salido sin asignar la beca
+                    ViewBag.Mensaje = "La beca se asignó correctamente";
                     listadoCursosConListadoAlumnosPorCurso.cargaListadoAlumnosCurso(idCurso);
                 }
             }
@@ -37,7 +37,8 @@ namespace CorrecionExamen1Eval_UI.Controllers
         /// Accion Post de la vista Index, dado un id de Curso se encarga de cargar un listado de alumnos asociados al id de Curso dado
         /// </summary>
         /// <param name="ListadoCursos">Un entero que es el id del curso selecionado en la vista Index</param>
-        /// <returns>Si hay errores retorna a la Vista ErrorPage sino retorna a la vista Index enviandole un ViewModel VMlistadoAlumnosPorCurso</returns>
+        /// <returns>Si hay errores retorna a la Vista ErrorPage sino retorna a la vista Index enviandole un ViewModel VMlistadoAlumnosPorCurso
+        /// con la lista de alumnos por curso cargada</returns>
         [HttpPost]
         [ActionName("Index")]
         public ActionResult IndexPost(int ListadoCursos)
