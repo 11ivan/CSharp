@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="../JS/Funciones.js"></script>
+    <title></title>
+</head>
+<body>
+
+
+    <!--<script type="text/javascript">
+        //document.writeln("Hola Mundo");
+        //prompt("Su windows ha sido bloqueado", "ok");
+        saluda();
+    </script>-->
+
+    <form action="" method="post">
+        <p>
+            <div>
+                Nombre:
+            </div>
+            <input type="text" name="nombre" id="name" />
+            <!--<input type="button" id="btnSaludo" value="Saludo" onclick="saluda()" />-->
+            <p id="errorNombre" style="color:red"></p>
+            <!--<input type="button" id="btnValida" value="Validar" onclick="validaNombre()" />-->
+            <input type="date" name="fecha" id="fechaNac" min="1900" max="2017" />
+            <p id="errorFecha" style="color:red"></p>
+            <input type="button" id="btnValida" value="Validar" />
+        </p>
+    </form>
+
+</body>
+</html>
