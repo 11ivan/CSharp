@@ -1,0 +1,32 @@
+﻿<Page
+    x:Class="Correcion_Ej1_Examen.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Correcion_Ej1_Examen"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Canvas Background="White">
+
+        <Image x:Name="imagenDiferencias" Source="ms-appx:///assets/Images/Diferencias.jpg" Grid.Column="0" Margin="30 120 50 50" Width="600" Height="500" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" />
+        <Ellipse x:Name="peluca" Stroke="Red" Fill="Transparent" Width="75" Height="75" Margin="90 240 0 0" Opacity="0" PointerPressed="{x:Bind vmMainPage.Click_Marca}" />
+        <Ellipse x:Name="pataPalo" Stroke="Red" Fill="Transparent" Width="60" Height="90" Margin="195 450 0 0" Opacity="0" PointerPressed="{x:Bind vmMainPage.Click_Marca}" />
+        <Ellipse x:Name="gafas" Stroke="Red" Fill="Transparent" Width="50" Height="20" Margin="270 315 0 0" Opacity="0" PointerPressed="{x:Bind vmMainPage.Click_Marca}" />
+        <Ellipse x:Name="chapa" Stroke="Red" Fill="Transparent" Width="30" Height="30" Margin="358 332 0 0" Opacity="0" PointerPressed="{x:Bind vmMainPage.Click_Marca}" />
+        <Ellipse x:Name="casco" Stroke="Red" Fill="Transparent" Width="45" Height="45" Margin="355 260 0 0" Opacity="0" PointerPressed="{x:Bind vmMainPage.Click_Marca}" />
+        <Ellipse x:Name="iglesias" Stroke="Red" Fill="Transparent" Width="50" Height="55" Margin="430 268 0 0" Opacity="0" PointerPressed="{x:Bind vmMainPage.Click_Marca}" />
+        <Ellipse x:Name="churruca" Stroke="Red" Fill="Transparent" Width="65" Height="85" Margin="485 265 0 0" Opacity="0" PointerPressed="{x:Bind vmMainPage.Click_Marca}" />
+      
+        <Image x:Name="imagenOriginal" Source="ms-appx:///assets/Images/Diferencias2.jpg" Grid.Column="1" Margin="650 120 50 50" Width="600" Height="500" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" />
+        <Ellipse x:Name="sinpeluca" Stroke="Red" Fill="Transparent" Width="95" Height="75" Margin="705 240 0 0" Opacity="{x:Bind peluca.Opacity, Mode=TwoWay}" PointerPressed="{x:Bind vmMainPage.Click_Marca}" />
+        <Ellipse x:Name="sinpataPalo" Stroke="Red" Fill="Transparent" Width="60" Height="90" Margin="810 450 0 0" Opacity="{x:Bind pataPalo.Opacity, Mode=TwoWay}" PointerPressed="{x:Bind vmMainPage.Click_Marca}" />
+        <Ellipse x:Name="singafas" Stroke="Red" Fill="Transparent" Width="50" Height="20" Margin="885 315 0 0" Opacity="{x:Bind gafas.Opacity, Mode=TwoWay}" PointerPressed="{x:Bind vmMainPage.Click_Marca}" />
+        <Ellipse x:Name="sinchapa" Stroke="Red" Fill="Transparent" Width="30" Height="30" Margin="980 332 0 0" Opacity="{x:Bind chapa.Opacity, Mode=TwoWay}" PointerPressed="{x:Bind vmMainPage.Click_Marca}" />
+        <Ellipse x:Name="sincasco" Stroke="Red" Fill="Transparent" Width="45" Height="45" Margin="975 260 0 0" Opacity="{x:Bind casco.Opacity, Mode=TwoWay}" PointerPressed="{x:Bind vmMainPage.Click_Marca}" />
+        <Ellipse x:Name="siniglesias" Stroke="Red" Fill="Transparent" Width="45" Height="58" Margin="1050 262 0 0" Opacity="{x:Bind iglesias.Opacity, Mode=TwoWay}" PointerPressed="{x:Bind vmMainPage.Click_Marca}" />
+        <Ellipse x:Name="sinchurruca" Stroke="Red" Fill="Transparent" Width="65" Height="85" Margin="1100 265 0 0" Opacity="{x:Bind churruca.Opacity, Mode=TwoWay}" PointerPressed="{x:Bind vmMainPage.Click_Marca}" />
+
+    </Canvas>
+    
+</Page>
