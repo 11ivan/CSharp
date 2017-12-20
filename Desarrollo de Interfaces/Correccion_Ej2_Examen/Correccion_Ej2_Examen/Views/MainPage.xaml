@@ -1,0 +1,99 @@
+﻿<Page
+    x:Class="Correccion_Ej2_Examen.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Correccion_Ej2_Examen"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:vm="using:Correccion_Ej2_Examen.Models.ViewModels"
+    >
+
+    <Page.DataContext>
+        <vm:VMMainPage></vm:VMMainPage>
+    </Page.DataContext>
+
+    <Grid x:Name="GridPrinc" Background="Blue">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" ></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <!--Esta es la fila vacía que usaré en el visualStateManager-->
+        </Grid.RowDefinitions>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+
+                <VisualState x:Name="VisualStateEstrechar">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="550" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+
+                <VisualState x:Name="VisualStateComoEstaba">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="listViewAlumnos.(Visibility)" Value="Collapsed" />
+                        <Setter Target="comboBoxAlumnos.(Visibility)" Value="Visible" />
+                        <Setter Target="comboBoxAlumnos.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="listViewCursos.(Visibility)" Value="Collapsed" />
+                        <Setter Target="comboBoxCursos.(Visibility)" Value="Visible" />
+                        <Setter Target="comboBoxCursos.(Grid.ColumnSpan)" Value="2" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <ListView x:Name="listViewCursos" ItemsSource="{Binding ListaCursos, Mode=TwoWay}" SelectedItem="{Binding CursoSeleccionado, Mode=TwoWay}"
+                   Width="150" Height="100" Grid.Column="0" Grid.Row="0" Background="White" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="nombreCurso" Text="{Binding NombreCurso}" Margin="0 0 8 0" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+        <ListView x:Name="listViewAlumnos" ItemsSource="{Binding ListaAlumnos, Mode=TwoWay}" Grid.Column="1" Grid.Row="0" Width="350" Height="550" Background="White" Margin="0 50 0 50">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="nombre" Text="{Binding NombreAlumno}" Margin="0 0 8 0" />
+                        <TextBlock x:Name="apellido" Text="{Binding ApellidosAlumno}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <ComboBox x:Name="comboBoxCursos" ItemsSource="{Binding ListaCursos, Mode=TwoWay}" SelectedItem="{Binding CursoSeleccionado, Mode=TwoWay}"
+                 Margin="150 300 20 0"  MinWidth="150" MaxWidth="150" Grid.Column="0" Grid.Row="0" Background="White" Visibility="Collapsed" >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="nombreCurso2" Text="{Binding NombreCurso}" Margin="0 0 8 0" />
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <ComboBox x:Name="comboBoxAlumnos" ItemsSource="{Binding ListaAlumnos, Mode=TwoWay}" Margin="100 0 0 400"  MinWidth="350" MaxWidth="150"
+                  Grid.Column="0" Grid.Row="1" Background="White" Visibility="Collapsed" >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="nombre2" Text="{Binding NombreAlumno}" Margin="0 0 8 0" />
+                        <TextBlock x:Name="apellido2" Text="{Binding ApellidosAlumno}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+    </Grid>
+</Page>

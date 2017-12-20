@@ -100,13 +100,6 @@ namespace Ejercicio2Examen.Models.ViewModels
         /// </summary>
         public void cargaAlumnos()
         {
-            /*foreach (Alumno alumno in _listaAlumnos.ListadoAlumnos)
-            {
-                if (alumno.IdCurso==_cursoSeleccionado.IdCurso)
-                {
-                    _listaAlumnosBinding.Add(alumno);
-                }
-            }*/
             borraAlumnos();
             for (int i=0;i<_listaAlumnos.ListadoAlumnos.Count;i++)
             {
@@ -126,10 +119,6 @@ namespace Ejercicio2Examen.Models.ViewModels
             {        
                 _listaAlumnosBinding.RemoveAt(i);
             }
-            /*foreach (Alumno alumno in _listaAlumnosBinding)
-            {
-                _listaAlumnosBinding.Remove(alumno);
-            }*/
         }
 
         #endregion Métodos de Clase

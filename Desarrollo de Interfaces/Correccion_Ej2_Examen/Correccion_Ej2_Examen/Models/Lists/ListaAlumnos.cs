@@ -1,4 +1,4 @@
-﻿using Ejercicio2Examen.Models.Entities;
+﻿using Correccion_Ej2_Examen.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,7 +12,7 @@ Propiedades:
 
 */
 
-namespace Ejercicio2Examen.Models.Lists
+namespace Correccion_Ej2_Examen.Models.Lists
 {
 
     public class ListaAlumnos
@@ -30,6 +30,10 @@ namespace Ejercicio2Examen.Models.Lists
             get
             {
                 return _listaAlumnos;
+            }
+            set
+            {
+                _listaAlumnos = value;
             }
         }
 

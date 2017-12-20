@@ -19,12 +19,12 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <!--Esta es la fila vacía que usaré en el visualStateManager-->
         </Grid.RowDefinitions>
 
-        <!--<VisualStateManager.VisualStateGroups>
+        <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="VisualStateGroup">
                 <VisualState x:Name="VisualStateEstrechar">
                     <VisualState.StateTriggers>
@@ -44,7 +44,7 @@
                     </VisualState.Setters>
                 </VisualState>
             </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>-->
+        </VisualStateManager.VisualStateGroups>
 
         <ListView x:Name="listViewCursos" ItemsSource="{Binding ListaCurso, Mode=TwoWay, UpdateSourceTrigger=Explicit}" SelectedItem="{Binding CursoSeleccionado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" Grid.Row="0" Background="White">
             <ListView.ItemTemplate>
