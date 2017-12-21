@@ -27,7 +27,7 @@ function saluda() {
 
 function validaNombre() {
     var vale = true;
-    var nombre = document.getElementById("name").value
+    var nombre = document.getElementById("name").value;
     if (nombre == null || nombre.length == 0 || nombre.trim().length==0) {
         //document.getElementById("errorNombre").innerHTML = "Error"
         vale = false;
@@ -38,15 +38,12 @@ function validaNombre() {
 
 function validaFecha() {
     vale = true;
-    /*var ano = document.getElementById("ano").value;
-    var mes = document.getElementById("mes").value;
-    var dia = document.getElementById("dia").value;*/
-
-    //valor = new Date(ano, mes, dia);
-    fecha = document.getElementById("fechaNac").value
+    fecha = document.getElementById("fechaNac").value;
     valor = new Date(fecha);
-    if (!isNaN(valor)) {
-        vale=false
+    var fechaActual = new Date();
+
+    if (valor > fechaActual) {
+        vale = false;
     }
-    return vale
+    return vale;
 }
