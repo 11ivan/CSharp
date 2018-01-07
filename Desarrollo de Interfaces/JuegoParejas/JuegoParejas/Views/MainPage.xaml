@@ -1,0 +1,47 @@
+﻿<Page
+    x:Class="JuegoParejas.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:JuegoParejas"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="ms-appx:///Assets/Images/fondo.jpg" ></ImageBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*">
+            </ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Height="80" Background="Gray" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4" Opacity="0.8">
+            <AppBarButton x:Name="pause" Icon="Pause" Label="Pause" Margin="10 10 0 0" Click="{x:Bind vmMainPage.ClickPausePlay}" />
+            <AppBarButton x:Name="reiniciar" Label="Reiniciar" Margin="10 10 0 0" Icon="Refresh" Click="{x:Bind vmMainPage.ClickRestart}" />
+            <TextBlock x:Name="temporizador" Text="{x:Bind vmMainPage.TiempoJuego, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Margin="200 0 0 0" />
+        </StackPanel>
+
+        <Image x:Name="img1" Source="ms-appx:///Assets/Images/reverso.jpg" Width="200" Height="210" Grid.Column="0" Grid.Row="1" PointerPressed="{x:Bind vmMainPage.levantaCarta}" />
+        <Image x:Name="img2" Source="ms-appx:///Assets/Images/reverso.jpg" Width="200" Height="210" Grid.Column="1" Grid.Row="1" PointerPressed="{x:Bind vmMainPage.levantaCarta}"/>
+        <Image x:Name="img3" Source="ms-appx:///Assets/Images/reverso.jpg" Width="200" Height="210" Grid.Column="2" Grid.Row="1" PointerPressed="{x:Bind vmMainPage.levantaCarta}"/>
+        <Image x:Name="img4" Source="ms-appx:///Assets/Images/reverso.jpg" Width="200" Height="210" Grid.Column="3" Grid.Row="1" PointerPressed="{x:Bind vmMainPage.levantaCarta}"/>
+        <Image x:Name="img5" Source="ms-appx:///Assets/Images/reverso.jpg" Width="200" Height="210" Grid.Column="0" Grid.Row="2" PointerPressed="{x:Bind vmMainPage.levantaCarta}"/>
+        <Image x:Name="img6" Source="ms-appx:///Assets/Images/reverso.jpg" Width="200" Height="210" Grid.Column="1" Grid.Row="2" PointerPressed="{x:Bind vmMainPage.levantaCarta}"/>
+        <Image x:Name="img7" Source="ms-appx:///Assets/Images/reverso.jpg" Width="200" Height="210" Grid.Column="2" Grid.Row="2" PointerPressed="{x:Bind vmMainPage.levantaCarta}"/>
+        <Image x:Name="img8" Source="ms-appx:///Assets/Images/reverso.jpg" Width="200" Height="210" Grid.Column="3" Grid.Row="2" PointerPressed="{x:Bind vmMainPage.levantaCarta}"/>
+        <Image x:Name="img9" Source="ms-appx:///Assets/Images/reverso.jpg" Width="200" Height="210" Grid.Column="0" Grid.Row="3" PointerPressed="{x:Bind vmMainPage.levantaCarta}"/>
+        <Image x:Name="img10" Source="ms-appx:///Assets/Images/reverso.jpg" Width="200" Height="210" Grid.Column="1" Grid.Row="3" PointerPressed="{x:Bind vmMainPage.levantaCarta}"/>
+        <Image x:Name="img11" Source="ms-appx:///Assets/Images/reverso.jpg" Width="200" Height="210" Grid.Column="2" Grid.Row="3" PointerPressed="{x:Bind vmMainPage.levantaCarta}"/>
+        <Image x:Name="img12" Source="ms-appx:///Assets/Images/reverso.jpg" Width="200" Height="210" Grid.Column="3" Grid.Row="3" PointerPressed="{x:Bind vmMainPage.levantaCarta}"/>
+    </Grid>
+</Page>
