@@ -59,7 +59,7 @@ namespace JuegoParejas.ViewModels
             buttonPlayPause = new AppBarButton();
             noPlayPause = false;
             preparaImagenes();
-            imagenPorDefecto = new BitmapImage(new Uri("ms-app:///assets/Images/reverso.jpg"));
+            imagenPorDefecto = new BitmapImage(new Uri("ms-appx:///assets/Images/reverso.jpg"));
 
             colocaImagenes();
             startGameTimer();
@@ -281,7 +281,8 @@ namespace JuegoParejas.ViewModels
             }*/
 
             var x = from item in arrayCartas where item.HaSalido == false select item;
-            listaCartas[11] = x as Carta; 
+            Object carta = x;
+            listaCartas[11] = carta as Carta; 
         }
 
         /// <summary>
