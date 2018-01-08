@@ -32,12 +32,12 @@ namespace JuegoParejas
             _numeroPareja = numeroPareja;
             _haSalido = haSalido;
         }
-        /*public Carta(Object carta)
+        public Carta(Carta carta)
         {
             _rutaImagen = carta.RutaImagen;
-            _numeroPareja = numeroPareja;
-            _haSalido = haSalido;
-        }*/
+            _numeroPareja = carta.NumeroPareja;
+            _haSalido = carta.HaSalido;
+        }
 
 
         #endregion Contructores

@@ -257,7 +257,7 @@ namespace JuegoParejas.ViewModels
                 //Generamos una Carta aleatoria mientras la genereada ya haya salido
                 do
                 {
-                    cartaGenerada = random.Next(0, 11);
+                    cartaGenerada = random.Next(0, 12);
                 } while (arrayCartas[cartaGenerada].HaSalido == true);
 
                 //Marcamos la Carta como que ya ha salido
@@ -281,8 +281,7 @@ namespace JuegoParejas.ViewModels
             }*/
 
             var x = from item in arrayCartas where item.HaSalido == false select item;
-            Object carta = x;
-            listaCartas[11] = carta as Carta; 
+            listaCartas[11]=x.Single(); 
         }
 
         /// <summary>

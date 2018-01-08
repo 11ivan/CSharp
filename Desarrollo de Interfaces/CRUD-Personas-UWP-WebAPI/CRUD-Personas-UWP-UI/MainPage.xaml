@@ -1,0 +1,110 @@
+﻿<Page
+    x:Class="CRUD_Personas_UWP_UI.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CRUD_Personas_UWP_UI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:CRUD_Personas_UWP_UI.ViewModels"
+    xmlns:Converters="using:CRUD_Personas_UWP_Entidades"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <vm:VMMainPage></vm:VMMainPage>
+    </Page.DataContext>
+
+    <Page.Resources>
+        <Converters:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter"/>
+    </Page.Resources>
+
+    <Grid x:Name="GridPrinc" Background="Beige">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" x:Name="col" ></ColumnDefinition>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <!--Esta es la fila vacía que usaré en el visualStateManager-->
+        </Grid.RowDefinitions>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="VisualStateEstrechar">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+
+                <VisualState x:Name="VisualStateComoEstaba">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="listViewPersonas.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="GridDatos.(Grid.Row)" Value="2" />
+                        <Setter Target="GridDatos.(Grid.Column)" Value="0" />
+                        <Setter Target="GridDatos.(Grid.ColumnSpan)" Value="2" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Border Grid.ColumnSpan="2" Grid.Row="0" BorderBrush="Black" BorderThickness="1">
+            <RelativePanel Background="Gray" >
+                <AppBarButton x:Name="btnSave" Click="BtnSave_Click" Command="{Binding commandSave}" Icon="Save" Label="Guardar" Margin="10 10 0 0" ToolTipService.ToolTip="Guarda la nueva Persona creada o las modificaciones de la Persona seleccionada." />
+                <AppBarButton x:Name="btnDelete" Command="{Binding commandDelete}" Icon="Delete" Label="Eliminar" Margin="10 10 0 0" RelativePanel.RightOf="btnSave" ToolTipService.ToolTip="Elimina la Persona seleccionada." />
+                <AppBarButton x:Name="btnAdd" Command="{Binding commandAdd}" Icon="AddFriend" Label="Crear Persona" Margin="10 10 0 0" RelativePanel.RightOf="btnDelete" ToolTipService.ToolTip="Crea una nueva persona, recuerde guardar." />
+                <TextBox x:Name="txtSearch" Text="{Binding campoBusqueda, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="250" PlaceholderText="Search" RelativePanel.LeftOf="btnSearch" Margin="0 20 0 0"  />
+                <AppBarButton x:Name="btnSearch" Command="{Binding commandSearch}" Icon="Find" RelativePanel.AlignRightWithPanel="True" Margin="0 10 20 0" />
+                <AppBarButton x:Name="btnActualizar" Command="{Binding commandActualizar}" Icon="Refresh" RelativePanel.RightOf="btnAdd" Margin="0 10 20 0" Label="Actualizar" ToolTipService.ToolTip="Actualiza la lista de personas" />
+            </RelativePanel>
+        </Border>
+
+        <ListView x:Name="listViewPersonas" ItemsSource="{Binding listaPersonasBinding, Mode=TwoWay, UpdateSourceTrigger=Explicit}" SelectedItem="{Binding PersonaSelected, Mode=TwoWay}" Grid.Column="0" Grid.Row="1" Background="White">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="nombre" Text="{Binding nombre}" Margin="0 0 8 0" />
+                        <TextBlock x:Name="apellido" Text="{Binding apellido}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid x:Name="GridDatos" Grid.Column="1" Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <!--<RowDefinition Height="*"></RowDefinition>-->
+            </Grid.RowDefinitions>
+
+
+            <TextBlock x:Name="textNombre" Text="Nombre: " Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
+            <TextBox x:Name="nombrePersona" Width="150" Grid.Column="1" Grid.Row="0" Text="{Binding PersonaSelected.nombre, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
+
+            <TextBlock x:Name="textApellido" Text="Apellido: " Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" />
+            <TextBox x:Name="apellidoPersona" Width="150" Grid.Column="1" Grid.Row="1" Text="{Binding PersonaSelected.apellido, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
+
+            <TextBlock x:Name="textTelefono" Text="Teléfono: " Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" />
+            <TextBox x:Name="telefonoPersona" Width="150" Grid.Column="1" Grid.Row="2" Text="{Binding PersonaSelected.telefono, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
+
+            <TextBlock x:Name="textFechaNac" Text="Fecha de nacimiento: " Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right" />
+            <DatePicker x:Name="fechaNacPersona" Grid.Column="1" Grid.Row="3" Date="{Binding PersonaSelected.fechaNac, Converter={StaticResource DateTimeToDateTimeOffsetConverter},Mode=TwoWay, UpdateSourceTrigger=Explicit}" Margin="20 0 0 0" />
+
+            <TextBlock x:Name="textDireccion" Text="Dirección: " Grid.Column="0" Grid.Row="3" VerticalAlignment="Bottom" HorizontalAlignment="Right" />
+            <TextBox x:Name="direccionPersona"  MinWidth="500" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2"  Text="{Binding PersonaSelected.direccion, Mode=TwoWay, UpdateSourceTrigger=Explicit}"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin=" 20 20 20 20" />
+
+        </Grid>
+
+    </Grid>
+
+</Page>
