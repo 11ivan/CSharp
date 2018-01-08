@@ -23,7 +23,7 @@ namespace CRUD_Personas_UWP_BL.Gestoras
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Devuelve la Persona asociada al id</returns>
-        public Persona getPersona(int id)
+    /*    public Persona getPersona(int id)
         {
             Persona persona = new Persona();
             GestoraPersonasDAL gestoraPersonasDAL = new GestoraPersonasDAL();
@@ -75,5 +75,6 @@ namespace CRUD_Personas_UWP_BL.Gestoras
             return affectedRows;
         }
 
+    */
     }
 }

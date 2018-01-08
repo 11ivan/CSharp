@@ -21,11 +21,11 @@ namespace CRUD_Personas_UWP_BL.Listados
         /// Ofrece un listado de personas
         /// </summary>
         /// <returns>Devuelve un listado de personas</returns>
-        public List<Persona> getListaPersonas()
+        public async Task<List<Persona>> getListaPersonas()
         {
             List<Persona> listaPersonas = new List<Persona>();
             ListadoPersonasDAL listadoPersonasDAL = new ListadoPersonasDAL();
-            listaPersonas = listadoPersonasDAL.getPersonas();
+            listaPersonas = await listadoPersonasDAL.getPersonas();
             //Aquí realizariamos el filtrado indicado en la lógica de negocio
             return listaPersonas;
         }

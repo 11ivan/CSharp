@@ -10,6 +10,7 @@ using CRUD_Personas_UWP_Entidades;
 using CRUD_Personas_UWP_BL.Listados;
 using CRUD_Personas_UWP_BL.Gestoras;
 using Windows.UI.Xaml;
+using Newtonsoft.Json.Linq;
 
 namespace CRUD_Personas_UWP_UI.ViewModels
 {
@@ -29,6 +30,7 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         private String _campoBusqueda;
         private ObservableCollection<Persona> _listaPersonasBinding;
         private DispatcherTimer timer;
+        private Boolean _enableProgressRing;
 
         private ListaPersonasBL listadoPersonasBL = new ListaPersonasBL();
         private GestoraPersonasBL gestoraPersonasBL = new GestoraPersonasBL();
@@ -39,6 +41,7 @@ namespace CRUD_Personas_UWP_UI.ViewModels
 
         public VMMainPage()
         {
+            EnableProgressRing = true;
             _campoBusqueda = "";
             _listaPersonas = new List<Persona>();
             _listaPersonasBinding = new ObservableCollection<Persona>();
@@ -105,6 +108,18 @@ namespace CRUD_Personas_UWP_UI.ViewModels
             }
         }
 
+        public Boolean EnableProgressRing
+        {
+            get
+            {
+                return _enableProgressRing;
+            }
+            set
+            {
+                _enableProgressRing = value;
+                NotifyPropertyChanged("EnableProgressRing");
+            }
+        }
 
 #endregion Getters and Setters  _personaSelected, listaPersonas, _campoBusqueda
 
@@ -131,7 +146,7 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         {
             Boolean vale = false;
 
-            if (_personaSelected!=null && !String.IsNullOrWhiteSpace(_personaSelected.nombre) && !String.IsNullOrWhiteSpace(_personaSelected.apellido))
+            if (_personaSelected!=null && !String.IsNullOrWhiteSpace(_personaSelected.nombre) && !String.IsNullOrWhiteSpace(_personaSelected.apellidos))
             {   
                 vale = true;
             }
@@ -145,7 +160,7 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         public void deletePersona()
         {
             //Preguntar si elimina   
-            DeleteAsync();
+//            DeleteAsync();
            
             /*gestoraPersonasBL.deletePersona(_personaSelected.id);
             _listaPersonas.Remove(_personaSelected);
@@ -160,7 +175,7 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         /// Close y no se cerrará el cuadro de dialogo
         /// </summary>
         /// <returns></returns>
-        public async void DeleteAsync()
+    /*    public async void DeleteAsync()
         {
             ContentDialog dialog = new ContentDialog();
             ContentDialogResult contentDialogResult = new ContentDialogResult();
@@ -182,7 +197,7 @@ namespace CRUD_Personas_UWP_UI.ViewModels
             }
 
         }
-
+*/
 
         //--------------------------------------------------------------------------------------------------------------------------------------
 
@@ -239,7 +254,7 @@ namespace CRUD_Personas_UWP_UI.ViewModels
             {
                 try
                 {
-                    gestoraPersonasBL.insertPersona(_personaSelected);//insercion en la base de datos
+ //                   gestoraPersonasBL.insertPersona(_personaSelected);//insercion en la base de datos
                     _listaPersonas.Add(_personaSelected);//añade a la lista original
                     _listaPersonasBinding.Add(_personaSelected);//añade a la lista bindeada
                     NotifyPropertyChanged("listaPersonasBinding");
@@ -363,6 +378,8 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         /// </summary>
         public void actualizar()
         {
+            EnableProgressRing = true;
+
             Persona persona = null;
             //Si ya habia una persona seleccionada la asignamos a una temporal
             if (_personaSelected != null)
@@ -416,10 +433,12 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         /// Carga _listaPersonas con las Personas de la tabla Personas, ordena la lista 
         /// y la asigna a _listaPersonasBinding
         /// </summary>
-        public void fillListPersonasBinding()
+        public async void fillListPersonasBinding()
         {
-            _listaPersonas = listadoPersonasBL.getListaPersonas();
+            //Task task = await listadoPersonasBL.getListaPersonas();
+            _listaPersonas = await listadoPersonasBL.getListaPersonas();
             _listaPersonas.Sort();
+            EnableProgressRing = false;
             _listaPersonasBinding = new ObservableCollection<Persona>(_listaPersonas);
             NotifyPropertyChanged("listaPersonasBinding");
         }

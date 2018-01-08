@@ -24,7 +24,7 @@ namespace CRUD_Personas_UWP_DAL.Gestoras
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Devuelve la persona con ese id</returns>
-        public Persona getPersona(int id)
+        /*public Persona getPersona(int id)
         {
             //Boolean sal = false;
             Persona persona = new Persona();
@@ -65,7 +65,7 @@ namespace CRUD_Personas_UWP_DAL.Gestoras
                 throw e;
             }
             return persona;
-        }
+        }*/
 
         /// <summary>
         /// Actualiza una persona de la base de datos
@@ -225,7 +225,7 @@ namespace CRUD_Personas_UWP_DAL.Gestoras
             }
             return affectedRows;
         }
-
+        */
 
 
     }

@@ -59,20 +59,28 @@
                 <TextBox x:Name="txtSearch" Text="{Binding campoBusqueda, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="250" PlaceholderText="Search" RelativePanel.LeftOf="btnSearch" Margin="0 20 0 0"  />
                 <AppBarButton x:Name="btnSearch" Command="{Binding commandSearch}" Icon="Find" RelativePanel.AlignRightWithPanel="True" Margin="0 10 20 0" />
                 <AppBarButton x:Name="btnActualizar" Command="{Binding commandActualizar}" Icon="Refresh" RelativePanel.RightOf="btnAdd" Margin="0 10 20 0" Label="Actualizar" ToolTipService.ToolTip="Actualiza la lista de personas" />
+                <!--<Button x:Name="posBueno" IsEnabled="{Binding EnableProgressRing, Mode=TwoWay, UpdateSourceTrigger=Explicit}" />-->
+                <!--<ProgressRing x:Name="ring" Foreground="Black" IsActive="{Binding EnableProgressRing, Mode=TwoWay, UpdateSourceTrigger=Explicit}" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="100 150 0 0" />-->
             </RelativePanel>
         </Border>
 
-        <ListView x:Name="listViewPersonas" ItemsSource="{Binding listaPersonasBinding, Mode=TwoWay, UpdateSourceTrigger=Explicit}" SelectedItem="{Binding PersonaSelected, Mode=TwoWay}" Grid.Column="0" Grid.Row="1" Background="White">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="nombre" Text="{Binding nombre}" Margin="0 0 8 0" />
-                        <TextBlock x:Name="apellido" Text="{Binding apellido}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
+        <!--<StackPanel Background="Blue" Grid.Column="0" Grid.Row="1">
+            <ProgressRing x:Name="ring" Foreground="Black" IsActive="{Binding EnableProgressRing, Mode=TwoWay, UpdateSourceTrigger=Explicit}" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 25 0 0" Grid.Column="0" Grid.Row="1" />
+        </StackPanel>-->
+        <RelativePanel x:Name="relativelistViewPersonas" Grid.Column="0" Grid.Row="1" Background="White">
+            <ProgressRing x:Name="ring" Foreground="Black" IsActive="{Binding EnableProgressRing, Mode=TwoWay, UpdateSourceTrigger=Explicit}" Width="50" Height="50" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.RightOf="listViewPersonas" Margin="0 25 0 0"  />
+            <ListView x:Name="listViewPersonas" ItemsSource="{Binding listaPersonasBinding, Mode=TwoWay, UpdateSourceTrigger=Explicit}" SelectedItem="{Binding PersonaSelected, Mode=TwoWay}" Background="Transparent" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <!--<ProgressRing x:Name="ring" Background="White" Foreground="Black" IsActive="{Binding EnableProgressRing, Mode=TwoWay, UpdateSourceTrigger=Explicit}" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 25 0 0"/>-->
+                            <TextBlock x:Name="nombre" Text="{Binding nombre}" Margin="0 0 8 0" />
+                            <TextBlock x:Name="apellidos" Text="{Binding apellidos}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </RelativePanel>
         <Grid x:Name="GridDatos" Grid.Column="1" Grid.Row="1" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -92,7 +100,7 @@
             <TextBox x:Name="nombrePersona" Width="150" Grid.Column="1" Grid.Row="0" Text="{Binding PersonaSelected.nombre, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
 
             <TextBlock x:Name="textApellido" Text="Apellido: " Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" />
-            <TextBox x:Name="apellidoPersona" Width="150" Grid.Column="1" Grid.Row="1" Text="{Binding PersonaSelected.apellido, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
+            <TextBox x:Name="apellidoPersona" Width="150" Grid.Column="1" Grid.Row="1" Text="{Binding PersonaSelected.apellidos, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
 
             <TextBlock x:Name="textTelefono" Text="Teléfono: " Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" />
             <TextBox x:Name="telefonoPersona" Width="150" Grid.Column="1" Grid.Row="2" Text="{Binding PersonaSelected.telefono, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />

@@ -14,7 +14,7 @@ namespace CRUD_Personas_UWP_Entidades
         //private Guid _id;
         //public int idDepartamento { get; set; }
         private String _nombre;
-        private String _apellido;
+        private String _apellidos;
         private DateTime _fechaNac;
         private String _direccion;
         private String _telefono;
@@ -28,19 +28,19 @@ namespace CRUD_Personas_UWP_Entidades
             //_id = Guid.NewGuid();
             _id = 0;
             _nombre = "";
-            _apellido = "";
+            _apellidos = "";
             _fechaNac = new DateTime();
             _direccion = "";
             _telefono = "";
         }
 
-        public Persona(int id, String nombre, String apellido, String direccion, String telefono)//:this()
+        public Persona(int id, String nombre, String apellidos, String direccion, String telefono)//:this()
         {
             //_id = Guid.NewGuid();
             _id = id;
             //this.idDepartamento = idDepartamento;
             this._nombre = nombre;
-            this._apellido = apellido;
+            this._apellidos = apellidos;
             this._fechaNac = fechaNac;
             this._direccion = direccion;
             this._telefono = telefono;
@@ -62,7 +62,7 @@ namespace CRUD_Personas_UWP_Entidades
             //this._id = persona.id;
             //this.idDepartamento = idDepartamento;
             this._nombre = persona.nombre;
-            this._apellido = persona.apellido;
+            this._apellidos = persona.apellidos;
             this._fechaNac = fechaNac;
             this._direccion = persona.direccion;
             this._telefono = persona.telefono;
@@ -93,16 +93,16 @@ namespace CRUD_Personas_UWP_Entidades
             }
         }
 
-        public String apellido
+        public String apellidos
         {
             get
             {
-                return _apellido;
+                return _apellidos;
             }
             set
             {
-                this._apellido = value;
-                NotifyPropertyChanged("apellido");
+                this._apellidos = value;
+                NotifyPropertyChanged("apellidos");
             }
         }
 

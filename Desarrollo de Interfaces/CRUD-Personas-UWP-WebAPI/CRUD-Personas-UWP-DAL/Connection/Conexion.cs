@@ -14,7 +14,7 @@ namespace CRUD_Personas_UWP_DAL.Connection
 
         public Conexion()
         {
-            server = new Uri("http://apipersonasdb.azurewebsites.net/api");
+            server = new Uri("http://apipersonasdb.azurewebsites.net/api/Personas");//https://apipersonasdb.azurewebsites.net
         }
 
         public Uri Server

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using CRUD_Personas_UWP_Entidades;
 using CRUD_Personas_UWP_DAL.Connection;
-using Windows.Web.Http;
+//using Windows.Net.Http;
+using Newtonsoft.Json;
+using System.Net.Http;
 
 /*
 Ésta clase se encargará de ofrecer un listado con las Personas de nuestra base de datos
@@ -30,10 +32,17 @@ namespace CRUD_Personas_UWP_DAL.Listados
             List<Persona> listaPersonas = new List<Persona>();
             HttpClient httpClient = new HttpClient();
 
-            string listadoJson = await httpClient.GetStringAsync(conexion.Server);
-            httpClient.Dispose();
-            listaPersonas = JsonConvert.DeserializableObject(listadoJson);
+            try
+            {
+                string listadoJson = await httpClient.GetStringAsync(conexion.Server);
+                httpClient.Dispose();
+                listaPersonas = /*(List<Persona>)*/JsonConvert.DeserializeObject<List<Persona>>(listadoJson);
 
+            }
+            catch (SqlException e)
+            {
+                throw e;
+            }
             return listaPersonas;
         }
 
