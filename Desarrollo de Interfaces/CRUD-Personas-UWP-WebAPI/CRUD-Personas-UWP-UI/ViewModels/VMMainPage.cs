@@ -379,8 +379,8 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         public void actualizar()
         {
             EnableProgressRing = true;
-
             Persona persona = null;
+
             //Si ya habia una persona seleccionada la asignamos a una temporal
             if (_personaSelected != null)
             {
@@ -435,7 +435,6 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         /// </summary>
         public async void fillListPersonasBinding()
         {
-            //Task task = await listadoPersonasBL.getListaPersonas();
             _listaPersonas = await listadoPersonasBL.getListaPersonas();
             _listaPersonas.Sort();
             EnableProgressRing = false;
@@ -448,7 +447,7 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         /// </summary>
        public void startTimer()
         {
-            timer.Interval = new TimeSpan(0, 0, 15);
+            timer.Interval = new TimeSpan(0, 0, 60);
             timer.Tick += Timer_Tick;
             timer.Start();
         }

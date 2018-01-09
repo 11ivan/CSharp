@@ -72,7 +72,7 @@ namespace CRUD_Personas_UWP_DAL.Gestoras
         /// </summary>
         /// <param name="persona"></param>
         /// <returns>Devuelve un entero con el número de filas afectadas</returns>
-        public int updatePersona(Persona persona)
+        /*public int updatePersona(Persona persona)
         {
             int affectedRows = 0;
             Conexion conexion = new Conexion();
@@ -131,14 +131,14 @@ namespace CRUD_Personas_UWP_DAL.Gestoras
             }
 
             return affectedRows;
-        }
+        }*/
 
         /// <summary>
         /// Elimina una persona de la base de datos
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Devuelve un entero con el número de filas afectadas</returns>
-        public int deletePersona(int id)
+       /* public int deletePersona(int id)
         {
             int affectedRows = 0;
             Conexion conexion = new Conexion();
@@ -165,14 +165,14 @@ namespace CRUD_Personas_UWP_DAL.Gestoras
                 throw ex;
             }
             return affectedRows;
-        }
+        }*/
 
         /// <summary>
         /// Inserta una persona en la base de datos
         /// </summary>
         /// <param name="persona"></param>
         /// <returns>Devuelve un entero que es el número de filas afectadas</returns>
-        public int insertPersona(Persona persona)
+        /*public int insertPersona(Persona persona)
         {
             int affectedRows = 0;
             Conexion conexion = new Conexion();

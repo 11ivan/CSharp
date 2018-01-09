@@ -40,7 +40,7 @@ function validaFecha() {
     vale = true;
     fecha = document.getElementById("fechaNac").value;
     valor = new Date(fecha);
-    var fechaActual = new Date();
+    var fechaActual = Date.now;
 
     if (valor > fechaActual) {
         vale = false;

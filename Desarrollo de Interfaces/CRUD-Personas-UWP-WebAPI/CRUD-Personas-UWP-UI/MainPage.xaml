@@ -69,7 +69,7 @@
         </StackPanel>-->
         <RelativePanel x:Name="relativelistViewPersonas" Grid.Column="0" Grid.Row="1" Background="White">
             <ProgressRing x:Name="ring" Foreground="Black" IsActive="{Binding EnableProgressRing, Mode=TwoWay, UpdateSourceTrigger=Explicit}" Width="50" Height="50" RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.RightOf="listViewPersonas" Margin="0 25 0 0"  />
-            <ListView x:Name="listViewPersonas" ItemsSource="{Binding listaPersonasBinding, Mode=TwoWay, UpdateSourceTrigger=Explicit}" SelectedItem="{Binding PersonaSelected, Mode=TwoWay}" Background="Transparent" >
+            <ListView x:Name="listViewPersonas" ItemsSource="{Binding listaPersonasBinding, Mode=TwoWay, UpdateSourceTrigger=Explicit}" SelectedItem="{Binding PersonaSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="Transparent" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

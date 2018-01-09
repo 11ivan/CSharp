@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<personas>
+  
+  <persona>
+    <nombre>Pepe</nombre>
+    <apellidos>Yeah God</apellidos>
+  </persona>
+  
+  <persona>
+    <nombre>Manolo</nombre>
+    <apellidos>El del Bombo</apellidos>
+  </persona>
+
+</personas>
