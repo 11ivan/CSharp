@@ -1,11 +1,14 @@
 ﻿using CRUD_Personas_UWP_DAL.Connection;
 using CRUD_Personas_UWP_Entidades;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+//using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Web.Http;
 
 /*
 Ésta clase se encargará de realizar en CRUD en nuestra base de datos
@@ -138,94 +141,50 @@ namespace CRUD_Personas_UWP_DAL.Gestoras
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Devuelve un entero con el número de filas afectadas</returns>
-       /* public int deletePersona(int id)
+        public async Task<HttpStatusCode> deletePersona(int id)
         {
-            int affectedRows = 0;
             Conexion conexion = new Conexion();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "DELETE FROM Personas WHERE id=@id";
-            SqlParameter paramID = new SqlParameter();
-
+            HttpClient httpClient = new HttpClient();
+            HttpStatusCode statusCode = new HttpStatusCode();
+            HttpResponseMessage responseMessage = new HttpResponseMessage();
             try
             {
-                conexion.openConnection();
-                command.Connection = conexion.connection;
-
-                paramID.ParameterName = "@id";
-                paramID.SqlDbType = System.Data.SqlDbType.Int;
-                paramID.SqlValue = id;
-                command.Parameters.Add(paramID);
-                
-                affectedRows= command.ExecuteNonQuery();
-
-                conexion.connection.Close();
+                responseMessage= await httpClient.DeleteAsync(new Uri(conexion.Server+"/"+id));
+                statusCode = responseMessage.StatusCode;
             }
-            catch(SqlException ex)
+            catch(Exception ex)
             {
                 throw ex;
             }
-            return affectedRows;
-        }*/
+            return statusCode;
+        }
 
         /// <summary>
         /// Inserta una persona en la base de datos
         /// </summary>
         /// <param name="persona"></param>
         /// <returns>Devuelve un entero que es el número de filas afectadas</returns>
-        /*public int insertPersona(Persona persona)
-        {
-            int affectedRows = 0;
+        public async Task<HttpStatusCode> insertPersona(Persona persona)
+        {           
             Conexion conexion = new Conexion();
-            SqlCommand command = new SqlCommand();
-            command.CommandText = "INSERT INTO Personas values(@nombre, @apellidos, @fechaNac, @direccion, @telefono)";
-            SqlParameter paramNombre = new SqlParameter();
-            SqlParameter paramApellido = new SqlParameter();
-            SqlParameter paramFechaNac = new SqlParameter();
-            SqlParameter paramDireccion = new SqlParameter();
-            SqlParameter paramTelefono = new SqlParameter();
+            HttpStringContent contenido;
+            HttpResponseMessage responseMessage = new HttpResponseMessage();
+            string body="";
+            HttpClient httpClient = new HttpClient();
 
             try
             {
-                conexion.openConnection();
-                command.Connection = conexion.connection;
-
-                paramNombre.ParameterName = "@nombre";
-                paramNombre.SqlDbType = System.Data.SqlDbType.NVarChar;
-                paramNombre.SqlValue = persona.nombre;
-
-                paramApellido.ParameterName = "@apellidos";
-                paramApellido.SqlDbType = System.Data.SqlDbType.NVarChar;
-                paramApellido.SqlValue = persona.apellido;
-
-                paramFechaNac.ParameterName = "@fechaNac";
-                paramFechaNac.SqlDbType = System.Data.SqlDbType.DateTime;
-                paramFechaNac.SqlValue = persona.fechaNac;
-
-                paramDireccion.ParameterName = "@direccion";
-                paramDireccion.SqlDbType = System.Data.SqlDbType.NVarChar;
-                paramDireccion.Value = persona.direccion;
-
-                paramTelefono.ParameterName = "@telefono";
-                paramTelefono.SqlDbType = System.Data.SqlDbType.NVarChar;
-                paramTelefono.Value = persona.telefono;
-
-                command.Parameters.Add(paramNombre);
-                command.Parameters.Add(paramApellido);
-                command.Parameters.Add(paramFechaNac);
-                command.Parameters.Add(paramDireccion);
-                command.Parameters.Add(paramTelefono);
-                
-                affectedRows= command.ExecuteNonQuery();
-
-                conexion.connection.Close();
+                body = JsonConvert.SerializeObject(persona);
+                contenido = new HttpStringContent(body, Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
+                responseMessage = await httpClient.PostAsync(conexion.Server, contenido);
             }
             catch (SqlException ex)
             {
                 throw ex;
             }
-            return affectedRows;
+            return responseMessage.StatusCode;
         }
-        */
+        
 
 
     }

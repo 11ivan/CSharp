@@ -11,6 +11,7 @@ using CRUD_Personas_UWP_BL.Listados;
 using CRUD_Personas_UWP_BL.Gestoras;
 using Windows.UI.Xaml;
 using Newtonsoft.Json.Linq;
+using Windows.Web.Http;
 
 namespace CRUD_Personas_UWP_UI.ViewModels
 {
@@ -104,7 +105,8 @@ namespace CRUD_Personas_UWP_UI.ViewModels
             }
             set
             {
-                _listaPersonasBinding = value;                
+                _listaPersonasBinding = value;
+                NotifyPropertyChanged("listaPersonasBinding");
             }
         }
 
@@ -137,7 +139,6 @@ namespace CRUD_Personas_UWP_UI.ViewModels
             }
         }
 
-
         /// <summary>
         /// Metodo para validar si se puede borrar(por si no hay persona seleccionada)
         /// </summary>
@@ -160,7 +161,7 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         public void deletePersona()
         {
             //Preguntar si elimina   
-//            DeleteAsync();
+            DeleteAsync();
            
             /*gestoraPersonasBL.deletePersona(_personaSelected.id);
             _listaPersonas.Remove(_personaSelected);
@@ -175,7 +176,7 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         /// Close y no se cerrará el cuadro de dialogo
         /// </summary>
         /// <returns></returns>
-    /*    public async void DeleteAsync()
+        public async void DeleteAsync()
         {
             ContentDialog dialog = new ContentDialog();
             ContentDialogResult contentDialogResult = new ContentDialogResult();
@@ -188,16 +189,22 @@ namespace CRUD_Personas_UWP_UI.ViewModels
 
             if (contentDialogResult==ContentDialogResult.Primary)
             {
-                if (gestoraPersonasBL.deletePersona(_personaSelected.id)==1)
+                try
                 {
-                    _listaPersonas.Remove(_personaSelected);
-                    _listaPersonasBinding.Remove(_personaSelected);
-                    NotifyPropertyChanged("listaPersonasBinding");
-                }                       
+                    if (await gestoraPersonasBL.deletePersona(_personaSelected.id) == HttpStatusCode.NoContent)
+                    {
+                        _listaPersonas.Remove(_personaSelected);
+                        _listaPersonasBinding.Remove(_personaSelected);
+                        NotifyPropertyChanged("listaPersonasBinding");
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
             }
-
         }
-*/
+
 
         //--------------------------------------------------------------------------------------------------------------------------------------
 
@@ -248,21 +255,43 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         /// <summary>
         /// Añade una persona a las listas de personas
         /// </summary>
-        public void executeCommandSave()
+        public async void executeCommandSave()
         {
+            //Si la persona no existe la actualizamos
             if (!this.exists(_personaSelected.id))
             {
                 try
                 {
- //                   gestoraPersonasBL.insertPersona(_personaSelected);//insercion en la base de datos
-                    _listaPersonas.Add(_personaSelected);//añade a la lista original
-                    _listaPersonasBinding.Add(_personaSelected);//añade a la lista bindeada
-                    NotifyPropertyChanged("listaPersonasBinding");
+
+                    if (await gestoraPersonasBL.insertPersona(_personaSelected)==HttpStatusCode.Created)//insercion en la base de datos
+                    {
+                        _listaPersonas.Add(_personaSelected);//añade a la lista original
+                        _listaPersonasBinding.Add(_personaSelected);//añade a la lista bindeada
+                        NotifyPropertyChanged("listaPersonasBinding");
+                    }
                 }
                 catch (Exception e)
                 {
                     //Mostrar mensaje de error al guardar
                 }
+            }
+            else//Sino la actualizamos
+            {
+                try
+                {
+
+                    if (await gestoraPersonasBL.insertPersona(_personaSelected) == HttpStatusCode.Created)//actualizacion en la base de datos
+                    {
+                        _listaPersonas.Add(_personaSelected);//añade a la lista original
+                        _listaPersonasBinding.Add(_personaSelected);//añade a la lista bindeada
+                        NotifyPropertyChanged("listaPersonasBinding");
+                    }
+                }
+                catch (Exception e)
+                {
+                    //Mostrar mensaje de error al guardar
+                }
+
             }
         }
 
@@ -435,7 +464,14 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         /// </summary>
         public async void fillListPersonasBinding()
         {
-            _listaPersonas = await listadoPersonasBL.getListaPersonas();
+            try
+            {
+                _listaPersonas = await listadoPersonasBL.getListaPersonas();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
             _listaPersonas.Sort();
             EnableProgressRing = false;
             _listaPersonasBinding = new ObservableCollection<Persona>(_listaPersonas);

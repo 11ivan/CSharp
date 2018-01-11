@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Web.Http;
 
 /*
 Ésta clase se encarga de comunicarse con nuestra capa ui realizando las acciones 
@@ -29,7 +30,7 @@ namespace CRUD_Personas_UWP_BL.Gestoras
             GestoraPersonasDAL gestoraPersonasDAL = new GestoraPersonasDAL();
             persona=gestoraPersonasDAL.getPersona(id);
             return persona;
-        }
+        }*/
 
         /// <summary>
         /// Dada una persona, hace uso de GestoraPersonasDAL para realizar la actualización
@@ -37,14 +38,14 @@ namespace CRUD_Personas_UWP_BL.Gestoras
         /// </summary>
         /// <param name="persona"></param>
         /// <returns>Un entero que será el número de filas afectadas</returns>
-        public int updatePersona(Persona persona)
+       /* public int updatePersona(Persona persona)
         {
             int affectedRows = 0;
             GestoraPersonasDAL gestoraPersonasDAL = new GestoraPersonasDAL();
             affectedRows = gestoraPersonasDAL.updatePersona(persona);
 
             return affectedRows;
-        }
+        }*/
 
         /// <summary>
         /// Dado el id de una persona, hace uso de GestoraPersonasDAL para realizar la eliminación
@@ -52,13 +53,20 @@ namespace CRUD_Personas_UWP_BL.Gestoras
         /// </summary>
         /// <param name="id"></param>
         /// <returns>Un entero que será el número de filas afectadas</returns>
-        public int deletePersona(int id)
+        public async Task<HttpStatusCode> deletePersona(int id)
         {
-            int affectedRows = 0;
+            HttpStatusCode statusCode = new HttpStatusCode();
             GestoraPersonasDAL gestoraPersonasDAL = new GestoraPersonasDAL();
 
-            affectedRows= gestoraPersonasDAL.deletePersona(id);
-            return affectedRows;
+            try
+            {
+                statusCode = await gestoraPersonasDAL.deletePersona(id);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return statusCode;
         }
 
         /// <summary>
@@ -67,14 +75,21 @@ namespace CRUD_Personas_UWP_BL.Gestoras
         /// </summary>
         /// <param name="persona"></param>
         /// <returns>Un entero que será el número de filas afectadas</returns>
-        public int insertPersona(Persona persona)
+        public async Task<HttpStatusCode> insertPersona(Persona persona)
         {
-            int affectedRows = 0;
+            HttpStatusCode statusCode = new HttpStatusCode();
             GestoraPersonasDAL gestoraPersonasDAL = new GestoraPersonasDAL();
-            affectedRows = gestoraPersonasDAL.insertPersona(persona);
-            return affectedRows;
+            try
+            {
+                statusCode = await gestoraPersonasDAL.insertPersona(persona);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return statusCode;
         }
 
-    */
+    
     }
 }

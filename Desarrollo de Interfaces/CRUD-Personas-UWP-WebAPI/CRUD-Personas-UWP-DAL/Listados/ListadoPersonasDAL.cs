@@ -39,7 +39,7 @@ namespace CRUD_Personas_UWP_DAL.Listados
                 listaPersonas = /*(List<Persona>)*/JsonConvert.DeserializeObject<List<Persona>>(listadoJson);
 
             }
-            catch (SqlException e)
+            catch (HttpRequestException e)
             {
                 throw e;
             }

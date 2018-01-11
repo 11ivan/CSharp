@@ -25,20 +25,17 @@ namespace CRUD_Personas_UWP_BL.Listados
         {
             List<Persona> listaPersonas = new List<Persona>();
             ListadoPersonasDAL listadoPersonasDAL = new ListadoPersonasDAL();
-            listaPersonas = await listadoPersonasDAL.getPersonas();
+            try
+            {
+                listaPersonas = await listadoPersonasDAL.getPersonas();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
             //Aquí realizariamos el filtrado indicado en la lógica de negocio
             return listaPersonas;
         }
-
-        //¡¡¡EL LISTADO SOLO SE ENCARGA DE LISTAR!!!//
-
-       /* public Persona getPersona(int id)
-        {
-            Persona persona = new Persona();
-            ListadoPersonasDAL listadoPersonasDAL = new ListadoPersonasDAL();
-            persona = listadoPersonasDAL.getPersona(id);
-            return persona;
-        }*/
 
 
     }
