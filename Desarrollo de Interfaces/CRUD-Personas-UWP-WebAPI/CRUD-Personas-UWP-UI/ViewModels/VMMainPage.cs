@@ -12,6 +12,7 @@ using CRUD_Personas_UWP_BL.Gestoras;
 using Windows.UI.Xaml;
 using Newtonsoft.Json.Linq;
 using Windows.Web.Http;
+using System.Threading;
 
 namespace CRUD_Personas_UWP_UI.ViewModels
 {
@@ -426,6 +427,7 @@ namespace CRUD_Personas_UWP_UI.ViewModels
             }
 
             //Si ya habia una persona seleccionada la persona temporal no será null y la volvemos a asignar a _personaSelected
+            //Thread.Sleep(1000);
             if (persona != null)
             {
                 PersonaSelected = persona;

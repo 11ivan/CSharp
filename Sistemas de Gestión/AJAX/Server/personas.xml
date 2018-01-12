@@ -11,5 +11,20 @@
     <nombre>Manolo</nombre>
     <apellidos>El del Bombo</apellidos>
   </persona>
+  
+  <persona>
+    <nombre>Maria</nombre>
+    <apellidos>Tanto la queria y se fue de mi vida</apellidos>
+  </persona>
+  
+  <persona>
+    <nombre>Pepito</nombre>
+    <apellidos>Grillo</apellidos>
+  </persona>
+  
+  <persona>
+    <nombre>Yo</nombre>
+    <apellidos>Para ser feliz quiero un camion</apellidos>
+  </persona>
 
 </personas>
