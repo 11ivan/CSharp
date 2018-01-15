@@ -26,7 +26,7 @@ namespace CRUD_Personas_UWP_Entidades
             //_id++;
             //idDepartamento = 0;
             //_id = Guid.NewGuid();
-            _id = 0;
+            _id = -1;
             _nombre = "";
             _apellidos = "";
             _fechaNac = new DateTime();

@@ -273,17 +273,15 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         /// </summary>
         public async void executeCommandSave()
         {
-            //Si la persona no existe la actualizamos
-            if (!this.exists(_personaSelected.id))
+            //Si la persona no existe la insertamos
+            if (_personaSelected.id==-1)
             {
                 try
                 {
 
-                    if (await gestoraPersonasBL.insertPersona(_personaSelected)==HttpStatusCode.Created)//insercion en la base de datos
+                    if (await gestoraPersonasBL.insertPersona(_personaSelected)==HttpStatusCode.NoContent)//insercion en la base de datos
                     {
-                        _listaPersonas.Add(_personaSelected);//añade a la lista original
-                        _listaPersonasBinding.Add(_personaSelected);//añade a la lista bindeada
-                        NotifyPropertyChanged("listaPersonasBinding");
+                        //Mensaje Exito al insertar
                     }
                 }
                 catch (Exception e)
@@ -296,11 +294,9 @@ namespace CRUD_Personas_UWP_UI.ViewModels
                 try
                 {
 
-                    if (await gestoraPersonasBL.insertPersona(_personaSelected) == HttpStatusCode.Created)//actualizacion en la base de datos
+                    if (await gestoraPersonasBL.updatePersona(_personaSelected) == HttpStatusCode.NoContent)//actualizacion en la base de datos
                     {
-                        _listaPersonas.Add(_personaSelected);//añade a la lista original
-                        _listaPersonasBinding.Add(_personaSelected);//añade a la lista bindeada
-                        NotifyPropertyChanged("listaPersonasBinding");
+                        //Mensaje Exito al modificar
                     }
                 }
                 catch (Exception e)
@@ -309,6 +305,7 @@ namespace CRUD_Personas_UWP_UI.ViewModels
                 }
 
             }
+            actualizar();
         }
 
         //--------------------------------------------------------------------------------------------------------------------------------------
@@ -341,11 +338,8 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         public void addPersona()
         {
             PersonaSelected = new Persona();
-            //_personaSelected = new Persona();
-            //_commandSave.RaiseCanExecuteChanged();
-            //listaPersonas.listaPersonas.Add(_personaSelected);   //La persona no se añade nada más darle al botón Añadir
-            //NotifyPropertyChanged("PersonaSelected");
         }
+
         //--------------------------------------------------------------------------------------------------------------------------
 
 
@@ -436,10 +430,10 @@ namespace CRUD_Personas_UWP_UI.ViewModels
             fillListPersonasBinding();
 
             //Si habia algo escrito en el campo de busqueda volvemos a buscar
-           /* if (canSearch())
+            if (canSearch())
             {
                 search();
-            }*/
+            }
 
             //Si ya habia una persona seleccionada la persona temporal no será null y la volvemos a asignar a _personaSelected
             //Thread.Sleep(1000);
@@ -517,12 +511,7 @@ namespace CRUD_Personas_UWP_UI.ViewModels
                     }
                 }
 
-            }
-            //Si habia algo escrito en el campo de busqueda volvemos a buscar
-             /*if (canSearch())
-             {
-                 search();
-             }*/
+            }          
 
             //Si ya habia una persona seleccionada la persona temporal no será null y la volvemos a asignar a _personaSelected
             if (indice != -1)

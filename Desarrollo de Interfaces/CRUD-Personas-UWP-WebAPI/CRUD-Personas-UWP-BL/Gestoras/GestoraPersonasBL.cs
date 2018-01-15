@@ -38,14 +38,14 @@ namespace CRUD_Personas_UWP_BL.Gestoras
         /// </summary>
         /// <param name="persona"></param>
         /// <returns>Un entero que será el número de filas afectadas</returns>
-       /* public int updatePersona(Persona persona)
+        public async Task<HttpStatusCode> updatePersona(Persona persona)
         {
-            int affectedRows = 0;
+            HttpStatusCode statusCode = new HttpStatusCode();
             GestoraPersonasDAL gestoraPersonasDAL = new GestoraPersonasDAL();
-            affectedRows = gestoraPersonasDAL.updatePersona(persona);
+            statusCode = await gestoraPersonasDAL.updatePersona(persona);
 
-            return affectedRows;
-        }*/
+            return statusCode;
+        }
 
         /// <summary>
         /// Dado el id de una persona, hace uso de GestoraPersonasDAL para realizar la eliminación

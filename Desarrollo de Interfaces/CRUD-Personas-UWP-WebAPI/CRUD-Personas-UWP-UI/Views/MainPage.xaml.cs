@@ -29,58 +29,15 @@ namespace CRUD_Personas_UWP_UI
 
         private void BtnSave_Click(object sender, RoutedEventArgs e)
         {
-            /*if (String.IsNullOrWhiteSpace(this.nombrePersona.Text))
-            {
-               //ErrorDialog(1);           
-            }
-            else
-            {*/
             this.nombrePersona.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            //}
-
-            /*if (String.IsNullOrWhiteSpace(this.apellidoPersona.Text))
-            {
-                //ErrorDialog(2);
-            }
-            else
-            {*/
             this.apellidoPersona.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            // }
             this.fechaNacPersona.GetBindingExpression(DatePicker.DateProperty).UpdateSource();
             this.telefonoPersona.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             this.direccionPersona.GetBindingExpression(TextBox.TextProperty).UpdateSource();
         }
 
 
-        /*private async void ErrorDialog(int error)
-        {
-            ContentDialog dialog = new ContentDialog();
 
-            switch (error)
-            {
-                case 1:
-                    dialog.Title = "Error";
-                    dialog.Content = "Debe introducir el nombre";
-                    dialog.CloseButtonText = "Close";
-                    break;
-
-                case 2:
-                    dialog.Title = "Error";
-                    dialog.Content = "Debe introducir el apellido";
-                    dialog.CloseButtonText = "Close";
-                    break;
-            }
-
-            await dialog.ShowAsync();
-        }*/
-
-       /* private void btnSearch_Click(object sender, RoutedEventArgs e)
-        {
-            VMMainPage vmMainPage = new VMMainPage();
-            vmMainPage.filter();
-            listViewPersonas.ItemsSource = "{Binding ListaPersonasBuscadas}";
-            listViewPersonas.SetBinding(Models.ViewModel, Models.ViewModel);
-        }*/
 
     }
 }
