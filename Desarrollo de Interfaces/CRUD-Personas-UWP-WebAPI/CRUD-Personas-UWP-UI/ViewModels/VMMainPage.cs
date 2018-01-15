@@ -36,19 +36,21 @@ namespace CRUD_Personas_UWP_UI.ViewModels
 
         private ListaPersonasBL listadoPersonasBL = new ListaPersonasBL();
         private GestoraPersonasBL gestoraPersonasBL = new GestoraPersonasBL();
+        private int _indiceSeleccionado;
 
         //DateTimeOffset dateTimeOffset;
 
-#endregion Propiedades
+        #endregion Propiedades
 
         public VMMainPage()
         {
-            EnableProgressRing = true;
+            EnableProgressRing = true;         
             _campoBusqueda = "";
             _listaPersonas = new List<Persona>();
             _listaPersonasBinding = new ObservableCollection<Persona>();
             fillListPersonasBinding();
             timer = new DispatcherTimer();
+
             startTimer();
 
             //dateTimeOffset = new DateTimeOffset(_personaSelected.fechaNac);
@@ -124,10 +126,23 @@ namespace CRUD_Personas_UWP_UI.ViewModels
             }
         }
 
+        public int indiceSeleccionado
+        {
+            get
+            {
+                return _indiceSeleccionado;
+            }
+            set
+            {
+                _indiceSeleccionado = value;
+                NotifyPropertyChanged("indiceSeleccionado");
+            }
+        }
+
 #endregion Getters and Setters  _personaSelected, listaPersonas, _campoBusqueda
 
 
-#region Getters, Setters and Methods for DelegateCommands
+        #region Getters, Setters and Methods for DelegateCommands
         /// <summary>
         /// 
         /// </summary>
@@ -409,31 +424,31 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         public void actualizar()
         {
             EnableProgressRing = true;
-            Persona persona = null;
+            //Persona persona = null;
 
             //Si ya habia una persona seleccionada la asignamos a una temporal
-            if (_personaSelected != null)
+            /*if (_personaSelected != null)
             {
                 persona = _personaSelected;
-            }
+            }*/
 
             //Recargamos la lista de Personas
             fillListPersonasBinding();
 
             //Si habia algo escrito en el campo de busqueda volvemos a buscar
-            if (canSearch())
+           /* if (canSearch())
             {
                 search();
-            }
+            }*/
 
             //Si ya habia una persona seleccionada la persona temporal no será null y la volvemos a asignar a _personaSelected
             //Thread.Sleep(1000);
-            if (persona != null)
+            /*if (persona != null)
             {
-                PersonaSelected = persona;
+                PersonaSelected =_listaPersonas.ElementAt(_listaPersonas.IndexOf(persona));
                 //_personaSelected = persona;
                 //NotifyPropertyChanged("PersonaSelected");
-            }
+            }*/
         }
 
 #endregion Getters, Setters and Methods for DelegateCommands
@@ -466,24 +481,63 @@ namespace CRUD_Personas_UWP_UI.ViewModels
         /// </summary>
         public async void fillListPersonasBinding()
         {
+            Persona persona = null;
+            int indice = -1;
+            Boolean sal = false;
+
             try
             {
-                _listaPersonas = await listadoPersonasBL.getListaPersonas();
+                _listaPersonas = await listadoPersonasBL.getListaPersonas();                            
             }
             catch (Exception e)
             {
                 throw e;
             }
+
             _listaPersonas.Sort();
             EnableProgressRing = false;
+
+            persona = _personaSelected;
+
             _listaPersonasBinding = new ObservableCollection<Persona>(_listaPersonas);
             NotifyPropertyChanged("listaPersonasBinding");
+            //indiceSeleccionado = 5;
+
+            //Si ya habia una persona seleccionada la asignamos a una temporal
+            if (persona != null)
+            {                
+                //indice = _listaPersonasBinding.IndexOf(persona);
+
+                for (int i=0;i<_listaPersonasBinding.Count && !sal ;i++)
+                {
+                    if (_listaPersonasBinding.ElementAt(i).id==persona.id)
+                    {
+                        indice = i;
+                        sal = true;
+                    }
+                }
+
+            }
+            //Si habia algo escrito en el campo de busqueda volvemos a buscar
+             /*if (canSearch())
+             {
+                 search();
+             }*/
+
+            //Si ya habia una persona seleccionada la persona temporal no será null y la volvemos a asignar a _personaSelected
+            if (indice != -1)
+            {
+                //PersonaSelected =_listaPersonas.ElementAt(_listaPersonas.IndexOf(persona));
+                indiceSeleccionado = indice;
+                //_personaSelected = persona;
+                //NotifyPropertyChanged("PersonaSelected");
+            }
         }
 
         /// <summary>
         /// Inicia el timer para ejecutar un evento cada 15 segundos
         /// </summary>
-       public void startTimer()
+        public void startTimer()
         {
             timer.Interval = new TimeSpan(0, 0, 60);
             timer.Tick += Timer_Tick;
