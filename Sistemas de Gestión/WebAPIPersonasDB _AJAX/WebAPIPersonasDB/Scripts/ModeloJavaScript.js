@@ -9,6 +9,25 @@
         this.telefono = telefono;
     }
 
+
+    /*constructor() {
+        this.id = -1;
+        this.nombre = "";
+        this.apellidos = "";
+        this.fechaNac = "";
+        this.direccion = "";
+        this.telefono = "";
+    }*/
+
+    /*function Persona() {
+        this.id = -1;
+        this.nombre = "";
+        this.apellidos = "";
+        this.fechaNac = "";
+        this.direccion = "";
+        this.telefono = "";
+    }*/
+
     /*get Id() {
         return id;
     }
@@ -26,9 +45,58 @@
     }
 
     get Direccion() {
-        return direccion
+        return direccion;
+    }
+
+
+
+    set Id(value) {
+        this.id = value;
+    }
+
+    set Nombre(value) {
+        this.nombre = value;
+    }
+
+    set Apellidos(value) {
+        this.apellidos = value;
+    }
+
+    set FechaNac(value) {
+        this.fechaNac = value;
+    }
+
+    set Direccion(value) {
+        this.direccion = value;
     }*/
 
-    
+
+    Property(index) {
+        var property;
+        switch (index) {
+            case 0:
+                property = this.id;
+                break;
+
+            case 1:
+                property = this.nombre;
+                break;
+
+            case 2:
+                property = this.apellidos;
+                break;
+
+            case 3:
+                property = this.fechaNac;
+                break;
+
+            case 4:
+                property = this.direccion;
+                break;
+        }
+        return property;
+    }
+
+
 
 }
