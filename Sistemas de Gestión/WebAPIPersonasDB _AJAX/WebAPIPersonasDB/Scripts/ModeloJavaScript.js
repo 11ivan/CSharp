@@ -71,7 +71,7 @@
     }*/
 
 
-    Property(index) {
+    /*Property(index) {
         var property;
         switch (index) {
             case 0:
@@ -95,7 +95,7 @@
                 break;
         }
         return property;
-    }
+    }*/
 
 
 
