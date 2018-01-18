@@ -17,7 +17,7 @@ function insertarTabla() {
     //Creamos la tabla
     var table = document.createElement("table");
     //
-    table.setAttribute("border", "collapse");
+    //table.setAttribute("border", "collapse");
 
     if (xmlhtr) {
         //Prepa
