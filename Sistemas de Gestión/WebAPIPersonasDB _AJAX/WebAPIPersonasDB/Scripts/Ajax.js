@@ -1,14 +1,15 @@
 ﻿window.addEventListener("load", inicia);
 
-var editando = false;
-var filaEnEdicion = -1;//Si el valor es -1 es que no se está editando ni insertando una nueva persona, //si su valor es 0 es que se está insertando una nueva persona
+//var editando;
+var filaEnEdicion;//Si el valor es -1 es que no se está editando ni insertando una nueva persona, //si su valor es 0 es que se está insertando una nueva persona
 
 function inicia() {
     //document.getElementById()
 
     //Funcion para insertar tabla
     insertarTabla();
-
+    //editando = false;
+    filaEnEdicion = -1;
 }
 
 
@@ -284,15 +285,16 @@ function insertarPersona() {
  */
 function guardarPersona() {
     var xmlhtr = new XMLHttpRequest();
-    var fila = this.getAttribute("tag");
-    var idPersona = this.value;  
+    var fila = this.getAttribute("tag");//es la fila del botón; Si viene de editar la fila será la 0
+    var idPersona = this.value;  //Si viene de editar el id será -1
 
-    if (filaEnEdicion == fila) {
+    if (filaEnEdicion == 0) {//Si filaEnEdicion es 0 es una inserción 
+
+    } else if (filaEnEdicion == fila) {//Sino si filaEnEdicion es igual a la fila del boton es una modificacion
 
     } else {
         alert("La Persona a guardar no se ha editado");
     }
-
 }
 
 function guardarNuevaPersona() {
@@ -318,7 +320,7 @@ function eliminarPersona() {
                 xmlhtr.onreadystatechange = function () {
                     if (xmlhtr.readyState == 4 && xmlhtr.status == 204) {
                         document.getElementById("table").deleteRow(fila);
-
+                        filaEnEdicion = -1;
                         alert("La Persona se eliminó correctamente");
                     }
                 }
