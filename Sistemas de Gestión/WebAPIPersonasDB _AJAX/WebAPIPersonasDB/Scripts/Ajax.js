@@ -223,32 +223,35 @@ function insertarPersona() {
         document.getElementById("table").childNodes[1].appendChild(document.createElement("td"));
         var inputNombre = document.createElement("input");
         inputNombre.setAttribute("type", "text");
-        //inputNombre.setAttribute("value", persona.nombre);
-        //document.getElementById("table").childNodes[fila].childNodes[1].innerHTML="";//quitamos el texto que habia en la celda 
+        inputNombre.setAttribute("id", "inputNombre");
+        inputNombre.setAttribute("placeholder", "Nombre");
         document.getElementById("table").childNodes[1].childNodes[1].appendChild(inputNombre);
 
         document.getElementById("table").childNodes[1].appendChild(document.createElement("td"));
         var inputApellidos = document.createElement("input");
         inputApellidos.setAttribute("type", "text");
-        //inputApellidos.setAttribute("value", persona.apellidos);
+        inputApellidos.setAttribute("id", "inputApellidos");
+        inputApellidos.setAttribute("placeholder", "Apellidos");
         document.getElementById("table").childNodes[1].childNodes[2].appendChild(inputApellidos);
 
         document.getElementById("table").childNodes[1].appendChild(document.createElement("td"));
         var inputFechaNac = document.createElement("input");
         inputFechaNac.setAttribute("type", "date");
-        //inputFechaNac.setAttribute("value", persona.fechaNac);
+        inputFechaNac.setAttribute("id", "inputFecha");
         document.getElementById("table").childNodes[1].childNodes[3].appendChild(inputFechaNac);
 
         document.getElementById("table").childNodes[1].appendChild(document.createElement("td"));
         var inputTelefono = document.createElement("input");
         inputTelefono.setAttribute("type", "text");
-        //inputTelefono.setAttribute("value", persona.telefono);
+        inputTelefono.setAttribute("id", "inputTelefono");
+        inputTelefono.setAttribute("placeholder", "Telefono");
         document.getElementById("table").childNodes[1].childNodes[4].appendChild(inputTelefono);
 
         document.getElementById("table").childNodes[1].appendChild(document.createElement("td"));
         var inputDireccion = document.createElement("input");
         inputDireccion.setAttribute("type", "text");
-        //inputDireccion.setAttribute("value", persona.direccion);
+        inputDireccion.setAttribute("id", "inputDireccion");
+        inputDireccion.setAttribute("placeholder", "Direccion");
         document.getElementById("table").childNodes[1].childNodes[5].appendChild(inputDireccion);
 
         //GUARDAR
@@ -286,10 +289,28 @@ function insertarPersona() {
 function guardarPersona() {
     var xmlhtr = new XMLHttpRequest();
     var fila = this.getAttribute("tag");//es la fila del botón; Si viene de editar la fila será la 0
-    var idPersona = this.value;  //Si viene de editar el id será -1
+    var idPersona = this.value;  //Si viene de editar el id será -1    NOP
 
     if (filaEnEdicion == 0) {//Si filaEnEdicion es 0 es una inserción 
+        if (xmlhtr) {
+            var nombre = document.getElementById("inputNombre").value;
+            var apellidos = document.getElementById("inputApellidos").value;
+            var fechaNac = new Date(document.getElementById("inputFecha").value);
+            var telefono = document.getElementById("inputTelefono").value;
+            var direccion = document.getElementById("inputDireccion").value;
 
+            xmlhtr.open('POST', "../api/personas");
+            xmlhtr.setRequestHeader("Content-type", "application/json");
+
+            var persona = new Persona(1, nombre, apellidos, fechaNac, telefono, direccion);
+            var body = JSON.stringify(persona);//El body no puede contener el id de la persona
+
+            xmlhtr.send(body);
+
+            document.getElementById("table").deleteRow(1);
+
+            filaEnEdicion = -1;
+        }
     } else if (filaEnEdicion == fila) {//Sino si filaEnEdicion es igual a la fila del boton es una modificacion
 
     } else {
