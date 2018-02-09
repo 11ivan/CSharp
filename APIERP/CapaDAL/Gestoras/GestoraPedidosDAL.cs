@@ -13,7 +13,7 @@ namespace CapaDAL.Gestoras
     {
 
         /// <summary>
-        /// Inserta un nuevo pedido en la base de datos
+        /// Inserta un nuevo pedido en la base de datos y todas sus Lineas de pedido
         /// </summary>
         /// <param name="pedidoConLineaPedido"></param>
         /// <returns>Un entero con las filas afectadas</returns>
@@ -21,47 +21,70 @@ namespace CapaDAL.Gestoras
         {
             int affectedRows = 0;
             int idPedidoInsertado = -1;
-            SqlCommand sqlCommand;
+            SqlCommand sqlCommandInsertPedido;
+            SqlCommand sqlCommandInsertLineaPedido;
             Conexion conexion = new Conexion();
             SqlParameter parameterIdCliente=new SqlParameter();
-            SqlParameter parameterFecha = new SqlParameter();
-            SqlParameter parameterPrecioTotal = new SqlParameter();
+            SqlParameter parameterCantidad = new SqlParameter();
+            SqlParameter parameterPrecioVenta = new SqlParameter();
+            SqlParameter parameterIdProducto = new SqlParameter();
+            SqlParameter parameterIdPedido = new SqlParameter();
             SqlParameter parameterOutPut = new SqlParameter();
 
             try
             {
                 conexion.openConnection();
-                sqlCommand=new SqlCommand("NombreProcedure", conexion.connection);
-                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                sqlCommandInsertPedido = new SqlCommand("InsertarPedido", conexion.connection);//Nombre
+                sqlCommandInsertPedido.CommandType = System.Data.CommandType.StoredProcedure;
 
-                parameterIdCliente.ParameterName = "@idCliente";
+                parameterIdCliente.ParameterName = "@ID_Cliente";
                 parameterIdCliente.SqlDbType = System.Data.SqlDbType.Int;
                 parameterIdCliente.Value = pedidoConLineaPedido.IDCliente;
-
-                /*parameterFecha.ParameterName = "@fecha";
-                parameterFecha.SqlDbType = System.Data.SqlDbType.DateTime;
-                parameterFecha.Value = pedidoConLineaPedido.Fecha;
-
-                parameterPrecioTotal.ParameterName = "@precioTotal";
-                parameterPrecioTotal.SqlDbType = System.Data.SqlDbType.Decimal;
-                parameterPrecioTotal.Value = Decimal.Round(pedidoConLineaPedido.PrecioTotal, 2);*/
 
                 parameterOutPut.ParameterName = "@ID_Pedido";
                 parameterOutPut.SqlDbType = System.Data.SqlDbType.Int;
                 parameterOutPut.Direction = System.Data.ParameterDirection.Output;
 
-                sqlCommand.Parameters.Add(parameterIdCliente);
-                //sqlCommand.Parameters.Add(parameterFecha);
-                //sqlCommand.Parameters.Add(parameterPrecioTotal);
-                sqlCommand.Parameters.Add(parameterOutPut);
+                sqlCommandInsertPedido.Parameters.Add(parameterIdCliente);
+                sqlCommandInsertPedido.Parameters.Add(parameterOutPut);
 
-                affectedRows = sqlCommand.ExecuteNonQuery();
-                idPedidoInsertado= Convert.ToInt32(sqlCommand.Parameters["@ID_Pedido"].Value);
+                //Llamada a procedimento para insertar pedido
+                affectedRows = sqlCommandInsertPedido.ExecuteNonQuery();
+                idPedidoInsertado = Convert.ToInt32(sqlCommandInsertPedido.Parameters["@ID_Pedido"].Value);
 
+                //Parametros para llamada a aprocedimiento para insertar lineas de pedido
+                sqlCommandInsertLineaPedido = new SqlCommand("InsertarLineaPedido", conexion.connection);//Nombre
+                sqlCommandInsertLineaPedido.CommandType = System.Data.CommandType.StoredProcedure;
 
+                parameterCantidad.ParameterName = "@Cantidad";
+                parameterCantidad.SqlDbType = System.Data.SqlDbType.Int;
 
-                //
+                parameterPrecioVenta.ParameterName = "@PrecioVenta";
+                parameterPrecioVenta.SqlDbType = System.Data.SqlDbType.Decimal;
 
+                parameterIdProducto.ParameterName = "@ID_Producto";
+                parameterIdProducto.SqlDbType = System.Data.SqlDbType.Int;
+
+                parameterIdPedido.ParameterName = "@ID_Pedido";
+                parameterIdPedido.SqlDbType = System.Data.SqlDbType.Int;
+                parameterIdPedido.Value = idPedidoInsertado;
+
+                //Bucle para insertar las distintas lineas del pedido
+                for (int i=0;i<pedidoConLineaPedido.LineasPedido.Count;i++)
+                {
+                    //Llamada a procedimiento para insertar cada linea de pedido
+                    //IdPedido, idProducto, Cantidad, PrecioVenta
+                    parameterIdProducto.Value = pedidoConLineaPedido.LineasPedido.ElementAt(i).IDProducto;
+                    parameterPrecioVenta.Value = Math.Round(pedidoConLineaPedido.LineasPedido.ElementAt(i).PrecioVenta, 2);
+                    parameterCantidad.Value = pedidoConLineaPedido.LineasPedido.ElementAt(i).Cantidad;
+
+                    sqlCommandInsertLineaPedido.Parameters.Add(parameterIdPedido);
+                    sqlCommandInsertLineaPedido.Parameters.Add(parameterIdProducto);
+                    sqlCommandInsertLineaPedido.Parameters.Add(parameterCantidad);
+                    sqlCommandInsertLineaPedido.Parameters.Add(parameterPrecioVenta);
+
+                    affectedRows=affectedRows + sqlCommandInsertLineaPedido.ExecuteNonQuery();
+                }
             }
             catch (SqlException e)
             {
@@ -71,9 +94,11 @@ namespace CapaDAL.Gestoras
             {
                 conexion.connection.Close();
             }
-
             return affectedRows;
         }
+
+
+
 
     }
 }
