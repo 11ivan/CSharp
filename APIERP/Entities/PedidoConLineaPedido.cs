@@ -10,6 +10,11 @@ namespace Entities
     {
         private List<LineaPedido> _lineasPedido;
 
+        public PedidoConLineaPedido()
+        {
+            _lineasPedido = new List<LineaPedido>();
+        }
+
         public List<LineaPedido> LineasPedido
         {
             get

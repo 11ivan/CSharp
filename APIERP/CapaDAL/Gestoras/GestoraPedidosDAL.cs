@@ -70,7 +70,7 @@ namespace CapaDAL.Gestoras
                 parameterIdPedido.Value = idPedidoInsertado;
 
                 //Bucle para insertar las distintas lineas del pedido
-                for (int i=0;i<pedidoConLineaPedido.LineasPedido.Count;i++)
+                for (int i=0;i<pedidoConLineaPedido.LineasPedido.Count;i++)      
                 {
                     //Llamada a procedimiento para insertar cada linea de pedido
                     //IdPedido, idProducto, Cantidad, PrecioVenta
@@ -84,6 +84,8 @@ namespace CapaDAL.Gestoras
                     sqlCommandInsertLineaPedido.Parameters.Add(parameterPrecioVenta);
 
                     affectedRows=affectedRows + sqlCommandInsertLineaPedido.ExecuteNonQuery();
+
+                    sqlCommandInsertLineaPedido.Parameters.Clear();
                 }
             }
             catch (SqlException e)
