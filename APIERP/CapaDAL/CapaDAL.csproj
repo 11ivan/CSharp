@@ -42,11 +42,10 @@
   <ItemGroup>
     <Compile Include="GestoraConexion\Conexion.cs" />
     <Compile Include="Gestoras\GestoraPedidosDAL.cs" />
+    <Compile Include="Listados\ListadoPedidosDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Listados\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{6c4b2a6f-573a-4374-add6-57406c274b53}</Project>

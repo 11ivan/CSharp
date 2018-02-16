@@ -2,6 +2,7 @@
 using Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -34,7 +35,7 @@ namespace CapaDAL.Gestoras
             try
             {
                 conexion.openConnection();
-                sqlCommandInsertPedido = new SqlCommand("InsertarPedido", conexion.connection);//Nombre
+                sqlCommandInsertPedido = new SqlCommand("InsertarPedido", conexion.connection);
                 sqlCommandInsertPedido.CommandType = System.Data.CommandType.StoredProcedure;
 
                 parameterIdCliente.ParameterName = "@ID_Cliente";
@@ -100,6 +101,79 @@ namespace CapaDAL.Gestoras
         }
 
 
+        public int actualizarPedido(int id, PedidoConLineaPedido value)
+        {
+            int affectedRows = 0;
+            try
+            {
+                Conexion conexion = new Conexion();
+                SqlConnection conection = conexion.connection;
+                conection.Open();
+
+                SqlCommand comando = new SqlCommand("EXECUTE  BorrarLineasPedido (@ID_Pedido)", conection);
+                comando.CommandType = System.Data.CommandType.StoredProcedure;
+                comando.Parameters.Add("@ID_Pedido", SqlDbType.Int).Value = value.ID;
+
+                comando.ExecuteNonQuery();
+
+                comando = new SqlCommand("EXECUTE InsertarLineaPedido(@ID_Pedido,@ID_Producto,@Cantidad,@PrecioVenta)", conection);
+                foreach (LineaPedido lp in value.LineasPedido)
+                {
+                    comando.CommandType = System.Data.CommandType.StoredProcedure;
+                    comando.Parameters.Add("@ID_Pedido", SqlDbType.Int).Value = value.ID;
+                    comando.Parameters.Add("@ID_Producto", SqlDbType.Int).Value = lp.IDProducto;
+                    comando.Parameters.Add("@Cantidad", SqlDbType.Int).Value = lp.Cantidad;
+                    comando.Parameters.Add("@PrecioVenta", SqlDbType.Money).Value = lp.PrecioVenta;
+
+                    comando.ExecuteNonQuery();
+                }
+               // comando.Parameters.Add("ID", value.ID);          
+                affectedRows = comando.ExecuteNonQuery();
+                conection.Close();
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return affectedRows;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id_pedido"></param>
+        public int cancelarPedido(int id_pedido)
+        {
+            int affectedRows = 0;
+            try
+            {
+                Conexion con = new Conexion();
+                SqlConnection conexion = con.connection;
+                SqlCommand comando = new SqlCommand("EXECUTE CancelarPedido(@ID_Pedido)", conexion);
+                comando.Parameters.Add("@ID_Pedido", SqlDbType.Int).Value = id_pedido;
+                affectedRows = comando.ExecuteNonQuery();
+                conexion.Close();
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return affectedRows;
+        }
+
+
+        /// <summary>
+        /// Devuelve un pedido concreto y todas sus lineas de pedido
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public PedidoConLineaPedidoYProductos getPedido(int id)//IMPL*
+        {
+            PedidoConLineaPedidoYProductos p = new PedidoConLineaPedidoYProductos();
+            //return getPedidoDAL(id);
+
+            return p;
+        }
 
 
     }

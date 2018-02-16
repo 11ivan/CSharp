@@ -19,19 +19,154 @@ namespace CapaBL.Gestoras
         public int insertPedido(PedidoConLineaPedido pedidoConLineaPedido)
         {
             int affectedRows = 0;
-            GestoraPedidosDAL gestoraPedidoDAL = new GestoraPedidosDAL();    
+            GestoraPedidosDAL gestoraPedidoDAL = new GestoraPedidosDAL();
 
-            try
+            if (pedidoValido(pedidoConLineaPedido))
             {
-                affectedRows = gestoraPedidoDAL.insertPedido(pedidoConLineaPedido);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-
+                try
+                {
+                    affectedRows = gestoraPedidoDAL.insertPedido(pedidoConLineaPedido);
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }             
+            }  
             return affectedRows;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        private bool pedidoValido(PedidoConLineaPedido p)
+        {
+            bool b = true;
+
+            //Revisamos que ninguna linea tiene una cantidad inferior a 1
+            for (int i = 0; i < p.LineasPedido.Count; i++)
+            {
+                if (p.LineasPedido[i].Cantidad < 1)
+                {
+                    b = false;
+                }
+            }
+
+            return b;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int cancelarPedido(int id)
+        {
+            int affectedRows = 0;
+            GestoraPedidosDAL gestoraPedidosDAL = new GestoraPedidosDAL();
+            //Devuleve las lineas afectadas??
+            try
+            {
+                affectedRows = gestoraPedidosDAL.cancelarPedido(id);
+            }catch(Exception e)
+            {
+                throw e;
+            } 
+            return affectedRows;
+        }
+
+        /// <summary>
+        /// Devuelve un pedido concreto y todas sus lineas de pedido
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public PedidoConLineaPedidoYProductos getPedidoBL(int id)
+        {       
+            PedidoConLineaPedidoYProductos p = new PedidoConLineaPedidoYProductos();
+            //return getPedidoDAL(id);
+
+            return p;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public int actualizarPedido(int id, PedidoConLineaPedido p)
+        {
+            GestoraPedidosDAL gestoraPedidosDAL = new GestoraPedidosDAL();
+            int r = 0;
+            if (pedidoValido(p))
+            {
+                try
+                {
+                    r = gestoraPedidosDAL.actualizarPedido(id, p);
+                }catch(Exception e)
+                {
+                    throw e;
+                }
+            }       
+            return r;
+        }
+
+
+        /*public int insertarPedidoBL(PedidoConLineaPedido p)
+        {
+            int r = 0;
+            if (pedidoValido(p))
+            {
+               // r = insertarPedidoDAL(p);
+            }
+
+            return r;
+
+        }
+
+        public int cancelarPedido(int id)
+        {
+            //return cancelarPedidoDAL(id);
+            return 1;
+        }
+
+        public PedidoConLineaPedido getPedidoBL(int id)
+        {
+            PedidoConLineaPedido p = new PedidoConLineaPedido();
+
+
+            //return getPedidoDAL(id);
+            return p;
+        }
+
+
+        public int actualizarPedido(int id, PedidoConLineaPedido p)
+        {
+            int r = 0;
+            if (pedidoValido(p))
+            {
+                // r = actualizarPedidoDAL(p);
+            }
+
+            return r;
+
+        }
+
+        private bool pedidoValido(PedidoConLineaPedido p)
+        {
+            bool b = true;
+
+            //Revisamos que ninguna linea tiene una cantidad inferior a 1
+            for(int i = 0; i < p.LineasPedido.Count; i++)
+            {
+                if(p.LineasPedido[i].Cantidad < 1)
+                {
+                    b = false;
+                }
+            }
+    
+            return b;
+        }*/
     }
 }

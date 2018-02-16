@@ -41,11 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Gestoras\GestoraPedidosBL.cs" />
+    <Compile Include="Listados\ListadoPedidosBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Listados\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\CapaDAL\CapaDAL.csproj">
       <Project>{9748127c-93bb-488d-8d75-4fbdb5053635}</Project>

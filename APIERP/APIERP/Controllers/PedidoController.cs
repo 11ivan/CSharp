@@ -1,4 +1,5 @@
 ﻿using CapaBL.Gestoras;
+using CapaBL.Listados;
 using Entities;
 using System;
 using System.Collections.Generic;
@@ -12,16 +13,53 @@ namespace APIERP.Controllers
     public class PedidoController : ApiController
     {
         // GET: api/Pedido
-        public IEnumerable<string> Get()
+        public IEnumerable<Pedido> Get(String orden=null, String sentido = null, int numPagina=0, int nElementosPagina=0, String BusquedaValor = null, String BusquedaSegun = null)
         {
-            return new string[] { "value1", "value2" };
+            Boolean entra = true;
+            List<Pedido> listaPedidos = null;
+            ListadoPedidosBL listadoPedidosBL = new ListadoPedidosBL();
+            try
+            {
+                listaPedidos = listadoPedidosBL.getPedidos(orden, sentido, numPagina, nElementosPagina, BusquedaValor, BusquedaSegun);//
+            }catch(Exception e)//implementar en DAL
+            {
+                //throw e;
+                entra = false;
+            }
+            if (listaPedidos == null)
+            {
+                if (entra)
+                {
+                    throw new HttpResponseException(HttpStatusCode.BadRequest);
+                }
+                else
+                {                  
+                    throw new HttpResponseException(HttpStatusCode.InternalServerError);
+                }
+            }
+            else {
+                return listaPedidos;
+            }           
         }
 
         // GET: api/Pedido/5
-        public string Get(int id)
+        public PedidoConLineaPedidoYProductos Get(int id)
         {
-            return "value";
+            PedidoConLineaPedidoYProductos pedidoConLineaPedidoYProductos = new PedidoConLineaPedidoYProductos();
+            GestoraPedidosBL gestoraPedidosBL = new GestoraPedidosBL();
+            try
+            {
+                pedidoConLineaPedidoYProductos = gestoraPedidosBL.getPedidoBL(id);
+            }catch(Exception e)//implementar en DAL
+            {
+                throw e;
+            }
+            return pedidoConLineaPedidoYProductos;
         }
+
+        /*public Object Get() {
+            throw new HttpResponseException(HttpStatusCode.BadRequest);
+        }*/
 
         // POST: api/Pedido
         public void Post([FromBody]PedidoConLineaPedido value)
@@ -65,13 +103,33 @@ namespace APIERP.Controllers
         }*/
 
         // PUT: api/Pedido/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody]PedidoConLineaPedido value)
         {
+            GestoraPedidosBL gestoraPedidosBL = new GestoraPedidosBL();
+            try
+            {
+                gestoraPedidosBL.actualizarPedido(id, value);
+            }catch(Exception e)
+            {
+                throw e;
+            }
         }
 
         // DELETE: api/Pedido/5
-        public void Delete(int id)
+        public void Delete(int id)//Para cancelar el pedido
         {
+            GestoraPedidosBL gestoraPedidosBL = new GestoraPedidosBL();
+            try
+            {
+                gestoraPedidosBL.cancelarPedido(id);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
+
+
+
     }
 }
