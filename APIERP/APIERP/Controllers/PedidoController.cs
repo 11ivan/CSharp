@@ -21,7 +21,7 @@ namespace APIERP.Controllers
             try
             {
                 listaPedidos = listadoPedidosBL.getPedidos(orden, sentido, numPagina, nElementosPagina, BusquedaValor, BusquedaSegun);//
-            }catch(Exception e)//implementar en DAL
+            }catch(Exception e)
             {
                 //throw e;
                 entra = false;
@@ -50,7 +50,7 @@ namespace APIERP.Controllers
             try
             {
                 pedidoConLineaPedidoYProductos = gestoraPedidosBL.getPedidoBL(id);
-            }catch(Exception e)//implementar en DAL
+            }catch(Exception e)
             {
                 throw e;
             }

@@ -82,10 +82,17 @@ namespace CapaBL.Gestoras
         /// <param name="id"></param>
         /// <returns></returns>
         public PedidoConLineaPedidoYProductos getPedidoBL(int id)
-        {       
+        {
+            GestoraPedidosDAL gestoraPedidosDAL = new GestoraPedidosDAL();
             PedidoConLineaPedidoYProductos p = new PedidoConLineaPedidoYProductos();
-            //return getPedidoDAL(id);
-
+            try
+            {
+                p = gestoraPedidosDAL.getPedido(id);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
             return p;
         }
 
@@ -113,60 +120,26 @@ namespace CapaBL.Gestoras
         }
 
 
-        /*public int insertarPedidoBL(PedidoConLineaPedido p)
+        /// <summary>
+        /// Devuelve un listado con todos los productos, en caso de que no hubiese devuelve null.
+        /// </summary>
+        /// <returns></returns>
+        public List<Producto> getProductos()
         {
-            int r = 0;
-            if (pedidoValido(p))
+            GestoraPedidosDAL gestoraPedidosDAL = new GestoraPedidosDAL();
+            List<Producto> listaProductos = new List<Producto>();
+           
+            try
             {
-               // r = insertarPedidoDAL(p);
+                listaProductos = gestoraPedidosDAL.getProductos();  
             }
-
-            return r;
-
-        }
-
-        public int cancelarPedido(int id)
-        {
-            //return cancelarPedidoDAL(id);
-            return 1;
-        }
-
-        public PedidoConLineaPedido getPedidoBL(int id)
-        {
-            PedidoConLineaPedido p = new PedidoConLineaPedido();
-
-
-            //return getPedidoDAL(id);
-            return p;
-        }
-
-
-        public int actualizarPedido(int id, PedidoConLineaPedido p)
-        {
-            int r = 0;
-            if (pedidoValido(p))
+            catch (Exception e)
             {
-                // r = actualizarPedidoDAL(p);
+                throw e;
             }
-
-            return r;
-
+            return listaProductos;
         }
 
-        private bool pedidoValido(PedidoConLineaPedido p)
-        {
-            bool b = true;
 
-            //Revisamos que ninguna linea tiene una cantidad inferior a 1
-            for(int i = 0; i < p.LineasPedido.Count; i++)
-            {
-                if(p.LineasPedido[i].Cantidad < 1)
-                {
-                    b = false;
-                }
-            }
-    
-            return b;
-        }*/
     }
 }

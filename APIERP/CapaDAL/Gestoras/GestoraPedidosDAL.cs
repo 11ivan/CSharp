@@ -100,7 +100,12 @@ namespace CapaDAL.Gestoras
             return affectedRows;
         }
 
-
+        /// <summary>
+        /// Actual
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public int actualizarPedido(int id, PedidoConLineaPedido value)
         {
             int affectedRows = 0;
@@ -139,7 +144,7 @@ namespace CapaDAL.Gestoras
         }
 
         /// <summary>
-        /// 
+        /// Marca un pedido como cancelado en la base de datos
         /// </summary>
         /// <param name="id_pedido"></param>
         public int cancelarPedido(int id_pedido)
@@ -167,12 +172,170 @@ namespace CapaDAL.Gestoras
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public PedidoConLineaPedidoYProductos getPedido(int id)//IMPL*
+        public PedidoConLineaPedidoYProductos getPedido(int id)
         {
-            PedidoConLineaPedidoYProductos p = new PedidoConLineaPedidoYProductos();
-            //return getPedidoDAL(id);
+            PedidoConLineaPedidoYProductos pedidoConLineaPedidoYProductos = null;
+            SqlConnection conexion = new SqlConnection();
+            Conexion miConexion = new Conexion();
+            SqlCommand miComando = new SqlCommand();
+            SqlDataReader miLector;
+            //Buscamos el pedido 
+            try
+            {
+                miConexion.openConnection();
+                conexion = miConexion.connection;
+                miComando.CommandText = "SELECT * FROM Pedidos WHERE id = @id";
+                SqlParameter param;
+                param = new System.Data.SqlClient.SqlParameter();
+                param.ParameterName = "@id";
+                param.SqlDbType = System.Data.SqlDbType.Int;
+                param.Value = id;
 
-            return p;
+                miComando.Parameters.Add(param);
+
+                miComando.Connection = conexion;
+                miLector = miComando.ExecuteReader();
+                //Si hay lineas en el lector
+                if (miLector.HasRows)
+                {
+                    pedidoConLineaPedidoYProductos = new PedidoConLineaPedidoYProductos();
+                    miLector.Read();
+                    pedidoConLineaPedidoYProductos = new PedidoConLineaPedidoYProductos();
+                    pedidoConLineaPedidoYProductos.ID = (int)miLector["ID"];
+                    pedidoConLineaPedidoYProductos.Fecha = (DateTime)miLector["Fecha"];
+                    pedidoConLineaPedidoYProductos.IDCliente = (int)miLector["ID_Cliente"];
+                    pedidoConLineaPedidoYProductos.PrecioTotal = (decimal)miLector["PrecioTotal"];
+
+                    miLector.Close();
+
+                    //Se insertan sus lineas de pedido
+                    pedidoConLineaPedidoYProductos.LineasPedido = getLineasPedido(id, conexion);
+
+                    //Se insertan los productos
+                    pedidoConLineaPedidoYProductos.Productos = getProductos(conexion);
+                }
+                miConexion.connection.Close();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return pedidoConLineaPedidoYProductos;
+        }    
+        /// <summary>
+        /// Devuelve un listado de LineasPedido segun la id del pedido, si no hay lineas de pedido devuelve null
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public List<LineaPedido> getLineasPedido(int id, SqlConnection conexion)
+        {
+            List<LineaPedido> lineasPedido = null;
+
+            SqlCommand miComando = new SqlCommand();
+            SqlDataReader miLector;
+            //Buscamos las lineas de pedido
+            try
+            {
+                miComando.CommandText = "SELECT * FROM Lineas_Pedido WHERE ID_Pedido = @id";
+                SqlParameter param;
+                param = new System.Data.SqlClient.SqlParameter();
+                param.ParameterName = "@id";
+                param.SqlDbType = System.Data.SqlDbType.Int;
+                param.Value = id;
+
+                miComando.Parameters.Add(param);
+
+                miComando.Connection = conexion;
+                miLector = miComando.ExecuteReader();
+                //Si hay lineas en el lector
+                if (miLector.HasRows)
+                {
+                    lineasPedido = new List<LineaPedido>();
+                    LineaPedido LineaPedidoMolde;
+                    while (miLector.Read())
+                    {
+                        LineaPedidoMolde = new LineaPedido();
+                        LineaPedidoMolde.IDPedido = (int)miLector["ID_Pedido"];
+                        LineaPedidoMolde.IDProducto = (int)miLector["ID_Producto"];
+                        LineaPedidoMolde.Cantidad = (int)miLector["Cantidad"];
+                        LineaPedidoMolde.PrecioVenta = (decimal)miLector["PrecioVenta"];
+                        lineasPedido.Add(LineaPedidoMolde);
+                    }
+                }
+                miLector.Close();
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return lineasPedido;
+        }
+
+        /// <summary>
+        /// Devuelve un listado con todos los productos, en caso de que no hubiese devuelve null.
+        /// </summary>
+        /// <returns></returns>
+        public List<Producto> getProductos(SqlConnection conexion)
+        {
+            List<Producto> listaProductos = null;
+            SqlCommand miComando = new SqlCommand();
+            SqlDataReader miLector;
+            //Buscamos las lineas de pedido
+            try
+            {
+                
+                miComando.CommandText = "SELECT * FROM Productos";
+                miComando.Connection = conexion;
+                miLector = miComando.ExecuteReader();
+                //Si hay lineas en el lector
+                if (miLector.HasRows)
+                {
+                    listaProductos = new List<Producto>();
+                    Producto productoMolde;
+                    while (miLector.Read())
+                    {
+                        productoMolde = new Producto();
+                        productoMolde.ID = (int)miLector["ID"];
+                        productoMolde.Nombre = (String)miLector["Nombre"];
+                        productoMolde.Descripcion = (String)miLector["Descripcion"];
+                        productoMolde.PrecioUnitario = (decimal)miLector["Precio_Unitario"];
+                        productoMolde.Stock = (int)miLector["Stock"];
+                        productoMolde.Baja = (bool)miLector["Baja"];
+
+                        listaProductos.Add(productoMolde);
+                    }
+                }
+                miLector.Close();               
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return listaProductos;
+        }
+
+        /// <summary>
+        /// Devuelve un listado con todos los productos, en caso de que no hubiese devuelve null.
+        /// </summary>
+        /// <returns></returns>
+        public List<Producto> getProductos()
+        {
+            Conexion conexion = new Conexion();
+            List<Producto> listaProductos = null;
+            //Buscamos las lineas de pedido
+            try
+            {
+                conexion.openConnection();
+                listaProductos = getProductos(conexion.connection);
+                conexion.connection.Close();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return listaProductos;
         }
 
 

@@ -1,4 +1,5 @@
-﻿using Entities;
+﻿using CapaDAL.Listados;
+using Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,20 +68,32 @@ namespace CapaBL.Listados
 
             //Validar busquedas (tienen que estar las dos llenas o las dos vacías)
 
-            if ((BusquedaValor.Equals("") && !BusquedaSegun.Equals("")) || (!BusquedaValor.Equals("") && BusquedaSegun.Equals("")))
+            if (BusquedaSegun == null)
             {
-                fallo = true;
+                BusquedaSegun = "";
             }
+            if (BusquedaValor == null) {
+                BusquedaValor = "";
+            }
+                if ((BusquedaValor.Equals("") && !BusquedaSegun.Equals("")) || (!BusquedaValor.Equals("") && BusquedaSegun.Equals("")))
+                {
+                    fallo = true;
+                }
 
+                //Valores válidos para BusquedaSegún
+                if (!BusquedaSegun.Equals("") && !BusquedaSegun.Equals("Cliente") && !BusquedaSegun.Equals("Producto"))
+                {
+                    fallo = true;
+                }             
+            
             if (!fallo)
             {
-                //ListadoPedidosDAL cDAL = new ListadoPedidosBL();
-                //r = cDAL.getPedidosDAL(orden, sentido, numPagina, nElementosPagina, BusquedaValor, BusquedaSegun);
+                ListadoPedidosDAL cDAL = new ListadoPedidosDAL();
+                r = cDAL.getPedidos(orden, sentido, numPagina, nElementosPagina, BusquedaValor, BusquedaSegun);
             }
-
             return r;
-
         }
 
     }
 }
+
