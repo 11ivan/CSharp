@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 // La plantilla de elemento Página en blanco está documentada en https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0xc0a
 
-namespace CRUD_Personas_UWP_UI
+namespace MyPotiFy
 {
     /// <summary>
     /// Página vacía que se puede usar de forma independiente o a la que se puede navegar dentro de un objeto Frame.
@@ -26,18 +26,5 @@ namespace CRUD_Personas_UWP_UI
         {
             this.InitializeComponent();
         }
-
-        /*private void BtnSave_Click(object sender, RoutedEventArgs e)
-        {
-            this.nombrePersona.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            this.apellidoPersona.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            this.fechaNacPersona.GetBindingExpression(DatePicker.DateProperty).UpdateSource();
-            this.telefonoPersona.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            this.direccionPersona.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-        }*/
-
-
-
-
     }
 }
