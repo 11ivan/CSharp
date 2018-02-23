@@ -13,8 +13,7 @@
     </Page.DataContext>
 
     <!--<Page.Resources>
-        --><!-- Collection of items displayed by this page --><!--
-        <CollectionViewSource x:Name="itemsViewSource" Source="{Binding PersonajeSeleccionado}"/>
+        <CollectionViewSource x:Name="itemsViewSource" Source="{Binding ListadoRutasImagenesPersonajeSeleccionado}"/>
     </Page.Resources>-->
 
     <Grid x:Name="GridPrinc" Background="Beige">
@@ -79,7 +78,24 @@
 
             <TextBlock x:Name="textNombre" Text="Nombre: " Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
             <TextBox x:Name="nombrePersona" Width="150" Grid.Column="1" Grid.Row="0" Text="{Binding PersonajeSeleccionado.Nombre, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
-            <FlipView ItemsSource="{Binding }"  />
+            
+            <!--<FlipView Grid.Column="0" Grid.Row="2" ItemsSource="{Binding ListadoRutasImagenesPersonajeSeleccionado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  />-->
+
+            <!--<FlipView x:Name="flipView" Grid.Column="0" Grid.Row="2" ItemsSource="{Binding ListadoRutasImagenesPersonajeSeleccionado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="Visible" >
+                <FlipView.ItemTemplate>
+                    <DataTemplate>
+                        <Image Width="200" Height="200" Source="{Binding}" Stretch="UniformToFill" />
+                    </DataTemplate>
+                </FlipView.ItemTemplate>
+            </FlipView>-->
+
+            <FlipView x:Name="flipView" Grid.Column="0" Grid.Row="2" ItemsSource="{Binding listaRutasImagenes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="Visible" >
+                <FlipView.ItemTemplate>
+                    <DataTemplate>
+                        <Image Width="200" Height="200" Source="{Binding}" />
+                    </DataTemplate>
+                </FlipView.ItemTemplate>
+            </FlipView>
 
         </Grid>
 

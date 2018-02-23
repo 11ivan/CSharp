@@ -15,10 +15,11 @@ namespace PersonajesDragonBallSuper.ViewModels
         private ObservableCollection<PersonajeConTransformacionesYHabilidades> observableCollectionPersonajes { get; set; }
         private PersonajeConTransformacionesYHabilidades personajeSeleccionado { get; set; }
         private GestoraPersonajeConTransformacionesYHabilidadesBL gestoraPersonajeConTransformacionesYHabilidades = new GestoraPersonajeConTransformacionesYHabilidadesBL();
-        private List<Ima>
+        private List<String> listaRutasImagenes;
 
         public VMMainPage()
         {
+            listaRutasImagenes = new List<string>();
             observableCollectionPersonajes = new ObservableCollection<PersonajeConTransformacionesYHabilidades>();
             cargaListaPersonajes();
         }
@@ -47,15 +48,36 @@ namespace PersonajesDragonBallSuper.ViewModels
             {
                 this.personajeSeleccionado = value;
                 NotifyPropertyChanged("PersonajeSeleccionado");
+                cargaTransformacionesPersonaje();
             }
         }
+
+        public List<String> ListadoRutasImagenesPersonajeSeleccionado
+        {
+            get
+            {
+                return listaRutasImagenes;
+            }
+            set
+            {
+                this.listaRutasImagenes = value;
+                NotifyPropertyChanged("ListadoRutasImagenesPersonajeSeleccionado");
+            }
+        }
+
         public async void cargaListaPersonajes()
         {
             List<PersonajeConTransformacionesYHabilidades> listPersonajes = await gestoraPersonajeConTransformacionesYHabilidades.getListaPersonajeConTransformacionesYHabilidades();
             ObservableCollectionPersonajes = new ObservableCollection<PersonajeConTransformacionesYHabilidades>(listPersonajes);          
         }
 
-
+        public void cargaTransformacionesPersonaje()
+        {
+            for (int i=0;i<personajeSeleccionado.listaTranformaciones.Count;i++)
+            {
+                ListadoRutasImagenesPersonajeSeleccionado.Add(personajeSeleccionado.listaTranformaciones.ElementAt(i).RutaImagen);
+            }
+        }
 
 
 
