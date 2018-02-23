@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Data.SqlClient;
-//using CRUDPersonas_Entidades;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace CRUD_Personas_UWP_DAL.Connection
+namespace Capa_DAL.Connection
 {
-    public class Conexion
+    public  class Conexion
     {
         private Uri server;
 
 
         public Conexion()
-        {           
-            server = new Uri("http://apipersonasdb.azurewebsites.net/api/Personas");
+        {
+            server = new Uri("http://localhost:60073/api/PersonajeConTransformacionesYHabilidades");
         }
 
         public Uri Server
@@ -24,6 +23,5 @@ namespace CRUD_Personas_UWP_DAL.Connection
                 return server;
             }
         }
-
     }
 }

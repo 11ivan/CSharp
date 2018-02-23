@@ -1,0 +1,87 @@
+﻿<Page
+    x:Class="PersonajesDragonBallSuper.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:PersonajesDragonBallSuper"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:PersonajesDragonBallSuper.ViewModels"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <vm:VMMainPage></vm:VMMainPage>
+    </Page.DataContext>
+
+    <!--<Page.Resources>
+        --><!-- Collection of items displayed by this page --><!--
+        <CollectionViewSource x:Name="itemsViewSource" Source="{Binding PersonajeSeleccionado}"/>
+    </Page.Resources>-->
+
+    <Grid x:Name="GridPrinc" Background="Beige">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" x:Name="col" ></ColumnDefinition>
+            <ColumnDefinition Width="4*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <!--Esta es la fila vacía que usaré en el visualStateManager-->
+        </Grid.RowDefinitions>
+
+        <!--<VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="VisualStateEstrechar">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600" />
+                    </VisualState.StateTriggers>
+                </VisualState>
+
+                <VisualState x:Name="VisualStateComoEstaba">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="listViewPersonas.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="GridDatos.(Grid.Row)" Value="2" />
+                        <Setter Target="GridDatos.(Grid.Column)" Value="0" />
+                        <Setter Target="GridDatos.(Grid.ColumnSpan)" Value="2" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>-->
+
+        <RelativePanel x:Name="relativelistViewPersonas" Grid.Column="0" Grid.Row="1" Background="White">
+            <ListView x:Name="listViewPersonas" ItemsSource="{Binding ObservableCollectionPersonajes, Mode=TwoWay}" SelectedItem="{Binding PersonajeSeleccionado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="Transparent" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock x:Name="nombre" Text="{Binding Nombre}" Margin="0 0 8 0" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </RelativePanel>
+        <Grid x:Name="GridDatos" Grid.Column="1" Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <!--<RowDefinition Height="*"></RowDefinition>-->
+            </Grid.RowDefinitions>
+
+
+            <TextBlock x:Name="textNombre" Text="Nombre: " Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right" />
+            <TextBox x:Name="nombrePersona" Width="150" Grid.Column="1" Grid.Row="0" Text="{Binding PersonajeSeleccionado.Nombre, Mode=TwoWay, UpdateSourceTrigger=Explicit}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin=" 20 0 0 0" />
+            <FlipView ItemsSource="{Binding }"  />
+
+        </Grid>
+
+    </Grid>
+</Page>
