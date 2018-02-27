@@ -104,8 +104,8 @@ function compruebaCheck() {
     } else {
         contadorChecks--;
         var indiceADesmarcar = idChecksMarcados.indexOf(idCheck);
-        idChecksMarcados[indiceADesmarcar] = -1;//Se puede mejorar 
-        //idChecksMarcados.splice(indiceADesmarcar);
+        //idChecksMarcados[indiceADesmarcar] = -1;//Se puede mejorar 
+        idChecksMarcados.splice(indiceADesmarcar);
     }
 }
 
@@ -115,9 +115,9 @@ function compruebaCheck() {
 function muestraDetalles() {
     removeDetalles();
     for (var i = 0; i < idChecksMarcados.length; i++){
-        if (idChecksMarcados[i] != -1) {
-            insertaDetalle(idChecksMarcados[i]);
-        }
+        //if (idChecksMarcados[i] != -1) {
+            insertaDetalle(idChecksMarcados[i]-1);//
+        //}
     }
 }
 
@@ -148,7 +148,7 @@ function insertaDetalle(indicePersonaje) {
     var img = document.createElement("img");
     img.src = rutaImagen;
     img.height = 300;
-    img.width = 150;
+    img.width = 200;
 
     document.getElementById("divDetalles").appendChild(p);
     document.getElementById("divDetalles").appendChild(p2);
