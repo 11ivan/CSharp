@@ -28,28 +28,6 @@
             <!--Esta es la fila vacía que usaré en el visualStateManager-->
         </Grid.RowDefinitions>
 
-        <!--<VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="VisualStateGroup">
-                <VisualState x:Name="VisualStateEstrechar">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="600" />
-                    </VisualState.StateTriggers>
-                </VisualState>
-
-                <VisualState x:Name="VisualStateComoEstaba">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="0" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        <Setter Target="listViewPersonas.(Grid.ColumnSpan)" Value="2" />
-                        <Setter Target="GridDatos.(Grid.Row)" Value="2" />
-                        <Setter Target="GridDatos.(Grid.Column)" Value="0" />
-                        <Setter Target="GridDatos.(Grid.ColumnSpan)" Value="2" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>-->
-
         <RelativePanel x:Name="relativelistViewPersonas" Grid.Column="0" Grid.Row="1" Background="White">
             <ListView x:Name="listViewPersonas" ItemsSource="{Binding ObservableCollectionPersonajes, Mode=TwoWay}" SelectedItem="{Binding PersonajeSeleccionado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Background="Transparent" >
                 <ListView.ItemTemplate>
@@ -89,10 +67,10 @@
                 </FlipView.ItemTemplate>
             </FlipView>-->
 
-            <FlipView x:Name="flipView" Grid.Column="0" Grid.Row="2" ItemsSource="{Binding listaRutasImagenes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="Visible" >
+            <FlipView x:Name="flipView" Grid.Column="0" Grid.Row="2" Width="400" Height="500" ItemsSource="{Binding ListadoRutasImagenesPersonajeSeleccionado, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="Visible" >
                 <FlipView.ItemTemplate>
                     <DataTemplate>
-                        <Image Width="200" Height="200" Source="{Binding}" />
+                        <Image Width="400" Height="500" Source="{Binding}" />
                     </DataTemplate>
                 </FlipView.ItemTemplate>
             </FlipView>

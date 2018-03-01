@@ -13,7 +13,7 @@ namespace PersonajesDragonBallSuper.ViewModels
     {
 
         private ObservableCollection<PersonajeConTransformacionesYHabilidades> observableCollectionPersonajes { get; set; }
-        private PersonajeConTransformacionesYHabilidades personajeSeleccionado { get; set; }
+        private PersonajeConTransformacionesYHabilidades personajeSeleccionado;
         private GestoraPersonajeConTransformacionesYHabilidadesBL gestoraPersonajeConTransformacionesYHabilidades = new GestoraPersonajeConTransformacionesYHabilidadesBL();
         private List<String> listaRutasImagenes;
 
@@ -48,7 +48,9 @@ namespace PersonajesDragonBallSuper.ViewModels
             {
                 this.personajeSeleccionado = value;
                 NotifyPropertyChanged("PersonajeSeleccionado");
+                //ListadoRutasImagenesPersonajeSeleccionado = personajeSeleccionado.listaTranformaciones;
                 cargaTransformacionesPersonaje();
+                
             }
         }
 
@@ -73,10 +75,12 @@ namespace PersonajesDragonBallSuper.ViewModels
 
         public void cargaTransformacionesPersonaje()
         {
+            List<string> rutas = new List<string>();
             for (int i=0;i<personajeSeleccionado.listaTranformaciones.Count;i++)
             {
-                ListadoRutasImagenesPersonajeSeleccionado.Add(personajeSeleccionado.listaTranformaciones.ElementAt(i).RutaImagen);
+                rutas.Add(personajeSeleccionado.listaTranformaciones.ElementAt(i).RutaImagen);
             }
+            ListadoRutasImagenesPersonajeSeleccionado = rutas;
         }
 
 
