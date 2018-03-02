@@ -42,7 +42,7 @@ namespace CapaDAL.Listados
                                                       " where ID in ( " +
                                                                       "select top(@miTop) ID from Pedidos " +
                                                                               "where ID in ( " +
-                                                                                              "select top(@elementosPorPagina) p.ID from Pedidos as p " +
+                                                                                              "select top(@elementosPorPagina) p.ID from Pedidos as p where Cancelado = 0 " +
                                                                                               " order by " + orden + " " + sentido + ") order by  " + orden + " " + sentidoOpuesto + " " +
                                                                      ") order by  " + orden + "  " + sentido;
 
@@ -56,7 +56,7 @@ namespace CapaDAL.Listados
                                                                              "where ID in ( " +
                                                                                              "select top(@elementosPorPagina) p.ID from Pedidos as p inner join Clientes as c" +
                                                                                              " on p.ID_CLiente = c.ID inner join Lineas_Pedido as lp on p.ID = lp.ID_Pedido" +
-                                                                                             " inner join Productos as po on lp.ID_Producto = po.ID   " +
+                                                                                             " inner join Productos as po on lp.ID_Producto = po.ID where Cancelado = 0" +
                                                                                              " order by " + orden + " " + sentido + " where " + busquedaSegun + ".Nombre like '%@busquedaValor%') order by  " + orden + " " + sentidoOpuesto + " " +
                                                                     ") order by  " + orden + "  " + sentido;
 

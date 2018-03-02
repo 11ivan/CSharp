@@ -150,14 +150,14 @@ namespace CapaDAL.Gestoras
         public int cancelarPedido(int id_pedido)
         {
             int affectedRows = 0;
+            Conexion con = new Conexion();
             try
             {
-                Conexion con = new Conexion();
-                SqlConnection conexion = con.connection;
-                SqlCommand comando = new SqlCommand("EXECUTE CancelarPedido(@ID_Pedido)", conexion);
+                con.openConnection();
+                SqlCommand comando = new SqlCommand("EXECUTE CancelarPedido @ID_Pedido", con.connection);
                 comando.Parameters.Add("@ID_Pedido", SqlDbType.Int).Value = id_pedido;
                 affectedRows = comando.ExecuteNonQuery();
-                conexion.Close();
+                con.connection.Close();
             }
             catch (SqlException e)
             {
