@@ -23,8 +23,8 @@ namespace DataAnnotation.Models.Entities
         //Constructors
         public Persona()
         {
-            nombre = "Ivan";
-            apellido = "Castillo";
+            nombre = "";
+            apellido = "";
         }
 
 
